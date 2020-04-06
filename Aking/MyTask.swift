@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  FirstViewController.swift
 //  Aking
 //
 //  Created by Usama Sadiq on 4/5/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class MyTask: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

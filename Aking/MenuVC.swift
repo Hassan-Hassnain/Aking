@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  SecondViewController.swift
 //  Aking
 //
 //  Created by Usama Sadiq on 4/5/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class MenuVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
