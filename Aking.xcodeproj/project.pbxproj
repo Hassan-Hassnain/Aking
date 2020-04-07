@@ -33,7 +33,12 @@
 		3C623259243B27DD0087BD49 /* QuickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C623258243B27DD0087BD49 /* QuickVC.swift */; };
 		3C62325B243B27EF0087BD49 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62325A243B27EF0087BD49 /* ProfileVC.swift */; };
 		3C62325D243B28110087BD49 /* MyTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62325C243B28110087BD49 /* MyTaskVC.swift */; };
+		3C6393C7243CC52B0089F04B /* AddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C6393C6243CC52B0089F04B /* AddView.xib */; };
+		3C6393C9243CC73C0089F04B /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6393C8243CC73C0089F04B /* AddView.swift */; };
+		3C6393CF243CCAC70089F04B /* AddViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6393CE243CCAC70089F04B /* AddViewDelegate.swift */; };
+		3C6393D1243CD47A0089F04B /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6393D0243CD47A0089F04B /* AddVC.swift */; };
 		3C6903B0243BBB21003E5373 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6903AF243BBB21003E5373 /* Extensions.swift */; };
+		3C9C2EA2243C9008003F51E7 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +69,12 @@
 		3C623258243B27DD0087BD49 /* QuickVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVC.swift; sourceTree = "<group>"; };
 		3C62325A243B27EF0087BD49 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		3C62325C243B28110087BD49 /* MyTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTaskVC.swift; sourceTree = "<group>"; };
+		3C6393C6243CC52B0089F04B /* AddView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddView.xib; sourceTree = "<group>"; };
+		3C6393C8243CC73C0089F04B /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		3C6393CE243CCAC70089F04B /* AddViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewDelegate.swift; sourceTree = "<group>"; };
+		3C6393D0243CD47A0089F04B /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 		3C6903AF243BBB21003E5373 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		C1483C85FE93081F2F37D46C /* Pods-Aking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aking.debug.xcconfig"; path = "Target Support Files/Pods-Aking/Pods-Aking.debug.xcconfig"; sourceTree = "<group>"; };
 		CDBA405980A0B475C187FAAE /* Pods_Aking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61AB1BD4C1D0D01B2A62823 /* Pods-Aking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aking.release.xcconfig"; path = "Target Support Files/Pods-Aking/Pods-Aking.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,18 +122,13 @@
 		3C08ECE4243A0960003BDB36 /* Aking */ = {
 			isa = PBXGroup;
 			children = (
-				3C08ED1E243A0F64003BDB36 /* fonts */,
+				3C08ECF5243A0963003BDB36 /* Info.plist */,
+				3C6393CA243CC9B60089F04B /* Resources */,
 				3C08ECE5243A0960003BDB36 /* AppDelegate.swift */,
 				3C08ECE7243A0960003BDB36 /* SceneDelegate.swift */,
-				3C62325C243B28110087BD49 /* MyTaskVC.swift */,
-				3C08ECEB243A0960003BDB36 /* MenuVC.swift */,
-				3C623258243B27DD0087BD49 /* QuickVC.swift */,
-				3C62325A243B27EF0087BD49 /* ProfileVC.swift */,
-				3C08ECED243A0960003BDB36 /* Main.storyboard */,
-				3C08ECF0243A0963003BDB36 /* Assets.xcassets */,
-				3C08ECF2243A0963003BDB36 /* LaunchScreen.storyboard */,
-				3C08ECF5243A0963003BDB36 /* Info.plist */,
-				3C6903AF243BBB21003E5373 /* Extensions.swift */,
+				3C6393CB243CC9E80089F04B /* Controllers */,
+				3C6393CC243CCA0D0089F04B /* Views */,
+				3C6393CD243CCA200089F04B /* SupportingFiles */,
 			);
 			path = Aking;
 			sourceTree = "<group>";
@@ -149,6 +154,48 @@
 				3C08ED2E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		3C6393CA243CC9B60089F04B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3C08ECF0243A0963003BDB36 /* Assets.xcassets */,
+				3C08ED1E243A0F64003BDB36 /* fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3C6393CB243CC9E80089F04B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */,
+				3C62325C243B28110087BD49 /* MyTaskVC.swift */,
+				3C08ECEB243A0960003BDB36 /* MenuVC.swift */,
+				3C623258243B27DD0087BD49 /* QuickVC.swift */,
+				3C62325A243B27EF0087BD49 /* ProfileVC.swift */,
+				3C6393D0243CD47A0089F04B /* AddVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3C6393CC243CCA0D0089F04B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3C08ECED243A0960003BDB36 /* Main.storyboard */,
+				3C08ECF2243A0963003BDB36 /* LaunchScreen.storyboard */,
+				3C6393C6243CC52B0089F04B /* AddView.xib */,
+				3C6393C8243CC73C0089F04B /* AddView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3C6393CD243CCA200089F04B /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3C6903AF243BBB21003E5373 /* Extensions.swift */,
+				3C6393CE243CCAC70089F04B /* AddViewDelegate.swift */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		876A4D1891B9B3EE357D6DA7 /* Frameworks */ = {
@@ -231,6 +278,7 @@
 				3C08ED3E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg in Resources */,
 				3C08ED32243A0F64003BDB36 /* avenirnextroundedpro-reg-webfont.svg in Resources */,
 				3C08ED33243A0F64003BDB36 /* avenirnextltpro-bold-webfont.svg in Resources */,
+				3C6393C7243CC52B0089F04B /* AddView.xib in Resources */,
 				3C08ECF1243A0963003BDB36 /* Assets.xcassets in Resources */,
 				3C08ED2F243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.eot in Resources */,
 				3C08ED3B243A0F64003BDB36 /* avenirnextltpro-bold-webfont.eot in Resources */,
@@ -290,9 +338,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C9C2EA2243C9008003F51E7 /* TabbarViewController.swift in Sources */,
 				3C62325B243B27EF0087BD49 /* ProfileVC.swift in Sources */,
+				3C6393C9243CC73C0089F04B /* AddView.swift in Sources */,
 				3C08ECEC243A0960003BDB36 /* MenuVC.swift in Sources */,
+				3C6393D1243CD47A0089F04B /* AddVC.swift in Sources */,
 				3C08ECE6243A0960003BDB36 /* AppDelegate.swift in Sources */,
+				3C6393CF243CCAC70089F04B /* AddViewDelegate.swift in Sources */,
 				3C62325D243B28110087BD49 /* MyTaskVC.swift in Sources */,
 				3C6903B0243BBB21003E5373 /* Extensions.swift in Sources */,
 				3C08ECE8243A0960003BDB36 /* SceneDelegate.swift in Sources */,

@@ -17,13 +17,24 @@ class MyTaskVC: UIViewController {
     @IBOutlet weak var calanderView: FSCalendar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calanderViewHeightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        filterView.isHidden = true
-        monthButton.setTitleColor(.gray, for: .normal)
-        print(Date.getFormattedDate(date: calanderView.today!))
+        setupUI()
+//        showAddView()
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        //        if tabBarController?.viewControllers![2].tabBarItem.tag == 2 {
+//        if tabBarController?.selectedIndex == 2 {
+////        if shouldShowAddView {
+//            addView?.isHidden = false
+//        } else {
+//            addView?.isHidden = true
+//        }
+//    }
+
     @IBAction func toggleCalanderButtonTapped(_ sender: Any) {
         if calanderView.scope == .week {
             calanderView.scope = .month
@@ -89,9 +100,21 @@ class MyTaskVC: UIViewController {
             self.allTaskImageView.image = #imageLiteral(resourceName: "Filter-Selection")
         }
     }
-    
+    //MARK: - ADD NEW
+//    func showAddView() {
+//        addView = AddView()
+//        view.addSubview(addView!)
+//        addView!.fixInView(self.view)
+//        addView!.delegate = self
+//    }
+    //MARK: - COMMON FUNCTIONS
+    fileprivate func setupUI() {
+        if filterView != nil{filterView.isHidden = true}
+        if monthButton != nil{monthButton.setTitleColor(.gray, for: .normal)}
+        //           print(Date.getFormattedDate(date: calanderView.today!))
+    }
 }
-
+//MARK: - TABLE VIEW DELEGATE AN DATASOURCE
 extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

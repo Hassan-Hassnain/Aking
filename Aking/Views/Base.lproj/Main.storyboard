@@ -296,27 +296,36 @@
             </objects>
             <point key="canvasLocation" x="2835" y="1659"/>
         </scene>
-        <!--View Controller-->
+        <!--AddVC-->
         <scene sceneID="dKD-sl-Ol4">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="U39-cN-aMg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U39-cN-aMg" customClass="AddVC" customModule="Aking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E2B-ib-2Lg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xud-lo-Mgn">
+                                <rect key="frame" x="74" y="300" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OPC-zD-Kdv"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Icon-Add1" id="MQ2-by-Pqz">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="27"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
+                    <value key="contentSizeForViewInPopover" type="size" width="268" height="214"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="896"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyb-Fw-X3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1375" y="1659"/>
         </scene>
-        <!--Profile-->
+        <!--My Task-->
         <scene sceneID="ezQ-fh-mht">
             <objects>
                 <viewController storyboardIdentifier="MyTaskVC" id="kBW-zN-BnQ" customClass="MyTaskVC" customModule="Aking" customModuleProvider="target" sceneMemberID="viewController">
@@ -587,7 +596,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rhs-p4-gDU"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="Icon-MyTask" id="LKl-hf-AYN">
+                    <tabBarItem key="tabBarItem" title="My Task" image="Icon-MyTask" id="LKl-hf-AYN">
                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                     <size key="freeformSize" width="414" height="896"/>
@@ -605,12 +614,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DwI-1g-Mnp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-214.49275362318843" y="1646.6517857142856"/>
+            <point key="canvasLocation" x="-51" y="1673"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tabbar View Controller-->
         <scene sceneID="3lt-5H-ifQ">
             <objects>
-                <tabBarController id="Jfc-Vu-A1o" sceneMemberID="viewController">
+                <tabBarController id="Jfc-Vu-A1o" customClass="TabbarViewController" customModule="Aking" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" itemPositioning="fill" id="TN6-rd-bk7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -621,9 +630,9 @@
                     <connections>
                         <segue destination="kBW-zN-BnQ" kind="relationship" relationship="viewControllers" id="9yJ-pi-y0H"/>
                         <segue destination="12h-66-I7Z" kind="relationship" relationship="viewControllers" id="2Hv-gK-HRK"/>
-                        <segue destination="U39-cN-aMg" kind="relationship" relationship="viewControllers" id="SU5-Lt-DKL"/>
-                        <segue destination="KaT-fE-pfT" kind="relationship" relationship="viewControllers" id="xKS-LO-0F1"/>
-                        <segue destination="6Bg-L9-piZ" kind="relationship" relationship="viewControllers" id="F8O-CA-GB3"/>
+                        <segue destination="U39-cN-aMg" kind="relationship" relationship="viewControllers" id="3w6-y7-9xl"/>
+                        <segue destination="KaT-fE-pfT" kind="relationship" relationship="viewControllers" id="FlC-UE-4Wm"/>
+                        <segue destination="6Bg-L9-piZ" kind="relationship" relationship="viewControllers" id="BNu-iV-X1f"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMw-08-ndE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -709,6 +718,9 @@
                                 <state key="normal" title="Get Started">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Fax-7r-hyO" kind="show" id="NAj-JY-ieO"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dcy-jF-dT1">
                                 <rect key="frame" x="182" y="739.5" width="50" height="48"/>
@@ -750,7 +762,7 @@
             <objects>
                 <viewController id="9wa-DA-PQD" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xe7-SH-2NY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSd-Em-8m6">
@@ -846,6 +858,7 @@
                             <constraint firstItem="P0q-Vf-avs" firstAttribute="leading" secondItem="IMj-MB-sMF" secondAttribute="leading" id="6rP-a9-nej"/>
                             <constraint firstItem="Ld2-jb-Xlo" firstAttribute="trailing" secondItem="2GC-UZ-5iC" secondAttribute="trailing" id="8iu-bS-Fnx"/>
                             <constraint firstItem="cMp-46-frA" firstAttribute="top" secondItem="Xe7-SH-2NY" secondAttribute="top" constant="59" id="CU9-rz-bg8"/>
+                            <constraint firstItem="t4o-eb-6aL" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Brw-ZK-xKR" secondAttribute="trailing" symbolic="YES" id="EiE-3K-nhz"/>
                             <constraint firstItem="Brw-ZK-xKR" firstAttribute="top" secondItem="cMp-46-frA" secondAttribute="bottom" constant="61.299999999999997" id="Ekx-8S-q4w"/>
                             <constraint firstItem="cMp-46-frA" firstAttribute="leading" secondItem="t4o-eb-6aL" secondAttribute="leading" constant="24" id="FpM-PS-OB2"/>
                             <constraint firstItem="NtF-9E-iYv" firstAttribute="leading" secondItem="Brw-ZK-xKR" secondAttribute="leading" id="Jnr-PB-u3R"/>
@@ -854,6 +867,9 @@
                             <constraint firstItem="SSd-Em-8m6" firstAttribute="top" secondItem="pqm-Be-qlC" secondAttribute="bottom" constant="84" id="NIh-M8-rtj"/>
                             <constraint firstItem="Ld2-jb-Xlo" firstAttribute="top" secondItem="2GC-UZ-5iC" secondAttribute="bottom" constant="1" id="Viu-q7-TDN"/>
                             <constraint firstItem="t4o-eb-6aL" firstAttribute="trailing" secondItem="2GC-UZ-5iC" secondAttribute="trailing" constant="24" id="Xbs-eg-Cl2"/>
+                            <constraint firstItem="t4o-eb-6aL" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XKJ-tw-asa" secondAttribute="trailing" symbolic="YES" id="YEX-qb-1mT"/>
+                            <constraint firstItem="pqm-Be-qlC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="t4o-eb-6aL" secondAttribute="leading" symbolic="YES" id="ddd-BQ-4rC"/>
+                            <constraint firstItem="t4o-eb-6aL" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NtF-9E-iYv" secondAttribute="trailing" symbolic="YES" id="fMC-Aw-ivm"/>
                             <constraint firstItem="XKJ-tw-asa" firstAttribute="top" secondItem="Ld2-jb-Xlo" secondAttribute="bottom" constant="33.5" id="gyh-in-XJy"/>
                             <constraint firstItem="NtF-9E-iYv" firstAttribute="top" secondItem="Brw-ZK-xKR" secondAttribute="bottom" constant="21" id="hQc-JT-eSc"/>
                             <constraint firstItem="UPb-ZD-Kbh" firstAttribute="leading" secondItem="NtF-9E-iYv" secondAttribute="leading" id="jAq-dB-zsY"/>
@@ -862,6 +878,7 @@
                             <constraint firstItem="2GC-UZ-5iC" firstAttribute="leading" secondItem="UPb-ZD-Kbh" secondAttribute="leading" id="kPu-Ey-M24"/>
                             <constraint firstItem="Ld2-jb-Xlo" firstAttribute="leading" secondItem="2GC-UZ-5iC" secondAttribute="leading" id="lwQ-Ow-Pq1"/>
                             <constraint firstItem="SSd-Em-8m6" firstAttribute="leading" secondItem="t4o-eb-6aL" secondAttribute="leading" constant="24" id="nl8-lq-xZp"/>
+                            <constraint firstItem="t4o-eb-6aL" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UPb-ZD-Kbh" secondAttribute="trailing" symbolic="YES" id="ntK-Yl-5zs"/>
                             <constraint firstItem="t4o-eb-6aL" firstAttribute="trailing" secondItem="IMj-MB-sMF" secondAttribute="trailing" constant="24" id="pVt-bA-2Ca"/>
                             <constraint firstItem="pqm-Be-qlC" firstAttribute="top" secondItem="P0q-Vf-avs" secondAttribute="bottom" constant="13.5" id="xiz-Cx-ukF"/>
                         </constraints>
@@ -1171,7 +1188,9 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Fax-7r-hyO" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="kZ1-EV-adB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="VJx-hK-cqb">
+                        <rect key="frame" x="0.0" y="-54" width="0.0" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
