@@ -58,6 +58,11 @@
                                     </connections>
                                 </button>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="6ts-f0-6Kb" firstAttribute="leading" secondItem="Irg-YS-8Va" secondAttribute="leading" id="O9b-dK-mJp"/>
+                                <constraint firstItem="6ts-f0-6Kb" firstAttribute="top" secondItem="Irg-YS-8Va" secondAttribute="top" id="iTb-HD-ixw"/>
+                                <constraint firstAttribute="trailing" secondItem="6ts-f0-6Kb" secondAttribute="trailing" id="nb1-Lc-Sco"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

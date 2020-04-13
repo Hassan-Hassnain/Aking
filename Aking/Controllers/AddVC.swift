@@ -11,15 +11,9 @@ import UIKit
 @available(iOS 13.0, *)
 class AddVC: UIViewController {
     
-    var addView: AddView?
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        showAddView()
         
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -27,12 +21,6 @@ class AddVC: UIViewController {
         
         
     }
-    func showAddView() {
-           addView = AddView()
-           view.addSubview(addView!)
-           addView!.fixInView(self.view)
-           addView!.delegate = self
-       }
 }
 //MARK: - ADD VIEW DELEGATE
 @available(iOS 13.0, *)

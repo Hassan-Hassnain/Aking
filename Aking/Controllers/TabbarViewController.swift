@@ -12,7 +12,7 @@ import UIKit
 class TabbarViewController: UITabBarController {
     
     var addTaskView: AddView?
-    var presenter: UIViewController?
+    var isAddViewPresented: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,21 +30,9 @@ class TabbarViewController: UITabBarController {
         presenter?.view.addSubview(addView)
     }
     
-    func initAddView(){
-        addTaskView = AddView()
-        addTaskView?.fixInView(selectedViewController?.view)
-        addTaskView?.tag = 100
-    }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-//        if presenter != selectedViewController{
-//            view.subviews.forEach({ vu in
-//                print(vu)
-//                if vu.tag == 100 {
-//                    vu.removeFromSuperview()
-//                }
-//            })
-//        }
+
     }
     
     
@@ -54,12 +42,18 @@ class TabbarViewController: UITabBarController {
 extension TabbarViewController: UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is AddVC {
-
-            showAddView()
+            if !isAddViewPresented {
+                showAddView()
+                isAddViewPresented = true
+            }
             return false
         } else {
-            addTaskView?.removeFromSuperview()
-            
+            for subview in viewController.view.subviews {
+                if (subview.tag == 100) {
+                    subview.removeFromSuperview()
+                }
+            }
+            isAddViewPresented = false
             return true
         }
     }
