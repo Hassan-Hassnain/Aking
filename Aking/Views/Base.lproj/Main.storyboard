@@ -260,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dYQ-0G-dze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="649" y="1659"/>
+            <point key="canvasLocation" x="1557.9710144927537" y="1658.7053571428571"/>
         </scene>
         <!--Quick-->
         <scene sceneID="moQ-e9-Dc0">
@@ -277,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="paa-4A-YAU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2101" y="1659"/>
+            <point key="canvasLocation" x="3010.144927536232" y="1658.7053571428571"/>
         </scene>
         <!--Profile-->
         <scene sceneID="wcl-tl-dIy">
@@ -294,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zpc-ZQ-RWX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2835" y="1659"/>
+            <point key="canvasLocation" x="3744.9275362318845" y="1658.7053571428571"/>
         </scene>
         <!--AddVC-->
         <scene sceneID="dKD-sl-Ol4">
@@ -316,9 +316,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyb-Fw-X3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1375" y="1659"/>
+            <point key="canvasLocation" x="2284.057971014493" y="1658.7053571428571"/>
         </scene>
-        <!--My Task-->
+        <!--Create TaskVC-->
+        <scene sceneID="ch1-Ab-Fxh">
+            <objects>
+                <viewController id="YX5-XM-CIX" customClass="CreateTaskVC" customModule="Aking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GPY-sz-utP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="BtF-jM-yoT"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Fcr-dA-Aua"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LLB-7l-mKh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="736" y="3303"/>
+        </scene>
+        <!--Work List-->
         <scene sceneID="ezQ-fh-mht">
             <objects>
                 <viewController storyboardIdentifier="MyTaskVC" id="kBW-zN-BnQ" customClass="MyTaskVC" customModule="Aking" customModuleProvider="target" sceneMemberID="viewController">
@@ -452,26 +468,13 @@
                                             <constraint firstAttribute="height" constant="44" id="FIG-ZP-lh0"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhU-Tt-cV5">
-                                        <rect key="frame" x="378" y="58" width="20" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="fTp-Lg-MqZ"/>
-                                            <constraint firstAttribute="width" constant="20" id="nFv-nT-b5Y"/>
-                                        </constraints>
-                                        <state key="normal" image="Filter-Button"/>
-                                        <connections>
-                                            <action selector="filterButtonTapped:" destination="kBW-zN-BnQ" eventType="touchUpInside" id="COU-2N-c8D"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.43921568630000002" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="151" id="8RL-e0-bGb"/>
                                     <constraint firstAttribute="bottom" secondItem="mHM-q7-Wme" secondAttribute="bottom" id="Uny-Eu-5RZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="fhU-Tt-cV5" secondAttribute="trailing" constant="16" id="WXw-XK-IIJ"/>
                                     <constraint firstItem="mHM-q7-Wme" firstAttribute="leading" secondItem="4Dx-wX-1G5" secondAttribute="leading" id="kYZ-hp-GJy"/>
                                     <constraint firstAttribute="trailing" secondItem="mHM-q7-Wme" secondAttribute="trailing" id="m2i-zX-Uby"/>
-                                    <constraint firstItem="fhU-Tt-cV5" firstAttribute="top" secondItem="4Dx-wX-1G5" secondAttribute="top" constant="58" id="nUE-bg-2MI"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xS-uQ-rvJ">
@@ -503,9 +506,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rhs-p4-gDU"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Task" image="Icon-MyTask" id="LKl-hf-AYN">
-                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="Work List" id="npr-f3-Mi0">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="Filter-Button" id="OHp-cs-3aE">
+                            <connections>
+                                <action selector="filterButtonTapped:" destination="kBW-zN-BnQ" id="GiR-Kd-Tic"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
                         <outlet property="calanderView" destination="hqY-Q9-qp6" id="Nqy-nd-OCn"/>
@@ -518,7 +525,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DwI-1g-Mnp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-51" y="1673"/>
+            <point key="canvasLocation" x="-54" y="2384"/>
         </scene>
         <!--Tabbar View Controller-->
         <scene sceneID="3lt-5H-ifQ">
@@ -532,7 +539,7 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="kBW-zN-BnQ" kind="relationship" relationship="viewControllers" id="9yJ-pi-y0H"/>
+                        <segue destination="PNm-BC-TXM" kind="relationship" relationship="viewControllers" id="9yJ-pi-y0H"/>
                         <segue destination="12h-66-I7Z" kind="relationship" relationship="viewControllers" id="2Hv-gK-HRK"/>
                         <segue destination="U39-cN-aMg" kind="relationship" relationship="viewControllers" id="3w6-y7-9xl"/>
                         <segue destination="KaT-fE-pfT" kind="relationship" relationship="viewControllers" id="FlC-UE-4Wm"/>
@@ -1108,7 +1115,39 @@
             </objects>
             <point key="canvasLocation" x="2987" y="185"/>
         </scene>
+        <!--My Task-->
+        <scene sceneID="Xb6-fG-Xjx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PNm-BC-TXM" customClass="NavigationVC" customModule="Aking" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Task" image="Icon-MyTask" id="LKl-hf-AYN">
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xFz-zx-lv1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.95686274510000002" green="0.43921568630000002" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jiS-Qc-Ixv">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="kBW-zN-BnQ" kind="relationship" relationship="rootViewController" id="yAV-VF-Fso"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m2d-gl-kon" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-52.173913043478265" y="1672.7678571428571"/>
+        </scene>
     </scenes>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="Back-Button" width="26" height="18"/>
         <image name="Calander-expander" width="14" height="9"/>

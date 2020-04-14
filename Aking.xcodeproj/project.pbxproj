@@ -32,6 +32,8 @@
 		3C08ED3E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg in Resources */ = {isa = PBXBuildFile; fileRef = 3C08ED2E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg */; };
 		3C0B31E42445EB970001B32B /* TaskFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B31E32445EB970001B32B /* TaskFilterView.swift */; };
 		3C0B31E62445EBB50001B32B /* TaskFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C0B31E52445EBB50001B32B /* TaskFilterView.xib */; };
+		3C613809244626600067B717 /* CreateTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C613808244626600067B717 /* CreateTaskVC.swift */; };
+		3C61380B244630820067B717 /* NavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61380A244630820067B717 /* NavigationVC.swift */; };
 		3C623259243B27DD0087BD49 /* QuickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C623258243B27DD0087BD49 /* QuickVC.swift */; };
 		3C62325B243B27EF0087BD49 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62325A243B27EF0087BD49 /* ProfileVC.swift */; };
 		3C62325D243B28110087BD49 /* MyTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62325C243B28110087BD49 /* MyTaskVC.swift */; };
@@ -70,6 +72,8 @@
 		3C08ED2E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "avenirnextroundedpro-demi-webfont.svg"; sourceTree = "<group>"; };
 		3C0B31E32445EB970001B32B /* TaskFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFilterView.swift; sourceTree = "<group>"; };
 		3C0B31E52445EBB50001B32B /* TaskFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskFilterView.xib; sourceTree = "<group>"; };
+		3C613808244626600067B717 /* CreateTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskVC.swift; sourceTree = "<group>"; };
+		3C61380A244630820067B717 /* NavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVC.swift; sourceTree = "<group>"; };
 		3C623258243B27DD0087BD49 /* QuickVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVC.swift; sourceTree = "<group>"; };
 		3C62325A243B27EF0087BD49 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		3C62325C243B28110087BD49 /* MyTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTaskVC.swift; sourceTree = "<group>"; };
@@ -173,11 +177,13 @@
 			isa = PBXGroup;
 			children = (
 				3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */,
+				3C61380A244630820067B717 /* NavigationVC.swift */,
 				3C62325C243B28110087BD49 /* MyTaskVC.swift */,
 				3C08ECEB243A0960003BDB36 /* MenuVC.swift */,
 				3C623258243B27DD0087BD49 /* QuickVC.swift */,
 				3C62325A243B27EF0087BD49 /* ProfileVC.swift */,
 				3C6393D0243CD47A0089F04B /* AddVC.swift */,
+				3C613808244626600067B717 /* CreateTaskVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -345,11 +351,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C61380B244630820067B717 /* NavigationVC.swift in Sources */,
 				3C9C2EA2243C9008003F51E7 /* TabbarViewController.swift in Sources */,
 				3C62325B243B27EF0087BD49 /* ProfileVC.swift in Sources */,
 				3C6393C9243CC73C0089F04B /* AddView.swift in Sources */,
 				3C08ECEC243A0960003BDB36 /* MenuVC.swift in Sources */,
 				3C6393D1243CD47A0089F04B /* AddVC.swift in Sources */,
+				3C613809244626600067B717 /* CreateTaskVC.swift in Sources */,
 				3C0B31E42445EB970001B32B /* TaskFilterView.swift in Sources */,
 				3C08ECE6243A0960003BDB36 /* AppDelegate.swift in Sources */,
 				3C6393CF243CCAC70089F04B /* AddViewDelegate.swift in Sources */,
@@ -432,7 +440,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -486,7 +494,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

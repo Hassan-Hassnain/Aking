@@ -18,12 +18,13 @@ class MyTaskVC: UIViewController {
     @IBOutlet weak var calanderViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var calendarToggleButton: UIButton!
     
-    let filterView = TaskFilterView(frame: CGRect(x: 172, y: 89, width: 228, height: 130))
+    var filterView = TaskFilterView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
+        updateNavBarAppearance()
     }
     
     @IBAction func toggleCalanderButtonTapped(_ sender: Any) {
@@ -57,17 +58,17 @@ class MyTaskVC: UIViewController {
         monthButton.setTitleColor(.white, for: .normal)
         calendarToggleButton.isHidden = false
     }
-    @IBAction func filterButtonTapped(_ sender: UIButton) {
+    
+    @IBAction func filterButtonTapped(_ sender: UIBarButtonItem) {
         if filterView.isHidden {
             filterView.isHidden = false
         } else {
             filterView.isHidden = true
         }
-        print(sender.frame)
     }
     
-   
     fileprivate func setupUI() {
+        filterView = TaskFilterView(frame: CGRect(x: 172, y: 89, width: 228, height: 130))
         view.addSubview(filterView)
         filterView.isHidden = true
         if monthButton != nil{monthButton.setTitleColor(.gray, for: .normal)}
