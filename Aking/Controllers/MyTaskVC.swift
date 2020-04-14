@@ -10,51 +10,52 @@ import UIKit
 import FSCalendar
 
 class MyTaskVC: UIViewController {
-    //MARK: - CALANDER AND MONTH PROPERITES AND FUNCTIONS
     
     @IBOutlet weak var todayButton: UIButton!
     @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var calanderView: FSCalendar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calanderViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var calendarToggleButton: UIButton!
+    
+    let filterView = TaskFilterView(frame: CGRect(x: 172, y: 89, width: 228, height: 130))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-//        showAddView()
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        //        if tabBarController?.viewControllers![2].tabBarItem.tag == 2 {
-//        if tabBarController?.selectedIndex == 2 {
-////        if shouldShowAddView {
-//            addView?.isHidden = false
-//        } else {
-//            addView?.isHidden = true
-//        }
-//    }
-
+    
     @IBAction func toggleCalanderButtonTapped(_ sender: Any) {
         if calanderView.scope == .week {
             calanderView.scope = .month
-            
-            calanderViewHeightConstraint.constant  = 327
-            
+            UIView.animate(withDuration: 0.2) {
+                self.calendarToggleButton.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi * 180)/180)
+                self.calanderViewHeightConstraint.constant = 327
+                self.loadViewIfNeeded()
+            }
         } else {
             calanderView.scope = .week
-            calanderViewHeightConstraint.constant  = 130
+            UIView.animate(withDuration: 0.2) {
+                self.calendarToggleButton.transform = CGAffineTransform(rotationAngle: 0)
+                self.calanderViewHeightConstraint.constant  = 130
+                self.loadViewIfNeeded()
+            }
         }
         
     }
     @IBAction func todayButtonTapped(_ sender: Any) {
         calanderViewHeightConstraint.constant  = 0
+        todayButton.setTitleColor(.white, for: .normal)
         monthButton.setTitleColor(.gray, for: .normal)
+        calendarToggleButton.isHidden = true
     }
     @IBAction func monthButtonTapped(_ sender: Any) {
         calanderView.scope = .week
         calanderViewHeightConstraint.constant  = 130
         todayButton.setTitleColor(.gray, for: .normal)
+        monthButton.setTitleColor(.white, for: .normal)
+        calendarToggleButton.isHidden = false
     }
     @IBAction func filterButtonTapped(_ sender: UIButton) {
         if filterView.isHidden {
@@ -62,56 +63,14 @@ class MyTaskVC: UIViewController {
         } else {
             filterView.isHidden = true
         }
+        print(sender.frame)
     }
     
-    //MARK: - FILTER VIEW
-    
-    @IBOutlet weak var filterView: UIView!
-    @IBOutlet weak var incompleteTaskImageView: UIImageView!
-    @IBOutlet weak var completedTaskImageView: UIImageView!
-    @IBOutlet weak var allTaskImageView: UIImageView!
-    enum selectedFilter {  case incomplete, completed, allTask }
-    var selectedOption: selectedFilter = .incomplete
-    
-    @IBAction func incompleteTaskButtonTapped(_ sender: UIButton) {
-        selectedOption = .incomplete
-        updateFilterView()
-    }
-    @IBAction func completedTaskButtonTapped(_ sender: UIButton) {
-        selectedOption = .completed
-        updateFilterView()
-    }
-    @IBAction func allTasksButtonTapped(_ sender: UIButton) {
-        selectedOption = .allTask
-        updateFilterView()
-    }
-    
-    func updateFilterView(){
-        incompleteTaskImageView.image = nil
-        completedTaskImageView.image = nil
-        allTaskImageView.image = nil
-        
-        switch selectedOption {
-        case .incomplete:
-            self.incompleteTaskImageView.image = #imageLiteral(resourceName: "Filter-Selection")
-        case .completed:
-            self.completedTaskImageView.image = #imageLiteral(resourceName: "Filter-Selection")
-        case .allTask:
-            self.allTaskImageView.image = #imageLiteral(resourceName: "Filter-Selection")
-        }
-    }
-    //MARK: - ADD NEW
-//    func showAddView() {
-//        addView = AddView()
-//        view.addSubview(addView!)
-//        addView!.fixInView(self.view)
-//        addView!.delegate = self
-//    }
-    //MARK: - COMMON FUNCTIONS
+   
     fileprivate func setupUI() {
-        if filterView != nil{filterView.isHidden = true}
+        view.addSubview(filterView)
+        filterView.isHidden = true
         if monthButton != nil{monthButton.setTitleColor(.gray, for: .normal)}
-        //           print(Date.getFormattedDate(date: calanderView.today!))
     }
 }
 //MARK: - TABLE VIEW DELEGATE AN DATASOURCE
@@ -145,4 +104,5 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+
 
