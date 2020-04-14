@@ -28,6 +28,7 @@ class TabbarViewController: UITabBarController {
         view.addSubview(addView)
         addView.fixInView(presenter?.view)
         presenter?.view.addSubview(addView)
+        
     }
     
     
@@ -60,3 +61,5 @@ extension TabbarViewController: UITabBarControllerDelegate{
     
     
 }
+
+

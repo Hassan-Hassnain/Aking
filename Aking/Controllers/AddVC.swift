@@ -11,9 +11,13 @@ import UIKit
 @available(iOS 13.0, *)
 class AddVC: UIViewController {
     
+    let createMenu = AddView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        createMenu.delegate = self
         
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -27,6 +31,8 @@ class AddVC: UIViewController {
 extension AddVC: AddViewDelegate {
     func addTaskDidTapped() {
         print("Add task button tapped")
+        performSegue(withIdentifier: "ToCreateTaskVC", sender: self)
+        
     }
     
     func addQuickNoteDidTapped() {

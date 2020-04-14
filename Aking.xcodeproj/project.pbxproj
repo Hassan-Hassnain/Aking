@@ -180,9 +180,9 @@
 				3C61380A244630820067B717 /* NavigationVC.swift */,
 				3C62325C243B28110087BD49 /* MyTaskVC.swift */,
 				3C08ECEB243A0960003BDB36 /* MenuVC.swift */,
+				3C6393D0243CD47A0089F04B /* AddVC.swift */,
 				3C623258243B27DD0087BD49 /* QuickVC.swift */,
 				3C62325A243B27EF0087BD49 /* ProfileVC.swift */,
-				3C6393D0243CD47A0089F04B /* AddVC.swift */,
 				3C613808244626600067B717 /* CreateTaskVC.swift */,
 			);
 			path = Controllers;

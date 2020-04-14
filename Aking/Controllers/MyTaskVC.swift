@@ -25,6 +25,11 @@ class MyTaskVC: UIViewController {
         
         setupUI()
         updateNavBarAppearance()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(addTaskDidTapped), name: NSNotification.Name(rawValue: KNotifcations.NEW_TASK), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addQuickNoteDidTapped), name: NSNotification.Name(rawValue: KNotifcations.QUICK_NOTE), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addCheckListDidTapped), name: NSNotification.Name(rawValue: KNotifcations.CHECK_LIST), object: nil)
+        
     }
     
     @IBAction func toggleCalanderButtonTapped(_ sender: Any) {
@@ -106,4 +111,30 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+//MARK: - Create Menu functions
+extension MyTaskVC {
+    @objc func addTaskDidTapped() {
+        performSegue(withIdentifier: "ToCreateTaskVC", sender: self)
+        hideCreateMenu()
+    }
+    
+    @objc func addQuickNoteDidTapped() {
+        print("Add Quick Note button tapped")
+        tabBarController?.selectedIndex = 0
+        hideCreateMenu()
+    }
+    
+    @objc func addCheckListDidTapped() {
+        print("Add Check List button tapped")
+        hideCreateMenu()
+    }
+    
+    func hideCreateMenu(){
+        for subview in self.view.subviews {
+            if (subview.tag == 100) {
+                subview.removeFromSuperview()
+            }
+        }
+    }
+}
 
