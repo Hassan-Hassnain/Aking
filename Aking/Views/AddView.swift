@@ -45,9 +45,3 @@ class AddView: UIView {
         print("add checklist")
     }
 }
-
-struct KNotifcations {
-    static let NEW_TASK: String = "addTask"
-    static let QUICK_NOTE: String = "quickNote"
-    static let CHECK_LIST: String = "checkList"
-}

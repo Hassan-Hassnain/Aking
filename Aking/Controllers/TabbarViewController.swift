@@ -41,7 +41,7 @@ class TabbarViewController: UITabBarController {
 
 @available(iOS 13.0, *)
 extension TabbarViewController: UITabBarControllerDelegate{
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+    @objc func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is AddVC {
             if !isAddViewPresented {
                 showAddView()
@@ -58,8 +58,8 @@ extension TabbarViewController: UITabBarControllerDelegate{
             return true
         }
     }
-    
-    
+
+
 }
 
 

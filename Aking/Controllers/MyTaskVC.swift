@@ -114,27 +114,28 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
 //MARK: - Create Menu functions
 extension MyTaskVC {
     @objc func addTaskDidTapped() {
-        performSegue(withIdentifier: "ToCreateTaskVC", sender: self)
-        hideCreateMenu()
+        guard let vc = storyboard?.instantiateViewController(identifier: CreateTaskVC.className) else {return}
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func addQuickNoteDidTapped() {
         print("Add Quick Note button tapped")
-        tabBarController?.selectedIndex = 0
-        hideCreateMenu()
     }
     
     @objc func addCheckListDidTapped() {
         print("Add Check List button tapped")
-        hideCreateMenu()
     }
     
+   
+}
+
+extension UIViewController{
     func hideCreateMenu(){
-        for subview in self.view.subviews {
+       for subview in self.view.subviews {
             if (subview.tag == 100) {
                 subview.removeFromSuperview()
+                print("removed")
             }
         }
     }
 }
-
