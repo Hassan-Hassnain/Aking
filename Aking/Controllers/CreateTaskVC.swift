@@ -17,7 +17,9 @@ class CreateTaskVC: UIViewController {
     @IBOutlet weak var memberCollectionView: UICollectionView!
     @IBOutlet weak var selectionTableView: UITableView!
     @IBOutlet weak var selectionTVHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var anyTimeButton: UIButton!
     
+    var datePickerView = DatePickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +43,19 @@ class CreateTaskVC: UIViewController {
         memberCollectionView.regCell(cellName: MemberCVC.className)
         selectionTableView.regCell(cellName: SelectionTVCell.className)
         
-        
+        datePickerView = DatePickerView(frame: CGRect(x: 16, y: 227, width: 344, height: 397))
+        datePickerView.center.x = self.view.center.x
+        self.view.addSubview(datePickerView)
+        datePickerView.isHidden = true
+        datePickerView.delegate = self
         
     }
     @IBAction func attachmentButtonTapped(_ sender: Any) {
+        
     }
     @IBAction func anytimeButtonTapped(_ sender: Any) {
+        datePickerView.isHidden = false
+        loadViewIfNeeded()
     }
     @IBAction func addTaskButtonTapped(_ sender: Any) {
     }
@@ -128,4 +137,12 @@ extension CreateTaskVC: UICollectionViewDataSource, UICollectionViewDelegate {
 //        return CGSize(width: collectionView. preferredWidth, height: floor(preferredHeight))
     }
 }
-
+//MARK: - 
+extension CreateTaskVC: DatePickerViewDelegate {
+    func didDateSelectionCompleted(date: String) {
+        self.datePickerView.isHidden = true
+        self.anyTimeButton.setTitle(date, for: .normal)
+    }
+    
+    
+}

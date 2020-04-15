@@ -588,10 +588,10 @@
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" estimatedRowHeight="48" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qlo-Y6-gE5">
-                                        <rect key="frame" x="0.0" y="470" width="382" height="200"/>
+                                        <rect key="frame" x="0.0" y="620" width="382" height="50"/>
                                         <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="mtt-EQ-qId"/>
+                                            <constraint firstAttribute="height" constant="50" id="mtt-EQ-qId"/>
                                         </constraints>
                                     </tableView>
                                 </subviews>
@@ -644,6 +644,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" image="Back-Button" id="vPa-46-Raw"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="anyTimeButton" destination="1dp-sQ-Tjw" id="PbF-rh-aLW"/>
                         <outlet property="descriptionTextView" destination="oEv-R3-x53" id="DAT-DJ-kcV"/>
                         <outlet property="forTableView" destination="AL2-M4-haE" id="fvF-ek-xmf"/>
                         <outlet property="inTableView" destination="EPE-Kx-7rc" id="VgG-Ai-Tmz"/>

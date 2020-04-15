@@ -32,6 +32,8 @@
 		3C08ED3E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg in Resources */ = {isa = PBXBuildFile; fileRef = 3C08ED2E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg */; };
 		3C0B31E42445EB970001B32B /* TaskFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B31E32445EB970001B32B /* TaskFilterView.swift */; };
 		3C0B31E62445EBB50001B32B /* TaskFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C0B31E52445EBB50001B32B /* TaskFilterView.xib */; };
+		3C2EDF95244761F70030EB47 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2EDF94244761F70030EB47 /* DatePickerView.swift */; };
+		3C2EDF99244773D90030EB47 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C2EDF98244773D90030EB47 /* DatePickerView.xib */; };
 		3C5900942446797C004F7009 /* SelectionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5900932446797C004F7009 /* SelectionTVCell.swift */; };
 		3C59009624468355004F7009 /* SelectionTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C59009524468355004F7009 /* SelectionTVCell.xib */; };
 		3C613809244626600067B717 /* CreateTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C613808244626600067B717 /* CreateTaskVC.swift */; };
@@ -106,6 +108,8 @@
 		3C08ED2E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "avenirnextroundedpro-demi-webfont.svg"; sourceTree = "<group>"; };
 		3C0B31E32445EB970001B32B /* TaskFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFilterView.swift; sourceTree = "<group>"; };
 		3C0B31E52445EBB50001B32B /* TaskFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskFilterView.xib; sourceTree = "<group>"; };
+		3C2EDF94244761F70030EB47 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		3C2EDF98244773D90030EB47 /* DatePickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
 		3C5900932446797C004F7009 /* SelectionTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTVCell.swift; sourceTree = "<group>"; };
 		3C59009524468355004F7009 /* SelectionTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectionTVCell.xib; sourceTree = "<group>"; };
 		3C613808244626600067B717 /* CreateTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskVC.swift; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 				3C93D32624466D6D0026900B /* MemberCVC.xib */,
 				3C5900932446797C004F7009 /* SelectionTVCell.swift */,
 				3C59009524468355004F7009 /* SelectionTVCell.xib */,
+				3C2EDF94244761F70030EB47 /* DatePickerView.swift */,
+				3C2EDF98244773D90030EB47 /* DatePickerView.xib */,
 			);
 			path = CreateTaskVC_Views;
 			sourceTree = "<group>";
@@ -426,6 +432,7 @@
 				3C08ED39243A0F64003BDB36 /* avenirnextroundedpro-reg-webfont.ttf in Resources */,
 				3C08ED31243A0F64003BDB36 /* glyphicons-halflings-regular.eot in Resources */,
 				3C08ED3C243A0F64003BDB36 /* avenirnextroundedpro-reg-webfont.eot in Resources */,
+				3C2EDF99244773D90030EB47 /* DatePickerView.xib in Resources */,
 				3C59009624468355004F7009 /* SelectionTVCell.xib in Resources */,
 				3C08ECF4243A0963003BDB36 /* LaunchScreen.storyboard in Resources */,
 				3C08ED38243A0F64003BDB36 /* avenirnextltpro-bold-webfont.ttf in Resources */,
@@ -518,6 +525,7 @@
 				3C93D2E324464B7B0026900B /* AssigneeTVCell.swift in Sources */,
 				3C93D32424466BB90026900B /* CustomizableRotation.swift in Sources */,
 				3C93D31E24466BB90026900B /* CustomizableHiddenSections.swift in Sources */,
+				3C2EDF95244761F70030EB47 /* DatePickerView.swift in Sources */,
 				3C93D2FB244666310026900B /* UIViewEXT.swift in Sources */,
 				3C0B31E42445EB970001B32B /* TaskFilterView.swift in Sources */,
 				3C93D31924466BB90026900B /* CustomizableViewController.swift in Sources */,

@@ -115,6 +115,7 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
 extension MyTaskVC {
     @objc func addTaskDidTapped() {
         guard let vc = storyboard?.instantiateViewController(identifier: CreateTaskVC.className) else {return}
+        filterView.isHidden = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
