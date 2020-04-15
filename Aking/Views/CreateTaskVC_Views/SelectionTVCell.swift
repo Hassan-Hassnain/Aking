@@ -24,5 +24,11 @@ class SelectionTVCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func configure(assginee: Assignee) {
+        self.avatorImageView.image = assginee.avator
+        self.nameLabel.text = assginee.name
+        self.emailLabel.text = assginee.email
+    }
 
 }

@@ -11,4 +11,5 @@ import UIKit
 struct Assignee {
     var avator: UIImage
     var name: String
+    var email: String
 }
