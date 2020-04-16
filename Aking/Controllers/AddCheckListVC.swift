@@ -33,7 +33,7 @@ class AddCheckListVC: UIViewController {
         tableView.reloadData()
     }
     @IBAction func addTaskButtonTapped(_ sender: Any) {
-        if let text = titleTextView.text { checkListItem.description = text}
+        if let text = titleTextView.text { checkListItem.note.description = text}
         
         for x in 0..<items {
             let indexPath = IndexPath(row: x, section: 0)
@@ -83,7 +83,7 @@ extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             let cell = collectionView.cellForItem(at: indexPath) as! AddNoteCollectionViewCell
             
-            checkListItem.color = cell.colorView.backgroundColor!
+            checkListItem.note.color = cell.colorView.backgroundColor!
             print(cell.colorView.backgroundColor!)
             
         }

@@ -9,14 +9,16 @@
 import UIKit
 
 struct CheckListItem {
-    var description: String
+    var note: Note
     var items: [Item]
-    var color: UIColor
     
     init() {
-        description = ""
+        note = Note(description: "", color: .clear)
         items = []
-        color = UIColor.clear
+    }
+    init(description: String, items: [Item], color: UIColor) {
+        self.note = Note(description: description, color: color)
+        self.items = items
     }
 }
  

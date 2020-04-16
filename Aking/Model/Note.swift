@@ -11,4 +11,5 @@ import UIKit
 struct Note{
     var description: String
     var color: UIColor
+    
 }

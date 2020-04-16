@@ -60,6 +60,8 @@
 		3C6DA3222448E7FE00EBCB4B /* AddCheckListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3212448E7FE00EBCB4B /* AddCheckListVC.swift */; };
 		3C6DA3242448EC9B00EBCB4B /* AddCheckListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3232448EC9B00EBCB4B /* AddCheckListTableViewCell.swift */; };
 		3C6DA3262448EED600EBCB4B /* CheckListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3252448EED600EBCB4B /* CheckListItem.swift */; };
+		3C6DA328244902F000EBCB4B /* ItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C6DA327244902F000EBCB4B /* ItemView.xib */; };
+		3C6DA32A2449030900EBCB4B /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3292449030900EBCB4B /* ItemView.swift */; };
 		3C93D2E324464B7B0026900B /* AssigneeTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C93D2E124464B7B0026900B /* AssigneeTVCell.swift */; };
 		3C93D2E424464B7B0026900B /* AssigneeTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C93D2E224464B7B0026900B /* AssigneeTVCell.xib */; };
 		3C93D2E724464D6A0026900B /* Assignee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C93D2E624464D690026900B /* Assignee.swift */; };
@@ -149,6 +151,8 @@
 		3C6DA3212448E7FE00EBCB4B /* AddCheckListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCheckListVC.swift; sourceTree = "<group>"; };
 		3C6DA3232448EC9B00EBCB4B /* AddCheckListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCheckListTableViewCell.swift; sourceTree = "<group>"; };
 		3C6DA3252448EED600EBCB4B /* CheckListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItem.swift; sourceTree = "<group>"; };
+		3C6DA327244902F000EBCB4B /* ItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemView.xib; sourceTree = "<group>"; };
+		3C6DA3292449030900EBCB4B /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		3C93D2E124464B7B0026900B /* AssigneeTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeTVCell.swift; sourceTree = "<group>"; };
 		3C93D2E224464B7B0026900B /* AssigneeTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssigneeTVCell.xib; sourceTree = "<group>"; };
 		3C93D2E624464D690026900B /* Assignee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignee.swift; sourceTree = "<group>"; };
@@ -295,7 +299,7 @@
 		3C6393CC243CCA0D0089F04B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3C6DA3142448D2C700EBCB4B /* QuickNotes */,
+				3C6DA3142448D2C700EBCB4B /* QuickNotes&CheckList */,
 				3C6DA30F2448CB9D00EBCB4B /* Projects */,
 				3C93D2FE24466BB90026900B /* Dezignables */,
 				3C93D2E024464B1A0026900B /* CreateTaskVC_Views */,
@@ -334,14 +338,16 @@
 			path = Projects;
 			sourceTree = "<group>";
 		};
-		3C6DA3142448D2C700EBCB4B /* QuickNotes */ = {
+		3C6DA3142448D2C700EBCB4B /* QuickNotes&CheckList */ = {
 			isa = PBXGroup;
 			children = (
 				3C6DA3152448D2EE00EBCB4B /* QuickNoteTableViewCell.swift */,
 				3C6DA31B2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift */,
 				3C6DA3232448EC9B00EBCB4B /* AddCheckListTableViewCell.swift */,
+				3C6DA327244902F000EBCB4B /* ItemView.xib */,
+				3C6DA3292449030900EBCB4B /* ItemView.swift */,
 			);
-			path = QuickNotes;
+			path = "QuickNotes&CheckList";
 			sourceTree = "<group>";
 		};
 		3C93D2E024464B1A0026900B /* CreateTaskVC_Views */ = {
@@ -490,6 +496,7 @@
 				3C2EDF99244773D90030EB47 /* DatePickerView.xib in Resources */,
 				3C59009624468355004F7009 /* SelectionTVCell.xib in Resources */,
 				3C08ECF4243A0963003BDB36 /* LaunchScreen.storyboard in Resources */,
+				3C6DA328244902F000EBCB4B /* ItemView.xib in Resources */,
 				3C08ED38243A0F64003BDB36 /* avenirnextltpro-bold-webfont.ttf in Resources */,
 				3C08ED34243A0F64003BDB36 /* avenirnextroundedpro-reg-webfont.woff in Resources */,
 				3C08ED35243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.ttf in Resources */,
@@ -597,6 +604,7 @@
 				3C93D32A24466F350026900B /* CollectionViewEXT.swift in Sources */,
 				3C93D2FD2446666B0026900B /* UIViewControllerEXT.swift in Sources */,
 				3C6393CF243CCAC70089F04B /* AddViewDelegate.swift in Sources */,
+				3C6DA32A2449030900EBCB4B /* ItemView.swift in Sources */,
 				3C93D32324466BB90026900B /* CustomizableStatusBar.swift in Sources */,
 				3C6DA3132448CD4900EBCB4B /* DummyDB.swift in Sources */,
 				3C62325D243B28110087BD49 /* MyTaskVC.swift in Sources */,

@@ -31,3 +31,12 @@ var projects: [Project] = [
     Project(color: #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), projectName: "Entertainment", numberOfTasks: "10"),
     Project(color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), projectName: "Personal", numberOfTasks: "10"),
 ]
+
+var checkListItems: [CheckListItem] = [
+    CheckListItem(description: "Testing", items: [], color: .gray),
+    CheckListItem(description: "Testing", items: [], color: .green),
+    CheckListItem(description: "Testing", items: [], color: .yellow),
+    CheckListItem(description: "Testing", items: [], color: .purple),
+    CheckListItem(description: "Testing", items: [], color: .magenta),
+    CheckListItem(description: "Testing", items: [], color: .orange)
+]

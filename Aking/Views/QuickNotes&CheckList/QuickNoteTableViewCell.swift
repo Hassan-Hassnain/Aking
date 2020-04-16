@@ -12,10 +12,11 @@ class QuickNoteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
-     
+    @IBOutlet weak var itemsStackView: UIStackView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
