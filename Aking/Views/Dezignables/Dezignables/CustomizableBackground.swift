@@ -37,10 +37,9 @@ public extension CustomizableBackground where Self: UIView {
                 for layer in layers {
                     if layer.name == COLOR_LAYER {
                         layer.removeFromSuperlayer()
+                        print("Color Layer removed \(layers.count)")
                     }
                 }
-    
-                print("Color Layer removed \(layers.count)")
             }
         }
     

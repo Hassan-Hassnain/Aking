@@ -48,6 +48,18 @@
 		3C6393D1243CD47A0089F04B /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6393D0243CD47A0089F04B /* AddVC.swift */; };
 		3C6903B0243BBB21003E5373 /* UINavigationBarEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6903AF243BBB21003E5373 /* UINavigationBarEXT.swift */; };
 		3C6AA16E2447B7D300C03FAE /* ViewTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6AA16D2447B7D300C03FAE /* ViewTaskVC.swift */; };
+		3C6DA30E2448C64400EBCB4B /* ProjecstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA30D2448C64400EBCB4B /* ProjecstVC.swift */; };
+		3C6DA3112448CBC400EBCB4B /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3102448CBC400EBCB4B /* ProjectCollectionViewCell.swift */; };
+		3C6DA3132448CD4900EBCB4B /* DummyDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3122448CD4900EBCB4B /* DummyDB.swift */; };
+		3C6DA3162448D2EE00EBCB4B /* QuickNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3152448D2EE00EBCB4B /* QuickNoteTableViewCell.swift */; };
+		3C6DA3182448DF4700EBCB4B /* AddNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3172448DF4700EBCB4B /* AddNoteVC.swift */; };
+		3C6DA31A2448E19900EBCB4B /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3192448E19900EBCB4B /* UIColorExt.swift */; };
+		3C6DA31C2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA31B2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift */; };
+		3C6DA31E2448E54400EBCB4B /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA31D2448E54400EBCB4B /* Project.swift */; };
+		3C6DA3202448E56700EBCB4B /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA31F2448E56700EBCB4B /* Note.swift */; };
+		3C6DA3222448E7FE00EBCB4B /* AddCheckListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3212448E7FE00EBCB4B /* AddCheckListVC.swift */; };
+		3C6DA3242448EC9B00EBCB4B /* AddCheckListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3232448EC9B00EBCB4B /* AddCheckListTableViewCell.swift */; };
+		3C6DA3262448EED600EBCB4B /* CheckListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3252448EED600EBCB4B /* CheckListItem.swift */; };
 		3C93D2E324464B7B0026900B /* AssigneeTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C93D2E124464B7B0026900B /* AssigneeTVCell.swift */; };
 		3C93D2E424464B7B0026900B /* AssigneeTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C93D2E224464B7B0026900B /* AssigneeTVCell.xib */; };
 		3C93D2E724464D6A0026900B /* Assignee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C93D2E624464D690026900B /* Assignee.swift */; };
@@ -125,6 +137,18 @@
 		3C6393D0243CD47A0089F04B /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 		3C6903AF243BBB21003E5373 /* UINavigationBarEXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarEXT.swift; sourceTree = "<group>"; };
 		3C6AA16D2447B7D300C03FAE /* ViewTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskVC.swift; sourceTree = "<group>"; };
+		3C6DA30D2448C64400EBCB4B /* ProjecstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjecstVC.swift; sourceTree = "<group>"; };
+		3C6DA3102448CBC400EBCB4B /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
+		3C6DA3122448CD4900EBCB4B /* DummyDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyDB.swift; sourceTree = "<group>"; };
+		3C6DA3152448D2EE00EBCB4B /* QuickNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNoteTableViewCell.swift; sourceTree = "<group>"; };
+		3C6DA3172448DF4700EBCB4B /* AddNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVC.swift; sourceTree = "<group>"; };
+		3C6DA3192448E19900EBCB4B /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
+		3C6DA31B2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteCollectionViewCell.swift; sourceTree = "<group>"; };
+		3C6DA31D2448E54400EBCB4B /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		3C6DA31F2448E56700EBCB4B /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		3C6DA3212448E7FE00EBCB4B /* AddCheckListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCheckListVC.swift; sourceTree = "<group>"; };
+		3C6DA3232448EC9B00EBCB4B /* AddCheckListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCheckListTableViewCell.swift; sourceTree = "<group>"; };
+		3C6DA3252448EED600EBCB4B /* CheckListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItem.swift; sourceTree = "<group>"; };
 		3C93D2E124464B7B0026900B /* AssigneeTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeTVCell.swift; sourceTree = "<group>"; };
 		3C93D2E224464B7B0026900B /* AssigneeTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssigneeTVCell.xib; sourceTree = "<group>"; };
 		3C93D2E624464D690026900B /* Assignee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignee.swift; sourceTree = "<group>"; };
@@ -207,6 +231,7 @@
 				3C08ECF5243A0963003BDB36 /* Info.plist */,
 				3C08ECE5243A0960003BDB36 /* AppDelegate.swift */,
 				3C08ECE7243A0960003BDB36 /* SceneDelegate.swift */,
+				3C6DA3122448CD4900EBCB4B /* DummyDB.swift */,
 				3C6393CD243CCA200089F04B /* SupportingFiles */,
 				3C6393CA243CC9B60089F04B /* Resources */,
 				3C93D2E524464D590026900B /* Model */,
@@ -260,6 +285,9 @@
 				3C62325A243B27EF0087BD49 /* ProfileVC.swift */,
 				3C613808244626600067B717 /* CreateTaskVC.swift */,
 				3C6AA16D2447B7D300C03FAE /* ViewTaskVC.swift */,
+				3C6DA30D2448C64400EBCB4B /* ProjecstVC.swift */,
+				3C6DA3172448DF4700EBCB4B /* AddNoteVC.swift */,
+				3C6DA3212448E7FE00EBCB4B /* AddCheckListVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -267,6 +295,8 @@
 		3C6393CC243CCA0D0089F04B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3C6DA3142448D2C700EBCB4B /* QuickNotes */,
+				3C6DA30F2448CB9D00EBCB4B /* Projects */,
 				3C93D2FE24466BB90026900B /* Dezignables */,
 				3C93D2E024464B1A0026900B /* CreateTaskVC_Views */,
 				3C08ECED243A0960003BDB36 /* Main.storyboard */,
@@ -291,8 +321,27 @@
 				3C93D2F8244666090026900B /* DateEXT.swift */,
 				3C93D2FA244666310026900B /* UIViewEXT.swift */,
 				3C93D2FC2446666B0026900B /* UIViewControllerEXT.swift */,
+				3C6DA3192448E19900EBCB4B /* UIColorExt.swift */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		3C6DA30F2448CB9D00EBCB4B /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				3C6DA3102448CBC400EBCB4B /* ProjectCollectionViewCell.swift */,
+			);
+			path = Projects;
+			sourceTree = "<group>";
+		};
+		3C6DA3142448D2C700EBCB4B /* QuickNotes */ = {
+			isa = PBXGroup;
+			children = (
+				3C6DA3152448D2EE00EBCB4B /* QuickNoteTableViewCell.swift */,
+				3C6DA31B2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift */,
+				3C6DA3232448EC9B00EBCB4B /* AddCheckListTableViewCell.swift */,
+			);
+			path = QuickNotes;
 			sourceTree = "<group>";
 		};
 		3C93D2E024464B1A0026900B /* CreateTaskVC_Views */ = {
@@ -316,6 +365,9 @@
 			isa = PBXGroup;
 			children = (
 				3C93D2E624464D690026900B /* Assignee.swift */,
+				3C6DA31D2448E54400EBCB4B /* Project.swift */,
+				3C6DA31F2448E56700EBCB4B /* Note.swift */,
+				3C6DA3252448EED600EBCB4B /* CheckListItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -512,9 +564,13 @@
 				3C9C2EA2243C9008003F51E7 /* TabbarViewController.swift in Sources */,
 				3C62325B243B27EF0087BD49 /* ProfileVC.swift in Sources */,
 				3C93D31F24466BB90026900B /* CustomizableBorder.swift in Sources */,
+				3C6DA31A2448E19900EBCB4B /* UIColorExt.swift in Sources */,
 				3C6393C9243CC73C0089F04B /* AddView.swift in Sources */,
+				3C6DA3262448EED600EBCB4B /* CheckListItem.swift in Sources */,
 				3C08ECEC243A0960003BDB36 /* MenuVC.swift in Sources */,
+				3C6DA3162448D2EE00EBCB4B /* QuickNoteTableViewCell.swift in Sources */,
 				3C93D2F024465A9C0026900B /* ProjectTVCell.swift in Sources */,
+				3C6DA3112448CBC400EBCB4B /* ProjectCollectionViewCell.swift in Sources */,
 				3C93D31324466BB90026900B /* CustomizableImageView.swift in Sources */,
 				3C93D31D24466BB90026900B /* CustomizableBackground.swift in Sources */,
 				3C61380D2446412D0067B717 /* Constants.swift in Sources */,
@@ -523,7 +579,9 @@
 				3C93D31824466BB90026900B /* CustomizableLabel.swift in Sources */,
 				3C6AA16E2447B7D300C03FAE /* ViewTaskVC.swift in Sources */,
 				3C93D32724466D6D0026900B /* MemberCVC.swift in Sources */,
+				3C6DA3222448E7FE00EBCB4B /* AddCheckListVC.swift in Sources */,
 				3C613809244626600067B717 /* CreateTaskVC.swift in Sources */,
+				3C6DA30E2448C64400EBCB4B /* ProjecstVC.swift in Sources */,
 				3C93D32224466BB90026900B /* CustomizableHighlight.swift in Sources */,
 				3C93D2ED244659540026900B /* UITableViewEXT.swift in Sources */,
 				3C93D2E324464B7B0026900B /* AssigneeTVCell.swift in Sources */,
@@ -534,25 +592,31 @@
 				3C0B31E42445EB970001B32B /* TaskFilterView.swift in Sources */,
 				3C93D31924466BB90026900B /* CustomizableViewController.swift in Sources */,
 				3C5900942446797C004F7009 /* SelectionTVCell.swift in Sources */,
+				3C6DA3242448EC9B00EBCB4B /* AddCheckListTableViewCell.swift in Sources */,
 				3C08ECE6243A0960003BDB36 /* AppDelegate.swift in Sources */,
 				3C93D32A24466F350026900B /* CollectionViewEXT.swift in Sources */,
 				3C93D2FD2446666B0026900B /* UIViewControllerEXT.swift in Sources */,
 				3C6393CF243CCAC70089F04B /* AddViewDelegate.swift in Sources */,
 				3C93D32324466BB90026900B /* CustomizableStatusBar.swift in Sources */,
+				3C6DA3132448CD4900EBCB4B /* DummyDB.swift in Sources */,
 				3C62325D243B28110087BD49 /* MyTaskVC.swift in Sources */,
 				3C93D2E724464D6A0026900B /* Assignee.swift in Sources */,
 				3C93D31A24466BB90026900B /* CustomizableView.swift in Sources */,
+				3C6DA3202448E56700EBCB4B /* Note.swift in Sources */,
 				3C93D31424466BB90026900B /* CustomizableTableViewController.swift in Sources */,
 				3C93D31724466BB90026900B /* CustomizableTextField.swift in Sources */,
 				3C93D31B24466BB90026900B /* CustomizableSeparator.swift in Sources */,
+				3C6DA3182448DF4700EBCB4B /* AddNoteVC.swift in Sources */,
 				3C93D32024466BB90026900B /* CustomizableCorner.swift in Sources */,
 				3C93D2EB244659370026900B /* NSObjectEXT.swift in Sources */,
 				3C6903B0243BBB21003E5373 /* UINavigationBarEXT.swift in Sources */,
 				3C08ECE8243A0960003BDB36 /* SceneDelegate.swift in Sources */,
 				3C93D2F9244666090026900B /* DateEXT.swift in Sources */,
+				3C6DA31C2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift in Sources */,
 				3C93D31C24466BB90026900B /* CustomizableShadow.swift in Sources */,
 				3C623259243B27DD0087BD49 /* QuickVC.swift in Sources */,
 				3C93D31624466BB90026900B /* CustomizableButton.swift in Sources */,
+				3C6DA31E2448E54400EBCB4B /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
