@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,9 +10,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaskFilterView" customModule="Aking" customModuleProvider="target">
             <connections>
                 <outlet property="allTaskImageView" destination="Y0Y-I9-eaJ" id="xwB-CG-yu1"/>
+                <outlet property="bottomButton" destination="qQE-eG-Ggg" id="imX-ib-Mxx"/>
+                <outlet property="centerButton" destination="Llf-qZ-JON" id="ivS-1o-03y"/>
                 <outlet property="completedTaskImageView" destination="2If-2y-s4u" id="D6m-Es-5XR"/>
                 <outlet property="contentView" destination="Lxu-7J-CRc" id="nW1-Ge-RPZ"/>
                 <outlet property="incompleteTaskImageView" destination="lbh-nk-vwK" id="T0U-bj-Unb"/>
+                <outlet property="topButton" destination="Dej-Gx-YVf" id="JdH-u6-S8k"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

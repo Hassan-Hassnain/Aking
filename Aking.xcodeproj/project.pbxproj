@@ -47,6 +47,7 @@
 		3C6393CF243CCAC70089F04B /* AddViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6393CE243CCAC70089F04B /* AddViewDelegate.swift */; };
 		3C6393D1243CD47A0089F04B /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6393D0243CD47A0089F04B /* AddVC.swift */; };
 		3C6903B0243BBB21003E5373 /* UINavigationBarEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6903AF243BBB21003E5373 /* UINavigationBarEXT.swift */; };
+		3C6AA16E2447B7D300C03FAE /* ViewTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6AA16D2447B7D300C03FAE /* ViewTaskVC.swift */; };
 		3C93D2E324464B7B0026900B /* AssigneeTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C93D2E124464B7B0026900B /* AssigneeTVCell.swift */; };
 		3C93D2E424464B7B0026900B /* AssigneeTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C93D2E224464B7B0026900B /* AssigneeTVCell.xib */; };
 		3C93D2E724464D6A0026900B /* Assignee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C93D2E624464D690026900B /* Assignee.swift */; };
@@ -123,6 +124,7 @@
 		3C6393CE243CCAC70089F04B /* AddViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewDelegate.swift; sourceTree = "<group>"; };
 		3C6393D0243CD47A0089F04B /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 		3C6903AF243BBB21003E5373 /* UINavigationBarEXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarEXT.swift; sourceTree = "<group>"; };
+		3C6AA16D2447B7D300C03FAE /* ViewTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskVC.swift; sourceTree = "<group>"; };
 		3C93D2E124464B7B0026900B /* AssigneeTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeTVCell.swift; sourceTree = "<group>"; };
 		3C93D2E224464B7B0026900B /* AssigneeTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssigneeTVCell.xib; sourceTree = "<group>"; };
 		3C93D2E624464D690026900B /* Assignee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignee.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				3C623258243B27DD0087BD49 /* QuickVC.swift */,
 				3C62325A243B27EF0087BD49 /* ProfileVC.swift */,
 				3C613808244626600067B717 /* CreateTaskVC.swift */,
+				3C6AA16D2447B7D300C03FAE /* ViewTaskVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				3C6393D1243CD47A0089F04B /* AddVC.swift in Sources */,
 				3C93D31524466BB90026900B /* CustomizableTableViewCell.swift in Sources */,
 				3C93D31824466BB90026900B /* CustomizableLabel.swift in Sources */,
+				3C6AA16E2447B7D300C03FAE /* ViewTaskVC.swift in Sources */,
 				3C93D32724466D6D0026900B /* MemberCVC.swift in Sources */,
 				3C613809244626600067B717 /* CreateTaskVC.swift in Sources */,
 				3C93D32224466BB90026900B /* CustomizableHighlight.swift in Sources */,

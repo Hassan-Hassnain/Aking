@@ -11,6 +11,9 @@ import UIKit
 class TaskFilterView: UIView {
     let NIB_NAME = "TaskFilterView"
     
+    @IBOutlet weak var topButton: UIButton!
+    @IBOutlet weak var centerButton: UIButton!
+    @IBOutlet weak var bottomButton: UIButton!
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var incompleteTaskImageView: UIImageView!
          @IBOutlet weak var completedTaskImageView: UIImageView!
