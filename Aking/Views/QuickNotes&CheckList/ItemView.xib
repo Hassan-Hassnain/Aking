@@ -8,8 +8,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItemView" customModule="Aking" customModuleProvider="target">
             <connections>
-                <outlet property="checkBoxView" destination="mlE-9C-qmE" id="3bG-R6-eBF"/>
-                <outlet property="contentView" destination="mlE-9C-qmE" id="tEF-9h-k8z"/>
+                <outlet property="checkBoxView" destination="mlE-9C-qmE" id="BTr-n7-6LZ"/>
+                <outlet property="contentView" destination="K3e-nP-AXi" id="tm6-5N-9J9"/>
                 <outlet property="titleLabel" destination="G75-Si-jvl" id="aKU-pR-e4Z"/>
             </connections>
         </placeholder>
@@ -22,7 +22,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlE-9C-qmE" customClass="CustomizableView" customModule="Aking" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="4.5" width="20" height="20"/>
+                        <rect key="frame" x="32" y="4.5" width="20" height="20"/>
                         <color key="backgroundColor" red="0.96231740710000002" green="0.96304601430000003" blue="0.96243029830000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="D9e-9i-i3Z"/>
@@ -47,7 +47,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G75-Si-jvl">
-                        <rect key="frame" x="40" y="4" width="274" height="21"/>
+                        <rect key="frame" x="72" y="4" width="242" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -58,13 +58,10 @@
                     <constraint firstItem="mlE-9C-qmE" firstAttribute="top" secondItem="K3e-nP-AXi" secondAttribute="top" constant="4.5" id="Jmq-tV-mmy"/>
                     <constraint firstAttribute="trailing" secondItem="G75-Si-jvl" secondAttribute="trailing" constant="20" id="TH2-ol-Phb"/>
                     <constraint firstItem="G75-Si-jvl" firstAttribute="centerY" secondItem="K3e-nP-AXi" secondAttribute="centerY" id="akF-Gf-hwq"/>
-                    <constraint firstItem="mlE-9C-qmE" firstAttribute="leading" secondItem="K3e-nP-AXi" secondAttribute="leading" id="hOn-z3-YZA"/>
+                    <constraint firstItem="mlE-9C-qmE" firstAttribute="leading" secondItem="K3e-nP-AXi" secondAttribute="leading" constant="32" id="hOn-z3-YZA"/>
                     <constraint firstItem="G75-Si-jvl" firstAttribute="leading" secondItem="mlE-9C-qmE" secondAttribute="trailing" constant="20" id="seG-zX-f80"/>
                 </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="checkBoxView" destination="mlE-9C-qmE" id="FkP-bC-NBL"/>
-            </connections>
             <point key="canvasLocation" x="72" y="-75"/>
         </tableViewCell>
     </objects>

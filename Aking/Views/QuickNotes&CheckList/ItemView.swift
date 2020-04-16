@@ -35,14 +35,24 @@ class ItemView: UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(XIB_NAME, owner: self, options: nil)
         contentView.fixInView(self)
-        updateCheckBox()
+        let tap =  UITapGestureRecognizer(target: self, action: #selector(updateIsCheckedValue))
+        checkBoxView.addGestureRecognizer(tap)
+        print("dlfdfj")
+    }
+    
+    @objc func updateIsCheckedValue(){
+        if isChecked {
+            isChecked = false
+        } else {
+            isChecked = true
+        }
     }
     
     func updateCheckBox (){
         if isChecked {
-            checkBoxView.backgroundColor = #colorLiteral(red: 0.9658892751, green: 0.9697455764, blue: 0.9658194184, alpha: 1)
-        } else {
             checkBoxView.backgroundColor = #colorLiteral(red: 0.6323310137, green: 0.6328232288, blue: 0.632407248, alpha: 1)
+        } else {
+            checkBoxView.backgroundColor = #colorLiteral(red: 0.9658892751, green: 0.9697455764, blue: 0.9658194184, alpha: 1)
         }
     }
 }

@@ -33,7 +33,7 @@ var projects: [Project] = [
 ]
 
 var checkListItems: [CheckListItem] = [
-    CheckListItem(description: "Testing", items: [], color: .gray),
+    CheckListItem(description: "Testing", items: [Item(title: "Buy Grocery", status: false),Item(title: "Buy Milk", status: false)], color: .gray),
     CheckListItem(description: "Testing", items: [], color: .green),
     CheckListItem(description: "Testing", items: [], color: .yellow),
     CheckListItem(description: "Testing", items: [], color: .purple),
