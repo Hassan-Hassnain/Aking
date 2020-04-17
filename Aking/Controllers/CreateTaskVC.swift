@@ -33,7 +33,7 @@ class CreateTaskVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateNavBarAppearance()
+        updateNavBarAppearance(color: #colorLiteral(red: 0.9568627451, green: 0.4392156863, blue: 0.4196078431, alpha: 1))
         tabBarController?.tabBar.isHidden = true
         
         selectionTVHeightConstraint.constant = 0

@@ -9,10 +9,10 @@
 import UIKit
 
 extension UIViewController {
-    func updateNavBarAppearance(){
+    func updateNavBarAppearance(color: UIColor){
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = #colorLiteral(red: 1, green: 0.3970935643, blue: 0.3972296715, alpha: 1)
+        appearance.backgroundColor = color
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance

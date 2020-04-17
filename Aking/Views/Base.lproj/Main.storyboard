@@ -2857,10 +2857,10 @@ at 10:30PM</string>
             </objects>
             <point key="canvasLocation" x="20" y="2385"/>
         </scene>
-        <!--Personals-->
+        <!--Project Name-->
         <scene sceneID="U7m-nV-hTy">
             <objects>
-                <viewController storyboardIdentifier="ProjectDetailsVC" id="sIL-uJ-9qr" customClass="ProjectDetailsVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProjectDetailsVC" id="sIL-uJ-9qr" customClass="ProjectDetailsVC" customModule="Aking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vot-KG-Zpc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3055,7 +3055,7 @@ at 10:30PM</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="If9-bi-8tY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Personals" id="I4y-St-Sg4">
+                    <navigationItem key="navigationItem" title="Project Name" id="I4y-St-Sg4">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="Filter-Button" id="B86-Eo-TxU">
                             <connections>
                                 <action selector="filterButtonTapped:" destination="sIL-uJ-9qr" id="4oJ-dn-tYF"/>

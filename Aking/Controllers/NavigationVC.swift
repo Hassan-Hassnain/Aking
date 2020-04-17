@@ -13,7 +13,7 @@ class NavigationVC: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        updateNavBarAppearance()
+       
     }
     
 

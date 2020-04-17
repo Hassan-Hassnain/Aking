@@ -26,7 +26,7 @@ class MyTaskVC: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        updateNavBarAppearance()
+        updateNavBarAppearance(color: #colorLiteral(red: 0.9568627451, green: 0.4392156863, blue: 0.4196078431, alpha: 1))
         
         NotificationCenter.default.addObserver(self, selector: #selector(addTaskDidTapped), name: NSNotification.Name(rawValue: KNotifcations.NEW_TASK), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addQuickNoteDidTapped), name: NSNotification.Name(rawValue: KNotifcations.QUICK_NOTE), object: nil)
