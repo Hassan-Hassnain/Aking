@@ -27,6 +27,7 @@ class MyTaskVC: UIViewController {
         
         setupUI()
         updateNavBarAppearance(color: #colorLiteral(red: 0.9568627451, green: 0.4392156863, blue: 0.4196078431, alpha: 1))
+        tableView.regCell(cellName: WorkListTableViewCell.className)
         
         NotificationCenter.default.addObserver(self, selector: #selector(addTaskDidTapped), name: NSNotification.Name(rawValue: KNotifcations.NEW_TASK), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addQuickNoteDidTapped), name: NSNotification.Name(rawValue: KNotifcations.QUICK_NOTE), object: nil)
@@ -109,7 +110,7 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: WorkListTableViewCell.className) as! WorkListTableViewCell
         //        cell.contentView.dropShadow(color: .black, opacity: 0.3, offSet: CGSize(width: -0.2, height: 0.3), radius: 3, scale: true)
         cell.contentView.addShadow()
         return cell

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WorkListTableViewCell" rowHeight="86" id="9uB-Zo-YT3" customClass="WorkListTableViewCell" customModule="Aking" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9uB-Zo-YT3" id="6Au-o5-jrb">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfR-CU-t6B">
+                        <rect key="frame" x="16" y="8" width="382" height="70"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TaskSign-Pending" translatesAutoresizingMaskIntoConstraints="NO" id="fJ0-b2-t7D">
+                                <rect key="frame" x="25" y="25" width="20" height="20"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwc-Ev-B2a">
+                                <rect key="frame" x="378" y="24.5" width="4" height="21"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="51K-vR-ESD"/>
+                                    <constraint firstAttribute="width" constant="4" id="Npj-B2-tjB"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ols-2N-k4c">
+                                <rect key="frame" x="68" y="8.5" width="182.5" height="53"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go fishing with Stephen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ7-xT-qTc">
+                                        <rect key="frame" x="0.0" y="0.0" width="182.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqu-FR-7Pb">
+                                        <rect key="frame" x="0.0" y="32.5" width="64" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Ols-2N-k4c" firstAttribute="leading" secondItem="fJ0-b2-t7D" secondAttribute="trailing" constant="23" id="0BJ-sl-E4b"/>
+                            <constraint firstAttribute="trailing" secondItem="mwc-Ev-B2a" secondAttribute="trailing" id="8Ce-G5-5KT"/>
+                            <constraint firstItem="fJ0-b2-t7D" firstAttribute="centerY" secondItem="dfR-CU-t6B" secondAttribute="centerY" id="IL2-3e-LlP"/>
+                            <constraint firstItem="fJ0-b2-t7D" firstAttribute="leading" secondItem="dfR-CU-t6B" secondAttribute="leading" constant="25" id="Yau-6a-pht"/>
+                            <constraint firstItem="Ols-2N-k4c" firstAttribute="centerY" secondItem="dfR-CU-t6B" secondAttribute="centerY" id="gU7-Y9-ogr"/>
+                            <constraint firstItem="mwc-Ev-B2a" firstAttribute="centerY" secondItem="dfR-CU-t6B" secondAttribute="centerY" id="nYi-rD-qhz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dfR-CU-t6B" firstAttribute="leading" secondItem="6Au-o5-jrb" secondAttribute="leading" constant="16" id="7D8-VX-VdG"/>
+                    <constraint firstAttribute="bottom" secondItem="dfR-CU-t6B" secondAttribute="bottom" constant="8" id="ZzF-DZ-CfU"/>
+                    <constraint firstAttribute="trailing" secondItem="dfR-CU-t6B" secondAttribute="trailing" constant="16" id="bfq-bm-XHU"/>
+                    <constraint firstItem="dfR-CU-t6B" firstAttribute="top" secondItem="6Au-o5-jrb" secondAttribute="top" constant="8" id="z7h-8j-be5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="colorView" destination="mwc-Ev-B2a" id="6AO-GD-RZs"/>
+                <outlet property="completionImageView" destination="fJ0-b2-t7D" id="1zs-Ls-Eit"/>
+                <outlet property="time" destination="fqu-FR-7Pb" id="aNc-e8-mGr"/>
+                <outlet property="title" destination="QJ7-xT-qTc" id="paa-8x-Elv"/>
+            </connections>
+            <point key="canvasLocation" x="563.768115942029" y="227.67857142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="TaskSign-Pending" width="20" height="20"/>
+    </resources>
+</document>

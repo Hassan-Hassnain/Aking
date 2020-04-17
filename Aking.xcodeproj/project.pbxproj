@@ -96,6 +96,8 @@
 		3C9C2EA2243C9008003F51E7 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */; };
 		3CF0A42324494F5F00AEFD5E /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0A42224494F5F00AEFD5E /* ProfileCollectionViewCell.swift */; };
 		3CF0A425244954A100AEFD5E /* ProjectDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0A424244954A100AEFD5E /* ProjectDetailsVC.swift */; };
+		3CF0A42824495DED00AEFD5E /* WorkListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0A42624495DED00AEFD5E /* WorkListTableViewCell.swift */; };
+		3CF0A42924495DED00AEFD5E /* WorkListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF0A42724495DED00AEFD5E /* WorkListTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +191,8 @@
 		3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		3CF0A42224494F5F00AEFD5E /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		3CF0A424244954A100AEFD5E /* ProjectDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsVC.swift; sourceTree = "<group>"; };
+		3CF0A42624495DED00AEFD5E /* WorkListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkListTableViewCell.swift; sourceTree = "<group>"; };
+		3CF0A42724495DED00AEFD5E /* WorkListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkListTableViewCell.xib; sourceTree = "<group>"; };
 		C1483C85FE93081F2F37D46C /* Pods-Aking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aking.debug.xcconfig"; path = "Target Support Files/Pods-Aking/Pods-Aking.debug.xcconfig"; sourceTree = "<group>"; };
 		CDBA405980A0B475C187FAAE /* Pods_Aking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61AB1BD4C1D0D01B2A62823 /* Pods-Aking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aking.release.xcconfig"; path = "Target Support Files/Pods-Aking/Pods-Aking.release.xcconfig"; sourceTree = "<group>"; };
@@ -315,6 +319,8 @@
 				3C6393C8243CC73C0089F04B /* AddView.swift */,
 				3C0B31E52445EBB50001B32B /* TaskFilterView.xib */,
 				3C0B31E32445EB970001B32B /* TaskFilterView.swift */,
+				3CF0A42724495DED00AEFD5E /* WorkListTableViewCell.xib */,
+				3CF0A42624495DED00AEFD5E /* WorkListTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -525,6 +531,7 @@
 				3C93D32824466D6D0026900B /* MemberCVC.xib in Resources */,
 				3C08ED37243A0F64003BDB36 /* glyphicons-halflings-regular.ttf in Resources */,
 				3C08ED3D243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.woff in Resources */,
+				3CF0A42924495DED00AEFD5E /* WorkListTableViewCell.xib in Resources */,
 				3C93D2F124465A9C0026900B /* ProjectTVCell.xib in Resources */,
 				3C08ECEF243A0960003BDB36 /* Main.storyboard in Resources */,
 				3C08ED30243A0F64003BDB36 /* glyphicons-halflings-regular.woff in Resources */,
@@ -636,6 +643,7 @@
 				3C6903B0243BBB21003E5373 /* UINavigationBarEXT.swift in Sources */,
 				3C08ECE8243A0960003BDB36 /* SceneDelegate.swift in Sources */,
 				3C93D2F9244666090026900B /* DateEXT.swift in Sources */,
+				3CF0A42824495DED00AEFD5E /* WorkListTableViewCell.swift in Sources */,
 				3C6DA31C2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift in Sources */,
 				3C93D31C24466BB90026900B /* CustomizableShadow.swift in Sources */,
 				3C623259243B27DD0087BD49 /* QuickVC.swift in Sources */,

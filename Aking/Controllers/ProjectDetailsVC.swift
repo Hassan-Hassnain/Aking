@@ -29,6 +29,8 @@ class ProjectDetailsVC: UIViewController {
         setupUI()
         updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1))
         
+        tableView.regCell(cellName: WorkListTableViewCell.className)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(addTaskDidTapped), name: NSNotification.Name(rawValue: KNotifcations.NEW_TASK), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addQuickNoteDidTapped), name: NSNotification.Name(rawValue: KNotifcations.QUICK_NOTE), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addCheckListDidTapped), name: NSNotification.Name(rawValue: KNotifcations.CHECK_LIST), object: nil)
@@ -110,8 +112,8 @@ extension ProjectDetailsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell")!
-        //        cell.contentView.dropShadow(color: .black, opacity: 0.3, offSet: CGSize(width: -0.2, height: 0.3), radius: 3, scale: true)
+        let cell = tableView.dequeueReusableCell(withIdentifier: WorkListTableViewCell.className) as! WorkListTableViewCell
+        cell.colorView.backgroundColor = .random
         cell.contentView.addShadow()
         return cell
     }
