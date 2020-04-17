@@ -37,9 +37,7 @@ class AddCheckListTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
     }
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.resignFirstResponder()
-    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }

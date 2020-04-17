@@ -69,12 +69,12 @@ extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
 
     extension AddCheckListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            20
+            colors.count
         }
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVC_Color_Chooser", for: indexPath) as! AddNoteCollectionViewCell
-            cell.colorView.backgroundColor = .random
+            cell.colorView.backgroundColor = colors[indexPath.row]
             cell.colorView.layer.cornerRadius = 5
             
             return cell
