@@ -1,16 +1,17 @@
 //
-//  MyTaskVC.swift
+//  ProjectDetailsVC.swift
 //  Aking
 //
-//  Created by Usama Sadiq on 4/6/20.
+//  Created by Usama Sadiq on 4/17/20.
 //  Copyright © 2020 Usama Sadiq. All rights reserved.
 //
+
 
 import UIKit
 import FSCalendar
 
-class MyTaskVC: UIViewController {
-    
+class ProjectDetailsVC: UIViewController {
+ 
     @IBOutlet weak var todayButton: UIButton!
     @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var calanderView: FSCalendar!
@@ -87,7 +88,7 @@ class MyTaskVC: UIViewController {
     }
 }
 //MARK: - TABLE VIEW DELEGATE AN DATASOURCE
-extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
+extension ProjectDetailsVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -119,7 +120,7 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 //MARK: - Create Menu functions
-extension MyTaskVC {
+extension ProjectDetailsVC {
     @objc func addTaskDidTapped() {
         guard let vc = storyboard?.instantiateViewController(identifier: CreateTaskVC.className) else {return}
         filterView.isHidden = true
@@ -137,13 +138,4 @@ extension MyTaskVC {
    
 }
 
-extension UIViewController{
-    func hideCreateMenu(){
-       for subview in self.view.subviews {
-            if (subview.tag == 100) {
-                subview.removeFromSuperview()
-                print("removed")
-            }
-        }
-    }
-}
+

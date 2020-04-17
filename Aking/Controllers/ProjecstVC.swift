@@ -82,7 +82,11 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if collectionView == self.collectionView {
+//            guard let vc = storyboard?.instantiateViewController(identifier: ProjectDetailsVC.className) else {return}
+//            navigationController?.pushViewController(vc, animated: true)
+            performSegue(withIdentifier: "Details", sender: self)
+        }
         if collectionView == colorChooseCollectionView {
             
             let cell = collectionView.cellForItem(at: indexPath) as! AddNoteCollectionViewCell

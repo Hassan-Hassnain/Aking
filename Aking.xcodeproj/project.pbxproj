@@ -94,6 +94,8 @@
 		3C93D32824466D6D0026900B /* MemberCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C93D32624466D6D0026900B /* MemberCVC.xib */; };
 		3C93D32A24466F350026900B /* CollectionViewEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C93D32924466F350026900B /* CollectionViewEXT.swift */; };
 		3C9C2EA2243C9008003F51E7 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */; };
+		3CF0A42324494F5F00AEFD5E /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0A42224494F5F00AEFD5E /* ProfileCollectionViewCell.swift */; };
+		3CF0A425244954A100AEFD5E /* ProjectDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0A424244954A100AEFD5E /* ProjectDetailsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -185,6 +187,8 @@
 		3C93D32624466D6D0026900B /* MemberCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCVC.xib; sourceTree = "<group>"; };
 		3C93D32924466F350026900B /* CollectionViewEXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewEXT.swift; sourceTree = "<group>"; };
 		3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		3CF0A42224494F5F00AEFD5E /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		3CF0A424244954A100AEFD5E /* ProjectDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsVC.swift; sourceTree = "<group>"; };
 		C1483C85FE93081F2F37D46C /* Pods-Aking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aking.debug.xcconfig"; path = "Target Support Files/Pods-Aking/Pods-Aking.debug.xcconfig"; sourceTree = "<group>"; };
 		CDBA405980A0B475C187FAAE /* Pods_Aking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61AB1BD4C1D0D01B2A62823 /* Pods-Aking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aking.release.xcconfig"; path = "Target Support Files/Pods-Aking/Pods-Aking.release.xcconfig"; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 				3C6DA30D2448C64400EBCB4B /* ProjecstVC.swift */,
 				3C6DA3172448DF4700EBCB4B /* AddNoteVC.swift */,
 				3C6DA3212448E7FE00EBCB4B /* AddCheckListVC.swift */,
+				3CF0A424244954A100AEFD5E /* ProjectDetailsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 		3C6393CC243CCA0D0089F04B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3CF0A42124494F1900AEFD5E /* Profile */,
 				3C6DA3142448D2C700EBCB4B /* QuickNotes&CheckList */,
 				3C6DA30F2448CB9D00EBCB4B /* Projects */,
 				3C93D2FE24466BB90026900B /* Dezignables */,
@@ -417,6 +423,14 @@
 				3C93D31224466BB90026900B /* CustomizableRotation.swift */,
 			);
 			path = Dezignables;
+			sourceTree = "<group>";
+		};
+		3CF0A42124494F1900AEFD5E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3CF0A42224494F5F00AEFD5E /* ProfileCollectionViewCell.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		876A4D1891B9B3EE357D6DA7 /* Frameworks */ = {
@@ -600,6 +614,7 @@
 				3C93D31924466BB90026900B /* CustomizableViewController.swift in Sources */,
 				3C5900942446797C004F7009 /* SelectionTVCell.swift in Sources */,
 				3C6DA3242448EC9B00EBCB4B /* AddCheckListTableViewCell.swift in Sources */,
+				3CF0A42324494F5F00AEFD5E /* ProfileCollectionViewCell.swift in Sources */,
 				3C08ECE6243A0960003BDB36 /* AppDelegate.swift in Sources */,
 				3C93D32A24466F350026900B /* CollectionViewEXT.swift in Sources */,
 				3C93D2FD2446666B0026900B /* UIViewControllerEXT.swift in Sources */,
@@ -616,6 +631,7 @@
 				3C93D31B24466BB90026900B /* CustomizableSeparator.swift in Sources */,
 				3C6DA3182448DF4700EBCB4B /* AddNoteVC.swift in Sources */,
 				3C93D32024466BB90026900B /* CustomizableCorner.swift in Sources */,
+				3CF0A425244954A100AEFD5E /* ProjectDetailsVC.swift in Sources */,
 				3C93D2EB244659370026900B /* NSObjectEXT.swift in Sources */,
 				3C6903B0243BBB21003E5373 /* UINavigationBarEXT.swift in Sources */,
 				3C08ECE8243A0960003BDB36 /* SceneDelegate.swift in Sources */,

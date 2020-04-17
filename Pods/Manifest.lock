@@ -1,16 +1,20 @@
 PODS:
+  - ATCircularProgressView (1.0.1)
   - FSCalendar (2.8.1)
 
 DEPENDENCIES:
+  - ATCircularProgressView
   - FSCalendar
 
 SPEC REPOS:
   trunk:
+    - ATCircularProgressView
     - FSCalendar
 
 SPEC CHECKSUMS:
+  ATCircularProgressView: 602153f3e016b275b70ad98954880a4be90c6aa4
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
 
-PODFILE CHECKSUM: bbc8db1d3629d2e4784a73346f47965c5df0bdc2
+PODFILE CHECKSUM: f31b8ad96a3fc8c29187aff638b7bd8c0c10cf0d
 
 COCOAPODS: 1.8.4

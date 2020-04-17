@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-Aking/Pods-Aking-frameworks.sh
+${BUILT_PRODUCTS_DIR}/ATCircularProgressView/ATCircularProgressView.framework
 ${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
