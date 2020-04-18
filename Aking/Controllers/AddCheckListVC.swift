@@ -9,8 +9,8 @@
 import UIKit
 
 class AddCheckListVC: UIViewController {
-
-   @IBOutlet weak var descriptionTextView: UITextView!
+    
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleTextView: UITextView!
@@ -18,16 +18,19 @@ class AddCheckListVC: UIViewController {
     var items: Int = 1
     var checkListItem = CheckListItem()
     
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            
-            collectionView.delegate = self
-            collectionView.dataSource = self
-            
-            tableView.delegate = self
-            tableView.dataSource = self
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     @IBAction func addNewItemButtonTapped(_ sender: Any) {
         items += 1
         tableView.reloadData()
@@ -37,19 +40,20 @@ class AddCheckListVC: UIViewController {
         
         for x in 0..<items {
             let indexPath = IndexPath(row: x, section: 0)
-            let cell:AddCheckListTableViewCell = tableView.cellForRow(at: indexPath) as! AddCheckListTableViewCell
-
+            let cell = tableView.cellForRow(at: indexPath) as! AddCheckListTableViewCell
+            
             if let title = cell.itemTitleTF.text {
                 checkListItem.items.append(Item(title: title, status: false))
             }
         }
         
         print(checkListItem)
+        self.dismissDetail()
     }
-        
-        
-        
-    }
+    
+    
+    
+}
 
 extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,27 +71,27 @@ extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-    extension AddCheckListVC: UICollectionViewDataSource, UICollectionViewDelegate {
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            colors.count
-        }
+extension AddCheckListVC: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        DataService.instance.colors.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVC_Color_Chooser", for: indexPath) as! AddNoteCollectionViewCell
+        cell.colorView.backgroundColor = DataService.instance.colors[indexPath.row]
+        cell.colorView.layer.cornerRadius = 5
         
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVC_Color_Chooser", for: indexPath) as! AddNoteCollectionViewCell
-            cell.colorView.backgroundColor = colors[indexPath.row]
-            cell.colorView.layer.cornerRadius = 5
-            
-            return cell
-        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! AddNoteCollectionViewCell
         
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let cell = collectionView.cellForItem(at: indexPath) as! AddNoteCollectionViewCell
-            
-            checkListItem.note.color = cell.colorView.backgroundColor!
-            print(cell.colorView.backgroundColor!)
-            
-        }
+        checkListItem.note.color = cell.colorView.backgroundColor!
+        print(cell.colorView.backgroundColor!)
         
     }
+    
+}
 
 

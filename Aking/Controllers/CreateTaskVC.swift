@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+enum TaskNature { case createTask, editingTask  }
 class CreateTaskVC: UIViewController {
     
     
@@ -23,12 +25,16 @@ class CreateTaskVC: UIViewController {
     //In Project
     @IBOutlet weak var projectImageView: CustomizableImageView!
     @IBOutlet weak var projectNameLabel: UILabel!
+    @IBOutlet weak var titleTF: UITextField!
     
     var datePickerView = DatePickerView()
     var assigneeName: String? = nil
     var assigneeImage: UIImage? = nil
     var projectName: String? = nil
     var projectImage: UIImage? = nil
+    
+    var taskNature: TaskNature = .createTask
+    var task: Task?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +63,28 @@ class CreateTaskVC: UIViewController {
         
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if taskNature == .editingTask {
+            prepareTaskEditing()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    func initTask(task: Task) {
+        self.task = task
+        taskNature = .editingTask
+    }
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func attachmentButtonTapped(_ sender: Any) {
         
     }
@@ -65,6 +93,15 @@ class CreateTaskVC: UIViewController {
         loadViewIfNeeded()
     }
     @IBAction func addTaskButtonTapped(_ sender: Any) {
+        if taskNature == .createTask {
+            if let task = prepareTask() { DataService.instance.tasks.append(task)} else { print("Failed to create new task")}
+        } else {
+            if let index = task?.id {
+                DataService.instance.tasks.remove(at: index)
+                DataService.instance.tasks.insert(self.task!, at: index)
+            }
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func assigneeButtonTapped(_ sender: Any) {
@@ -108,25 +145,50 @@ class CreateTaskVC: UIViewController {
         }
         
     }
+    func prepareTask()->Task? {
+        var task: Task?
+        if titleTF != nil , let title = titleTF.text,
+            assigneeNameLabel.text != "Assignee" , let assigneeName = assigneeNameLabel.text,
+            anyTimeButton.titleLabel?.text != "Anytime", let dutDate =  anyTimeButton.titleLabel?.text,
+            descriptionTextView.text != nil, let description = descriptionTextView.text,
+             let projectName = projectNameLabel.text{ //projectNameLabel.text != "Project", condition need to be added
+            task = Task(id: nil, title: title, assigneeName: assigneeName, projectName: projectName, dueDate: dutDate, description: description, members: [], tag: "", color: .clear, status: .pending)
+        }
+        return task
+    }
+    
+    func prepareTaskEditing() {
+        self.assigneeNameLabel.text = task?.assigneeName
+        self.projectNameLabel.text = task?.projectName
+        self.titleTF.text = task?.title
+        self.descriptionTextView.text = task?.description
+        self.anyTimeButton.setTitle(task?.dueDate, for: .normal)
+        self.projectNameLabel.text = task?.projectName
+    }
     
     
 }
-
-extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
+//MARK: - Table view Datasource Delegate
+extension CreateTaskVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return people.count
+        return DataService.instance.people.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: SelectionTVCell.className) as! SelectionTVCell
-        cell.configure(assginee: people[indexPath.row])
+        cell.configure(assginee: DataService.instance.people[indexPath.row])
         return cell
     }
     
+    
+}
+//MARK: -Table View Delegate
+extension CreateTaskVC: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let name = people[indexPath.row].name
-        let image = people[indexPath.row].avator
+        let name = DataService.instance.people[indexPath.row].name
+        let image = DataService.instance.people[indexPath.row].avator
         setupAssignee(name: name, image: image)
         selectionTVHeightConstraint.constant = 0
     }
@@ -136,27 +198,47 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
         return 52
     }
     
-    
 }
-
-extension CreateTaskVC: UICollectionViewDataSource, UICollectionViewDelegate {
+//MARK: - Collection View Datasource Delegate
+extension CreateTaskVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+        if taskNature == .editingTask && !((task?.members.isEmpty)!) {
+            return (task?.members.count)!
+        }
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemberCVC.className, for: indexPath) as! MemberCVC
         
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if taskNature == .editingTask && !((task?.members.isEmpty)!)  { //
+            if indexPath.row != task?.members.count {
+                cell.avator.image = task?.members[indexPath.row]
+                cell.anyoneLabel.isHidden = true
+                return cell
+            } else {
+                cell.anyoneLabel.text = "+"
+                cell.anyoneLabel.textColor = .white
+                return cell
+            }
+        } else {
+            return cell
+        }
         
-        return CGSize(width: (view.safeAreaLayoutGuide.layoutFrame.width), height: 30);
-        //        return CGSize(width: collectionView. preferredWidth, height: floor(preferredHeight))
     }
 }
-//MARK: - 
+//MARK: - Collection View Flow Layout Delegate
+
+extension CreateTaskVC: UICollectionViewDelegateFlowLayout {
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if taskNature == .editingTask  && !((task?.members.isEmpty)!)   {
+                    return CGSize(width: (30), height: 30);
+                } else {
+                    return CGSize(width: (60), height: 30);
+                }
+    }
+}
+//MARK: -  Date picker delegate
 extension CreateTaskVC: DatePickerViewDelegate {
     func didDateSelectionCompleted(date: String) {
         self.datePickerView.isHidden = true

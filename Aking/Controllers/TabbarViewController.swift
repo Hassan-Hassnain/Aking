@@ -8,7 +8,7 @@
 
 import UIKit
 
-@available(iOS 13.0, *)
+
 class TabbarViewController: UITabBarController {
     
     var addTaskView: AddView?
@@ -16,7 +16,7 @@ class TabbarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         delegate = self
         
     }
@@ -25,21 +25,18 @@ class TabbarViewController: UITabBarController {
         let presenter = selectedViewController
         let addView = AddView()
         addView.tag = 100
-        view.addSubview(addView)
         addView.fixInView(presenter?.view)
         presenter?.view.addSubview(addView)
         
     }
-    
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print(tabBarController)
     }
     
     
 }
 
-@available(iOS 13.0, *)
+
 extension TabbarViewController: UITabBarControllerDelegate{
     @objc func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is AddVC {
@@ -47,6 +44,10 @@ extension TabbarViewController: UITabBarControllerDelegate{
                 showAddView()
                 isAddViewPresented = true
             }
+//            guard let vc = storyboard?.instantiateViewController(identifier: MyTaskVC.className) else {return false}
+//            vc.modalPresentationStyle = .fullScreen
+//            self.present(vc, animated: true, completion: nil)
+//            show(vc, sender: self)
             return false
         } else {
             for subview in viewController.view.subviews {
@@ -57,9 +58,11 @@ extension TabbarViewController: UITabBarControllerDelegate{
             isAddViewPresented = false
             return true
         }
+        print(selectedIndex)
+        print(selectedViewController)
     }
-
-
+    
+    
 }
 
 

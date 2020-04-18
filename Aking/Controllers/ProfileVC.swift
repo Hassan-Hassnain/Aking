@@ -10,7 +10,7 @@ import UIKit
 import ATCircularProgressView
 
 class ProfileVC: UIViewController {
-
+    
     @IBOutlet weak var profileImage: CustomizableImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -24,33 +24,31 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var quickNotesProgressView: CircularProgressView!
     @IBOutlet weak var quickNoteProgressLable: UILabel!
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView.dataSource  = self
         collectionView.delegate = self
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-         let progressChanged: (CircularProgressView, CGFloat) -> () = { [unowned self]
-              (progressView, progress) in
-              let value = Int(progress * 100.0)
-              self.eventProgressLabel.text = "\(value)%"
+        let progressChanged: (CircularProgressView, CGFloat) -> () = { [unowned self]
+            (progressView, progress) in
+            let value = Int(progress * 100.0)
+            self.eventProgressLabel.text = "\(value)%"
         }
-                
+        
         eventProgressView.progressChanged = progressChanged
-        
-        
         
         eventProgressLabel.text = "\(Int((eventProgressView.progress)*100))"
         todoProgressLabel.text = "\(Int((todoProgressView.progress)*100))"
         quickNoteProgressLable.text = "\(Int((quickNotesProgressView.progress)*100))"
     }
-
-
+    
+    
 }
 
 extension ProfileVC: UICollectionViewDataSource, UICollectionViewDelegate{

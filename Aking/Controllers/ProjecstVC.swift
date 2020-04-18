@@ -32,12 +32,12 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         addNewProject()
         return titleTF.resignFirstResponder()
     }
-   
+    
     func addNewProject(){
         if project.color == UIColor.clear, project.projectName == "" {
             return
         } else {
-            projects.append(project)
+            DataService.instance.projects.append(project)
             collectionView.reloadData()
         }
     }
@@ -55,15 +55,15 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
 extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == colorChooseCollectionView {
-            return colors.count
+            return DataService.instance.colors.count
         }
-        return projects.count+1
+        return DataService.instance.projects.count+1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == colorChooseCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVC_Color_Chooser", for: indexPath) as! AddNoteCollectionViewCell
-            cell.colorView.backgroundColor = colors[indexPath.row]
+            cell.colorView.backgroundColor = DataService.instance.colors[indexPath.row]
             cell.colorView.layer.cornerRadius = 5
             for subview in cell.contentView.subviews {
                 if (subview.tag == 100) {
@@ -74,17 +74,15 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
         }
         let projectCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCollectionViewCell
         let addCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddProjectCell", for: indexPath)
-        if indexPath.row == projects.count {
+        if indexPath.row == DataService.instance.projects.count {
             return addCell
         }
-        projectCell.configure(project: projects[indexPath.row])
+        projectCell.configure(project: DataService.instance.projects[indexPath.row])
         return projectCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
-//            guard let vc = storyboard?.instantiateViewController(identifier: ProjectDetailsVC.className) else {return}
-//            navigationController?.pushViewController(vc, animated: true)
             performSegue(withIdentifier: "Details", sender: self)
         }
         if collectionView == colorChooseCollectionView {
@@ -93,7 +91,7 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
             if titleTF.text!.isEmpty{
                 let place = "Please write the project title"
                 titleTF.attributedPlaceholder = NSAttributedString(string: place, attributes:[NSAttributedString.Key.foregroundColor: UIColor.red])
-//                addCheckMark(vu: cell.colorView)
+                //                addCheckMark(vu: cell.colorView)
                 return
             }
             
@@ -101,11 +99,11 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
             addNewProject()
             self.addProjectView.isHidden = true
         }
-        if indexPath.row == projects.count {
+        if indexPath.row == DataService.instance.projects.count {
             addProjectView.isHidden = false
             project = Project(color: .clear, projectName: "", numberOfTasks: "0")
             titleTF.text = ""
-               }
+        }
     }
     
     

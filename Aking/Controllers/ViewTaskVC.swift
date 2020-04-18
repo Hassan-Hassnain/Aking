@@ -9,23 +9,47 @@
 import UIKit
 
 class ViewTaskVC: UIViewController {
-
+    
+    @IBOutlet weak var membersCollectionView: UICollectionView!
     @IBOutlet weak var additionalDetailView: UIView!
     @IBOutlet weak var additionalDetailViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentButton: UIStackView!
-    
     @IBOutlet weak var commentsTableView: UITableView!
     
+    @IBOutlet weak var taskTitleLabel: UILabel!
+    @IBOutlet weak var assigneeLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var tagButton: CustomizableButton!
+    
     var settingView: UIView?
+    var currentTask = Task(id: nil, title: "", assigneeName: "", projectName: "", dueDate: "", description: "", members: [], tag: "", color: .clear, status: .pending)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
         
         hideAdditionDetails()
         createSettingView()
         commentsTableView.dataSource = self
         commentsTableView.delegate = self
+        print(currentTask)
+        taskTitleLabel.text = currentTask.title
+        assigneeLabel.text = currentTask.assigneeName
+        dueDateLabel.text = currentTask.dueDate
+        tagButton.setTitle(currentTask.tag, for: .normal)
+    }
+    
+    func initTask(task: Task) {
+        print(task)
+        self.currentTask = task
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func closeButton(_ sender: Any) {
@@ -35,10 +59,12 @@ class ViewTaskVC: UIViewController {
     @IBAction func commentButtonTapped(_ sender: Any) {
         showAdditionalDetails()
         commentButton.isHidden = true
-    }
+        tabBarController?.tabBar.isHidden  = false    }
     @IBAction func completeTaskButtonTapped(_ sender: Any) {
         commentButton.isHidden = false
-        hideAdditionDetails()
+        currentTask.status = .done
+        if let id = currentTask.id { DataService.instance.tasks[id] = currentTask}
+        navigationController?.popViewController(animated: true)
     }
     @IBAction func settingButtonTapped(_ sender: Any) {
         if let settingView = settingView{

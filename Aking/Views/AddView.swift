@@ -30,18 +30,18 @@ class AddView: UIView {
     }
     @IBAction func addTaskButtonTapped(_ sender: UIButton) {
         delegate?.addTaskDidTapped()
+        self.removeFromSuperview()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: KNotifcations.NEW_TASK), object: nil)
-        print("Add Task")
     }
     
     @IBAction func addQuickNoteButtonTapped(_ sender: Any) {
         delegate?.addTaskDidTapped()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: KNotifcations.QUICK_NOTE), object: nil)
-        print("add note")
+        self.removeFromSuperview()
     }
     @IBAction func addCheckListButtonTapped(_ sender: Any) {
         delegate?.addCheckListDidTapped()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: KNotifcations.CHECK_LIST), object: nil)
-        print("add checklist")
+        self.removeFromSuperview()
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 import FSCalendar
 
 class ProjectDetailsVC: UIViewController {
- 
+    
     @IBOutlet weak var todayButton: UIButton!
     @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var calanderView: FSCalendar!
@@ -137,7 +137,7 @@ extension ProjectDetailsVC {
         print("Add Check List button tapped")
     }
     
-   
+    
 }
 
 

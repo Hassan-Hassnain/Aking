@@ -20,6 +20,10 @@ class AddNoteVC: UIViewController {
         collectionView.dataSource = self
     }
     
+    @IBAction func backButtonTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func addTaskButtonTapped(_ sender: Any) {
     }
     
@@ -29,12 +33,12 @@ class AddNoteVC: UIViewController {
 
 extension AddNoteVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        colors.count
+        DataService.instance.colors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVC_Color_Chooser", for: indexPath) as! AddNoteCollectionViewCell
-       cell.colorView.backgroundColor = colors[indexPath.row]
+        cell.colorView.backgroundColor = DataService.instance.colors[indexPath.row]
         cell.colorView.layer.cornerRadius = 5
         return cell
     }

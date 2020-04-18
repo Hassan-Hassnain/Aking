@@ -26,13 +26,20 @@ class MyTaskVC: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        updateNavBarAppearance(color: #colorLiteral(red: 0.9568627451, green: 0.4392156863, blue: 0.4196078431, alpha: 1))
+        updateNavBarAppearance(color: #colorLiteral(red: 0.9624031186, green: 0.3883901834, blue: 0.3891221285, alpha: 1))
         tableView.regCell(cellName: WorkListTableViewCell.className)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(addTaskDidTapped), name: NSNotification.Name(rawValue: KNotifcations.NEW_TASK), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(addQuickNoteDidTapped), name: NSNotification.Name(rawValue: KNotifcations.QUICK_NOTE), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(addCheckListDidTapped), name: NSNotification.Name(rawValue: KNotifcations.CHECK_LIST), object: nil)
-        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupTodayView()
+        navigationController?.hideHairline()
     }
     
     @IBAction func toggleCalanderButtonTapped(_ sender: Any) {
@@ -51,24 +58,14 @@ class MyTaskVC: UIViewController {
                 self.loadViewIfNeeded()
             }
         }
-        
     }
+    
     @IBAction func todayButtonTapped(_ sender: Any) {
-        calanderViewHeightConstraint.constant  = 0
-        todayButton.setTitleColor(.white, for: .normal)
-        todayButtonBottomIndicator.isHidden = false
-        monthButton.setTitleColor(.gray, for: .normal)
-        monthButtonBottomIndicator.isHidden = true
-        calendarToggleButton.isHidden = true
+        setupTodayView()
     }
+    
     @IBAction func monthButtonTapped(_ sender: Any) {
-        calanderView.scope = .week
-        calanderViewHeightConstraint.constant  = 130
-        todayButton.setTitleColor(.gray, for: .normal)
-        todayButtonBottomIndicator.isHidden = true
-        monthButton.setTitleColor(.white, for: .normal)
-        monthButtonBottomIndicator.isHidden = false
-        calendarToggleButton.isHidden = false
+        setupMonthView()
     }
     
     @IBAction func filterButtonTapped(_ sender: UIBarButtonItem) {
@@ -85,7 +82,68 @@ class MyTaskVC: UIViewController {
         filterView.isHidden = true
         if monthButton != nil{monthButton.setTitleColor(.gray, for: .normal)}
         monthButtonBottomIndicator.isHidden = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(addTaskDidTapped), name: NSNotification.Name(rawValue: KNotifcations.NEW_TASK), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addQuickNoteDidTapped), name: NSNotification.Name(rawValue: KNotifcations.QUICK_NOTE), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addCheckListDidTapped), name: NSNotification.Name(rawValue: KNotifcations.CHECK_LIST), object: nil)
     }
+    
+    fileprivate func setupTodayView() {
+        calanderViewHeightConstraint.constant  = 0
+        todayButton.setTitleColor(.white, for: .normal)
+        todayButtonBottomIndicator.isHidden = false
+        monthButton.setTitleColor(.gray, for: .normal)
+        monthButtonBottomIndicator.isHidden = true
+        calendarToggleButton.isHidden = true
+    }
+    
+    fileprivate func setupMonthView() {
+        calanderView.scope = .week
+        calanderViewHeightConstraint.constant  = 130
+        todayButton.setTitleColor(.gray, for: .normal)
+        todayButtonBottomIndicator.isHidden = true
+        monthButton.setTitleColor(.white, for: .normal)
+        monthButtonBottomIndicator.isHidden = false
+        calendarToggleButton.isHidden = false
+    }
+    //MARK: - DATE FUNCTIONS
+    func isToday(date: String)-> Bool{
+        let taskDate = convertStringToDate(date: date)
+        // Get right now as it's `DateComponents`.
+        let now = Calendar.current.dateComponents(in: .current, from: Date())
+        
+        // Create the start of the day in `DateComponents` by leaving off the time.
+        let today = DateComponents(year: now.year, month: now.month, day: now.day)
+        let dateToday = Calendar.current.date(from: today)!
+        print(dateToday.timeIntervalSince1970)
+        return taskDate == dateToday
+        
+        
+    }
+    
+    func today() -> String{
+        let now = Calendar.current.dateComponents(in: .current, from: Date())
+        let today = DateComponents(year: now.year, month: now.month, day: now.day)
+        let dateToday = Calendar.current.date(from: today)!
+        return Date.getFormattedDate(date: dateToday)
+    }
+    
+    func tomorrow() -> String {
+        let now = Calendar.current.dateComponents(in: .current, from: Date())
+        let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1)
+        let dateTomorrow = Calendar.current.date(from: tomorrow)!
+        return Date.getFormattedDate(date: dateTomorrow)
+    }
+    
+    
+    func convertStringToDate(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from:date)!
+        return date
+    }
+    
 }
 //MARK: - TABLE VIEW DELEGATE AN DATASOURCE
 extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
@@ -94,57 +152,91 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
         return 2
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?{
-        let vu = UIView()
-        vu.backgroundColor = .clear
-        let label = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.size.width, height: 15))
-        label.text = "Today, \(String(describing: Date.getFormattedDate(date: calanderView.today!)))"
-        label.textColor = .black
-        vu.addSubview(label)
-        return vu
+        if section == 0 {
+            return setupHeaderView(withDate: today())
+        } else {
+            return setupHeaderView(withDate: tomorrow())
+        }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Today, \(String(describing: Date.getFormattedDate(date: Date())))"
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        DataService.instance.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WorkListTableViewCell.className) as! WorkListTableViewCell
-        //        cell.contentView.dropShadow(color: .black, opacity: 0.3, offSet: CGSize(width: -0.2, height: 0.3), radius: 3, scale: true)
-        cell.contentView.addShadow()
+        cell.configure(task: DataService.instance.tasks[indexPath.row])
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
+        var task = DataService.instance.tasks[indexPath.row]
+        task.id = indexPath.row
+        vc.currentTask = task
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    //MARK: - Swipe Cell Action
     
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let deleteAction = UIContextualAction(style: .normal, title:  "Close", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            DataService.instance.tasks.remove(at:indexPath.row)
+            tableView.reloadData()
+            print("Task deleted")
+            success(true)
+        })
+        deleteAction.image = UIImage(named: "Icon-Delete")
+        deleteAction.backgroundColor = .white
+        
+        
+        
+        let editAction = UIContextualAction(style: .normal, title:  "Update", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            success(true)
+            let vc = self.storyboard?.instantiateViewController(identifier: CreateTaskVC.className) as! CreateTaskVC
+            vc.initTask(task: DataService.instance.tasks[indexPath.row])
+            print("Editing Task")
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        editAction.image = UIImage(named: "Icon-Edit")
+        editAction.backgroundColor = .white
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        
+    }
+    
+    func setupHeaderView(withDate date: String) -> UIView{
+        let vu = UIView()
+        vu.backgroundColor = .clear
+        let label = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.size.width, height: 15))
+        label.text = date
+        label.textColor = .black
+        vu.addSubview(label)
+        
+        return vu
+    }
 }
 
 //MARK: - Create Menu functions
 extension MyTaskVC {
     @objc func addTaskDidTapped() {
-        guard let vc = storyboard?.instantiateViewController(identifier: CreateTaskVC.className) else {return}
         filterView.isHidden = true
-        navigationController?.pushViewController(vc, animated: true)
+        pushVC(viewController: CreateTaskVC.className, animated: true)
     }
     
     @objc func addQuickNoteDidTapped() {
-        print("Add Quick Note button tapped")
+        filterView.isHidden = true
+        pushVC(viewController: AddNoteVC.className, animated: true)
     }
     
     @objc func addCheckListDidTapped() {
-        print("Add Check List button tapped")
+        filterView.isHidden = true
+        pushVC(viewController: AddCheckListVC.className, animated: true)
     }
     
-   
-}
-
-extension UIViewController{
-    func hideCreateMenu(){
-       for subview in self.view.subviews {
-            if (subview.tag == 100) {
-                subview.removeFromSuperview()
-                print("removed")
-            }
-        }
-    }
+    
 }
