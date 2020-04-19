@@ -15,6 +15,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var colorChooseCollectionView: UICollectionView!
     
+    
     var project = Project(color: .clear, projectName: "", numberOfTasks: "0")
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,8 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         colorChooseCollectionView.dataSource = self
         addProjectView.isHidden = true
         titleTF.delegate = self
+        
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -108,5 +111,6 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     
 }
+
 
 

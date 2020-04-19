@@ -29,6 +29,7 @@ class ProjectDetailsVC: UIViewController {
         setupUI()
         updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1))
         
+        
         tableView.regCell(cellName: WorkListTableViewCell.className)
         
         NotificationCenter.default.addObserver(self, selector: #selector(addTaskDidTapped), name: NSNotification.Name(rawValue: KNotifcations.NEW_TASK), object: nil)
@@ -83,6 +84,7 @@ class ProjectDetailsVC: UIViewController {
     
     fileprivate func setupUI() {
         filterView = TaskFilterView(frame: CGRect(x: 172, y: 89, width: 228, height: 130))
+        filterView.delegate = self
         view.addSubview(filterView)
         filterView.isHidden = true
         if monthButton != nil{monthButton.setTitleColor(.gray, for: .normal)}
@@ -140,4 +142,21 @@ extension ProjectDetailsVC {
     
 }
 
-
+//MARK: - FilterView delegate
+extension ProjectDetailsVC: TaskFilterViewDelegate{
+    func incompleteTasksButtonDidTapped() {
+        filterView.isHidden = true
+        print("incomplete TAsk")
+        
+    }
+    
+    func completedTaskButtonDidTapped() {
+        print("Completed Task")
+    }
+    
+    func allTasksButtonDidTapped() {
+        print("All Task")
+    }
+    
+    
+}

@@ -24,6 +24,8 @@ class MyTaskVC: UIViewController {
     var todayTasks: [Task] = []
     var tomorrowTasks: [Task] = []
     var myTasks: [[Task]] = []
+    enum FilterMode { case completed, incomplete, all}
+    var taskLoadingMode: FilterMode = .all
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,21 +35,22 @@ class MyTaskVC: UIViewController {
         tableView.regCell(cellName: WorkListTableViewCell.className)
         calanderView.delegate = self
         calanderView.dataSource = self
+        filterView.delegate = self
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tomorrowTasks = []
-        todayTasks = []
-        updateTodayAndTomorrowTasks()
+        updateTodayAndTomorrowTasks {
+            self.tableView.reloadData()
+        }
         myTasks = [todayTasks, tomorrowTasks]
         tableView.reloadData()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupTodayView()
-        navigationController?.hideHairline()
+        //        navigationController?.hideHairline()
     }
     
     @IBAction func toggleCalanderButtonTapped(_ sender: Any) {
@@ -115,37 +118,60 @@ class MyTaskVC: UIViewController {
         calendarToggleButton.isHidden = false
     }
     
-    func addEventInCalendar() {
-        calanderView.appearance.eventSelectionColor = .systemPink
-    }
     //MARK: - DATE FUNCTIONS
     
-    func today() -> Date{
+    fileprivate func today() -> Date{
         let now = Calendar.current.dateComponents(in: .current, from: Date())
         let today = DateComponents(year: now.year, month: now.month, day: now.day)
         let dateToday = Calendar.current.date(from: today)!
         return dateToday
     }
     
-    func tomorrow() -> Date {
+    fileprivate func tomorrow() -> Date {
         let now = Calendar.current.dateComponents(in: .current, from: Date())
         let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1)
         let dateTomorrow = Calendar.current.date(from: tomorrow)!
         return dateTomorrow
     }
     
-    func updateTodayAndTomorrowTasks(){
-        for thisTask in DataService.instance.tasks {
-            let date = thisTask.dueDate.getFormattedDate()
-            if compareDates(firstDate: today(), secondDate: date) == 0 {
-                self.todayTasks.append(thisTask)
-            } else if compareDates(firstDate: tomorrow(), secondDate: date) == 0 {
-                tomorrowTasks.append(thisTask)
+    fileprivate func updateTodayAndTomorrowTasks(complete: @escaping ()->()){
+        tomorrowTasks = []
+        todayTasks = []
+        switch taskLoadingMode {
+        case .completed:
+            for thisTask in DataService.instance.tasks {
+                let date = thisTask.dueDate.getFormattedDate()
+                if compareDates(firstDate: today(), secondDate: date) == 0 {
+                    if thisTask.status == .done {self.todayTasks.append(thisTask)}
+                } else if compareDates(firstDate: tomorrow(), secondDate: date) == 0 {
+                    if thisTask.status == .done {tomorrowTasks.append(thisTask)}
+                }
             }
+            print("Arrays populated with incomplete task")
+        case .incomplete:
+            for thisTask in DataService.instance.tasks {
+                let date = thisTask.dueDate.getFormattedDate()
+                if compareDates(firstDate: today(), secondDate: date) == 0 {
+                    if thisTask.status == .pending {self.todayTasks.append(thisTask)}
+                } else if compareDates(firstDate: tomorrow(), secondDate: date) == 0 {
+                    if thisTask.status == .pending {tomorrowTasks.append(thisTask)}
+                }
+            }
+            print("Arrays populated with complete task")
+        case .all:
+            for thisTask in DataService.instance.tasks {
+                let date = thisTask.dueDate.getFormattedDate()
+                if compareDates(firstDate: today(), secondDate: date) == 0 {
+                    self.todayTasks.append(thisTask)
+                } else if compareDates(firstDate: tomorrow(), secondDate: date) == 0 {
+                    tomorrowTasks.append(thisTask)
+                }
+            }
+            print("Arrays populated with all task")
         }
     }
     
-    func compareDates( firstDate: Date, secondDate: Date) -> Int {
+    fileprivate func compareDates( firstDate: Date, secondDate: Date) -> Int {
         if firstDate.compare(secondDate) == .orderedSame { return 0 }
         else if firstDate.compare(secondDate) == .orderedAscending { return -1 }
         else { return 1  }
@@ -161,14 +187,12 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?{
         if section == 0 {
-            return setupHeaderView(withDate: today().getFormattedDate())
+            return setupHeaderView(withDate: "TODAY, "  + today().getFormattedDate())
         } else {
-            return setupHeaderView(withDate: tomorrow().getFormattedDate())
+            return setupHeaderView(withDate: "TOMORROW, " + tomorrow().getFormattedDate())
         }
     }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Today, \(Date().getFormattedDate())"
-    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         myTasks[section].count
     }
@@ -199,7 +223,7 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
         })
         deleteAction.image = UIImage(named: "Icon-Delete")
         deleteAction.backgroundColor = .white
-    
+        
         let editAction = UIContextualAction(style: .normal, title:  "Update", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             success(true)
             let vc = self.storyboard?.instantiateViewController(identifier: CreateTaskVC.className) as! CreateTaskVC
@@ -215,7 +239,7 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func setupHeaderView(withDate date: String) -> UIView{
+    fileprivate func setupHeaderView(withDate date: String) -> UIView{
         let vu = UIView()
         vu.backgroundColor = .clear
         let label = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.size.width, height: 15))
@@ -246,10 +270,10 @@ extension MyTaskVC {
     
     
 }
-
+//MARK: - FS Calendar delegate and Datasource
 extension MyTaskVC : FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-                
+        
         for task in DataService.instance.tasks{
             if(compareDates(firstDate: date, secondDate: task.dueDate.getFormattedDate()) == 0)
             {
@@ -258,4 +282,32 @@ extension MyTaskVC : FSCalendarDelegate, FSCalendarDataSource {
         }
         return 0
     }
+}
+//MARK: - FilterView delegate
+extension MyTaskVC: TaskFilterViewDelegate{
+    func incompleteTasksButtonDidTapped() {
+        taskLoadingMode = .incomplete
+        updateTodayAndTomorrowTasks {
+            self.tableView.reloadData()
+        }
+        filterView.isHidden = true
+    }
+    
+    func completedTaskButtonDidTapped() {
+        taskLoadingMode = .completed
+        updateTodayAndTomorrowTasks {
+            self.tableView.reloadData()
+        }
+        filterView.isHidden = true
+    }
+    
+    func allTasksButtonDidTapped() {
+        taskLoadingMode = .all
+        updateTodayAndTomorrowTasks {
+            self.tableView.reloadData()
+        }
+        filterView.isHidden = true
+    }
+    
+    
 }

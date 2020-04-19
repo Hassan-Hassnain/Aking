@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol TaskFilterViewDelegate {
+    func incompleteTasksButtonDidTapped()
+    func completedTaskButtonDidTapped()
+    func allTasksButtonDidTapped()
+}
 class TaskFilterView: UIView {
     let NIB_NAME = "TaskFilterView"
     
@@ -21,6 +26,7 @@ class TaskFilterView: UIView {
     enum selectedFilter {  case incomplete, completed, allTask }
     var selectedOption: selectedFilter = .incomplete
     
+    var delegate: TaskFilterViewDelegate!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,14 +47,17 @@ class TaskFilterView: UIView {
     @IBAction func incompleteTaskButtonTapped(_ sender: UIButton) {
         selectedOption = .incomplete
         updateFilterView()
+        delegate.incompleteTasksButtonDidTapped()
     }
     @IBAction func completedTaskButtonTapped(_ sender: UIButton) {
         selectedOption = .completed
         updateFilterView()
+        delegate.completedTaskButtonDidTapped()
     }
     @IBAction func allTasksButtonTapped(_ sender: UIButton) {
         selectedOption = .allTask
         updateFilterView()
+        delegate.allTasksButtonDidTapped()
     }
     
     func updateFilterView(){

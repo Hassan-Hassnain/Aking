@@ -100,6 +100,7 @@ class ViewTaskVC: UIViewController {
         optionsView.topButton.setTitle("Add to Project", for: .normal)
         optionsView.centerButton.setTitle("Add Member", for: .normal)
         optionsView.bottomButton.setTitle("Delete Task", for: .normal)
+        optionsView.delegate = self
         settingView?.addSubview(optionsView)
         settingView?.isHidden = true
         
@@ -130,6 +131,26 @@ extension ViewTaskVC: UITableViewDelegate, UITableViewDataSource {
             return cellWithImage!
         }
         
+    }
+    
+    
+}
+//MARK: - FilterView delegate
+extension ViewTaskVC: TaskFilterViewDelegate{
+    func incompleteTasksButtonDidTapped() {
+        print("incomplete TAsk")
+        settingView!.isHidden = true
+        
+    }
+    
+    func completedTaskButtonDidTapped() {
+        print("Completed Task")
+        settingView!.isHidden = true
+    }
+    
+    func allTasksButtonDidTapped() {
+        print("All Task")
+        settingView!.isHidden = true
     }
     
     
