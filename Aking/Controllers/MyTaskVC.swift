@@ -31,7 +31,8 @@ class MyTaskVC: UIViewController {
         setupUI()
         updateNavBarAppearance(color: #colorLiteral(red: 0.9624031186, green: 0.3883901834, blue: 0.3891221285, alpha: 1))
         tableView.regCell(cellName: WorkListTableViewCell.className)
-        
+        calanderView.delegate = self
+        calanderView.dataSource = self
     }
     
     
@@ -114,9 +115,9 @@ class MyTaskVC: UIViewController {
         calendarToggleButton.isHidden = false
     }
     
-//    func addEventInCalendar() {
-//        calanderView.even
-//    }
+    func addEventInCalendar() {
+        calanderView.appearance.eventSelectionColor = .systemPink
+    }
     //MARK: - DATE FUNCTIONS
     
     func today() -> Date{
@@ -244,4 +245,17 @@ extension MyTaskVC {
     }
     
     
+}
+
+extension MyTaskVC : FSCalendarDelegate, FSCalendarDataSource {
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+                
+        for task in DataService.instance.tasks{
+            if(compareDates(firstDate: date, secondDate: task.dueDate.getFormattedDate()) == 0)
+            {
+                return 1
+            }
+        }
+        return 0
+    }
 }
