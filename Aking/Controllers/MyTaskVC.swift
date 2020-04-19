@@ -21,6 +21,9 @@ class MyTaskVC: UIViewController {
     @IBOutlet weak var monthButtonBottomIndicator: UIView!
     
     var filterView = TaskFilterView()
+    var todayTasks: [Task] = []
+    var tomorrowTasks: [Task] = []
+    var myTasks: [[Task]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,10 @@ class MyTaskVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tomorrowTasks = []
+        todayTasks = []
+        updateTodayAndTomorrowTasks()
+        myTasks = [todayTasks, tomorrowTasks]
         tableView.reloadData()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -106,68 +113,68 @@ class MyTaskVC: UIViewController {
         monthButtonBottomIndicator.isHidden = false
         calendarToggleButton.isHidden = false
     }
+    
+//    func addEventInCalendar() {
+//        calanderView.even
+//    }
     //MARK: - DATE FUNCTIONS
-    func isToday(date: String)-> Bool{
-        let taskDate = convertStringToDate(date: date)
-        // Get right now as it's `DateComponents`.
-        let now = Calendar.current.dateComponents(in: .current, from: Date())
-        
-        // Create the start of the day in `DateComponents` by leaving off the time.
-        let today = DateComponents(year: now.year, month: now.month, day: now.day)
-        let dateToday = Calendar.current.date(from: today)!
-        print(dateToday.timeIntervalSince1970)
-        return taskDate == dateToday
-        
-        
-    }
     
-    func today() -> String{
+    func today() -> Date{
         let now = Calendar.current.dateComponents(in: .current, from: Date())
         let today = DateComponents(year: now.year, month: now.month, day: now.day)
         let dateToday = Calendar.current.date(from: today)!
-        return Date.getFormattedDate(date: dateToday)
+        return dateToday
     }
     
-    func tomorrow() -> String {
+    func tomorrow() -> Date {
         let now = Calendar.current.dateComponents(in: .current, from: Date())
         let tomorrow = DateComponents(year: now.year, month: now.month, day: now.day! + 1)
         let dateTomorrow = Calendar.current.date(from: tomorrow)!
-        return Date.getFormattedDate(date: dateTomorrow)
+        return dateTomorrow
     }
     
-    
-    func convertStringToDate(date: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let date = dateFormatter.date(from:date)!
-        return date
+    func updateTodayAndTomorrowTasks(){
+        for thisTask in DataService.instance.tasks {
+            let date = thisTask.dueDate.getFormattedDate()
+            if compareDates(firstDate: today(), secondDate: date) == 0 {
+                self.todayTasks.append(thisTask)
+            } else if compareDates(firstDate: tomorrow(), secondDate: date) == 0 {
+                tomorrowTasks.append(thisTask)
+            }
+        }
     }
+    
+    func compareDates( firstDate: Date, secondDate: Date) -> Int {
+        if firstDate.compare(secondDate) == .orderedSame { return 0 }
+        else if firstDate.compare(secondDate) == .orderedAscending { return -1 }
+        else { return 1  }
+    }
+    
     
 }
 //MARK: - TABLE VIEW DELEGATE AN DATASOURCE
 extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return myTasks.count
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?{
         if section == 0 {
-            return setupHeaderView(withDate: today())
+            return setupHeaderView(withDate: today().getFormattedDate())
         } else {
-            return setupHeaderView(withDate: tomorrow())
+            return setupHeaderView(withDate: tomorrow().getFormattedDate())
         }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Today, \(String(describing: Date.getFormattedDate(date: Date())))"
+        return "Today, \(Date().getFormattedDate())"
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        DataService.instance.tasks.count
+        myTasks[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WorkListTableViewCell.className) as! WorkListTableViewCell
-        cell.configure(task: DataService.instance.tasks[indexPath.row])
+        cell.configure(task: myTasks[indexPath.section][indexPath.row])
         return cell
     }
     
@@ -187,19 +194,17 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
         let deleteAction = UIContextualAction(style: .normal, title:  "Close", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             DataService.instance.tasks.remove(at:indexPath.row)
             tableView.reloadData()
-            print("Task deleted")
             success(true)
         })
         deleteAction.image = UIImage(named: "Icon-Delete")
         deleteAction.backgroundColor = .white
-        
-        
-        
+    
         let editAction = UIContextualAction(style: .normal, title:  "Update", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             success(true)
             let vc = self.storyboard?.instantiateViewController(identifier: CreateTaskVC.className) as! CreateTaskVC
-            vc.initTask(task: DataService.instance.tasks[indexPath.row])
-            print("Editing Task")
+            var taskToEdit = DataService.instance.tasks[indexPath.row]
+            taskToEdit.id = indexPath.row
+            vc.initTask(task: taskToEdit)
             self.navigationController?.pushViewController(vc, animated: true)
         })
         editAction.image = UIImage(named: "Icon-Edit")

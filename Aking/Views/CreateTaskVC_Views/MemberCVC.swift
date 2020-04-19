@@ -16,7 +16,6 @@ class MemberCVC: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         containerView.layer.cornerRadius = containerView.frame.size.height/2
-        print(containerView.frame.size.height/2)
     }
 
 }

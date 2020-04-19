@@ -44,7 +44,6 @@ class DatePickerView: UIView {
         calendar.delegate = self
     }
     @IBAction func doneButtonTapped(_ sender: Any) {
-        print("done button tapped")
         if let date = selectedDate {
             delegate?.didDateSelectionCompleted(date: date)
         }
@@ -55,8 +54,7 @@ class DatePickerView: UIView {
 
 extension DatePickerView: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        selectedDate = (self.formatter.string(from: date))
-//        print("calendar did select date \(self.formatter.string(from: date))")
+        selectedDate = date.getFormattedDate()
         if monthPosition == .previous || monthPosition == .next {
             calendar.setCurrentPage(date, animated: true)
         }

@@ -35,17 +35,18 @@ class ViewTaskVC: UIViewController {
         createSettingView()
         commentsTableView.dataSource = self
         commentsTableView.delegate = self
-        print(currentTask)
+        
         taskTitleLabel.text = currentTask.title
         assigneeLabel.text = currentTask.assigneeName
         dueDateLabel.text = currentTask.dueDate
         tagButton.setTitle(currentTask.tag, for: .normal)
+        descriptionLabel.text = currentTask.description
     }
     
     func initTask(task: Task) {
-        print(task)
         self.currentTask = task
     }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

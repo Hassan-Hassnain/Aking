@@ -47,9 +47,17 @@ class DataService {
     ]
     
     var tasks: [Task] = [
-        Task(id: nil, title: "Task-1", assigneeName: "Israr ul haq", projectName: "Test Project-1", dueDate: "May 5,2020", description: "Testing the app", members: [], tag: "Personal", color: .blue, status: .pending),
-        Task(id: nil, title: "Task-2", assigneeName: "Israr", projectName: "Test Project-2", dueDate: "May 6,2020", description: "Testing the app", members: [], tag: "Work", color: .green, status: .pending),
-        Task(id: nil, title: "Task-3", assigneeName: "Test User", projectName: "Test Project-3", dueDate: "May 7,2020", description: "Testing the app", members: [], tag: "Entertainment", color: .red, status: .pending)
+        Task(id: nil, title: "Task-1", assigneeName: "Israr ul haq", projectName: "Test Project-1", dueDate: "Apr 20,2020", description: "Testing the app", members: [], tag: "Personal", color: .blue, status: .pending),
+        Task(id: nil, title: "Task-2", assigneeName: "Israr", projectName: "Test Project-2", dueDate: "Apr 20,2020", description: "Testing the app", members: [], tag: "Work", color: .green, status: .pending),
+        Task(id: nil, title: "Task-3", assigneeName: "Test User", projectName: "Test Project-3", dueDate: "Apr 20,2020", description: "Testing the app", members: [], tag: "Entertainment", color: .red, status: .pending),
+        
+        Task(id: nil, title: "Task-1", assigneeName: "Israr ul haq", projectName: "Test Project-1", dueDate: "Apr 21,2020", description: "Testing the app", members: [], tag: "Personal", color: .blue, status: .pending),
+        Task(id: nil, title: "Task-2", assigneeName: "Israr", projectName: "Test Project-2", dueDate: "Apr 21,2020", description: "Testing the app", members: [], tag: "Work", color: .green, status: .pending),
+        Task(id: nil, title: "Task-3", assigneeName: "Test User", projectName: "Test Project-3", dueDate: "Apr 21,2020", description: "Testing the app", members: [], tag: "Entertainment", color: .red, status: .pending),
+        
+        Task(id: nil, title: "Task-1", assigneeName: "Israr ul haq", projectName: "Test Project-1", dueDate: "Apr 22,2020", description: "Testing the app", members: [], tag: "Personal", color: .blue, status: .pending),
+        Task(id: nil, title: "Task-2", assigneeName: "Israr", projectName: "Test Project-2", dueDate: "Apr 22,2020", description: "Testing the app", members: [], tag: "Work", color: .green, status: .pending),
+        Task(id: nil, title: "Task-3", assigneeName: "Test User", projectName: "Test Project-3", dueDate: "Apr 22,2020", description: "Testing the app", members: [], tag: "Entertainment", color: .red, status: .pending)
     ]
     
     

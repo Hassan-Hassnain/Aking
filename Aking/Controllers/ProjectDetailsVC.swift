@@ -99,13 +99,13 @@ extension ProjectDetailsVC: UITableViewDelegate, UITableViewDataSource {
         let vu = UIView()
         vu.backgroundColor = .clear
         let label = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.size.width, height: 15))
-        label.text = "Today, \(String(describing: Date.getFormattedDate(date: calanderView.today!)))"
+        label.text = "Today, \(calanderView.today!.getFormattedDate())"
         label.textColor = .black
         vu.addSubview(label)
         return vu
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Today, \(String(describing: Date.getFormattedDate(date: Date())))"
+        return "Today, \(String(describing: Date().getFormattedDate()))"
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         3

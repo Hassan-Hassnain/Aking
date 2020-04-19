@@ -46,8 +46,6 @@ class AddCheckListVC: UIViewController {
                 checkListItem.items.append(Item(title: title, status: false))
             }
         }
-        
-        print(checkListItem)
         self.dismissDetail()
     }
     
@@ -88,7 +86,6 @@ extension AddCheckListVC: UICollectionViewDataSource, UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath) as! AddNoteCollectionViewCell
         
         checkListItem.note.color = cell.colorView.backgroundColor!
-        print(cell.colorView.backgroundColor!)
         
     }
     

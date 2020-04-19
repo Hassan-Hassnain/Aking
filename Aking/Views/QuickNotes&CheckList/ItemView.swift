@@ -37,7 +37,6 @@ class ItemView: UIView {
         contentView.fixInView(self)
         let tap =  UITapGestureRecognizer(target: self, action: #selector(updateIsCheckedValue))
         checkBoxView.addGestureRecognizer(tap)
-        print("dlfdfj")
     }
     
     @objc func updateIsCheckedValue(){

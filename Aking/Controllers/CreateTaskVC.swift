@@ -67,7 +67,7 @@ class CreateTaskVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if taskNature == .editingTask {
-            prepareTaskEditing()
+            prepareTaskForEditing()
         }
     }
     
@@ -94,11 +94,14 @@ class CreateTaskVC: UIViewController {
     }
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         if taskNature == .createTask {
-            if let task = prepareTask() { DataService.instance.tasks.append(task)} else { print("Failed to create new task")}
+            if let task = prepareTask() {
+                DataService.instance.tasks.append(task)
+            } else { print("Failed to create new task")}
         } else {
             if let index = task?.id {
+                let editedTask = prepareTask()
                 DataService.instance.tasks.remove(at: index)
-                DataService.instance.tasks.insert(self.task!, at: index)
+                DataService.instance.tasks.insert(editedTask!, at: index)
             }
         }
         self.navigationController?.popViewController(animated: true)
@@ -107,8 +110,9 @@ class CreateTaskVC: UIViewController {
     @IBAction func assigneeButtonTapped(_ sender: Any) {
         selectionTVHeightConstraint.constant = 649
     }
+    
     @IBAction func projectButtonTapped(_ sender: Any) {
-        print("project button tapped")
+        
     }
     
     func setupAssignee(name: String?, image: UIImage?){
@@ -145,19 +149,21 @@ class CreateTaskVC: UIViewController {
         }
         
     }
+    
     func prepareTask()->Task? {
         var task: Task?
-        if titleTF != nil , let title = titleTF.text,
-            assigneeNameLabel.text != "Assignee" , let assigneeName = assigneeNameLabel.text,
-            anyTimeButton.titleLabel?.text != "Anytime", let dutDate =  anyTimeButton.titleLabel?.text,
-            descriptionTextView.text != nil, let description = descriptionTextView.text,
-             let projectName = projectNameLabel.text{ //projectNameLabel.text != "Project", condition need to be added
-            task = Task(id: nil, title: title, assigneeName: assigneeName, projectName: projectName, dueDate: dutDate, description: description, members: [], tag: "", color: .clear, status: .pending)
-        }
+        guard let title = titleTF.text else { return nil }
+        guard let assigneeName = assigneeNameLabel.text else { return nil }
+        guard let dutDate =  (anyTimeButton.titleLabel?.text)?.getFormattedDateString() else {
+            return nil }
+        guard let description = descriptionTextView.text else { return nil }
+        var projectName = ""
+        if projectNameLabel.text != nil {projectName = projectNameLabel.text!} else { projectName = "" } //projectNameLabel.text != "Project", condition need to be added
+        task = Task(id: nil, title: title, assigneeName: assigneeName, projectName: projectName, dueDate: dutDate, description: description, members: [], tag: "", color: .clear, status: .pending)
         return task
     }
     
-    func prepareTaskEditing() {
+    func prepareTaskForEditing() {
         self.assigneeNameLabel.text = task?.assigneeName
         self.projectNameLabel.text = task?.projectName
         self.titleTF.text = task?.title
@@ -232,10 +238,10 @@ extension CreateTaskVC: UICollectionViewDataSource {
 extension CreateTaskVC: UICollectionViewDelegateFlowLayout {
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if taskNature == .editingTask  && !((task?.members.isEmpty)!)   {
-                    return CGSize(width: (30), height: 30);
-                } else {
-                    return CGSize(width: (60), height: 30);
-                }
+            return CGSize(width: (30), height: 30);
+        } else {
+            return CGSize(width: (60), height: 30);
+        }
     }
 }
 //MARK: -  Date picker delegate

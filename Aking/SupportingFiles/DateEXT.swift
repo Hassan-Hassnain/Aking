@@ -8,11 +8,35 @@
 
 import Foundation
 
+
 extension Date {
-    static func getFormattedDate(date: Date) -> String {
+//    static func getFormattedDate(date: Date) -> String {
+//        let dateformat = DateFormatter()
+//        dateformat.dateFormat = "MMM d/yyyy"
+//        return dateformat.string(from: date)
+//    }
+    
+    func getFormattedDate() -> String {
         let dateformat = DateFormatter()
         dateformat.dateFormat = "MMM d/yyyy"
-        return dateformat.string(from: date)
+        return dateformat.string(from: self)
     }
     
+   
+    
+}
+
+extension String {
+     func getFormattedDate() -> Date {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = "MMM d/yyyy"
+        return dateformat.date(from: self)!
+    }
+    
+    func getFormattedDateString() -> String {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = "MMM d/yyyy"
+        let date = dateformat.date(from: self)!
+        return date.getFormattedDate()
+    }
 }

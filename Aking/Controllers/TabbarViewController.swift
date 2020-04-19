@@ -29,9 +29,6 @@ class TabbarViewController: UITabBarController {
         presenter?.view.addSubview(addView)
         
     }
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print(tabBarController)
-    }
     
     
 }
@@ -44,10 +41,6 @@ extension TabbarViewController: UITabBarControllerDelegate{
                 showAddView()
                 isAddViewPresented = true
             }
-//            guard let vc = storyboard?.instantiateViewController(identifier: MyTaskVC.className) else {return false}
-//            vc.modalPresentationStyle = .fullScreen
-//            self.present(vc, animated: true, completion: nil)
-//            show(vc, sender: self)
             return false
         } else {
             for subview in viewController.view.subviews {
@@ -58,8 +51,6 @@ extension TabbarViewController: UITabBarControllerDelegate{
             isAddViewPresented = false
             return true
         }
-        print(selectedIndex)
-        print(selectedViewController)
     }
     
     
