@@ -19,38 +19,52 @@ class MyTaskVC: UIViewController {
     @IBOutlet weak var calendarToggleButton: UIButton!
     @IBOutlet weak var todayButtonBottomIndicator: UIView!
     @IBOutlet weak var monthButtonBottomIndicator: UIView!
+    @IBOutlet weak var colorView: UIView!
     
     var filterView = TaskFilterView()
     var todayTasks: [Task] = []
     var tomorrowTasks: [Task] = []
+    
     var myTasks: [[Task]] = []
     enum FilterMode { case completed, incomplete, all}
+    enum ViewMode { case myTasks, ProjectDetails }
     var taskLoadingMode: FilterMode = .all
+    
+    var viewMode: ViewMode = .myTasks
+    var projectTasks: [Task] = []
+    var currentProjectName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        updateNavBarAppearance(color: #colorLiteral(red: 0.9624031186, green: 0.3883901834, blue: 0.3891221285, alpha: 1))
         tableView.regCell(cellName: WorkListTableViewCell.className)
         calanderView.delegate = self
         calanderView.dataSource = self
         filterView.delegate = self
+        
+        if viewMode == .myTasks {
+            colorView.backgroundColor = #colorLiteral(red: 0.9624031186, green: 0.3883901834, blue: 0.3891221285, alpha: 1)
+            updateNavBarAppearance(color:  #colorLiteral(red: 0.9624031186, green: 0.3883901834, blue: 0.3891221285, alpha: 1), title: "Work List")
+            navigationItem.title = "Work List"
+        } else {
+            colorView.backgroundColor = #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1)
+            updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: currentProjectName)
+        }
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateTodayAndTomorrowTasks {
-            self.tableView.reloadData()
-        }
+        viewMode == .myTasks ? updateTodayAndTomorrowTasks () : updateTodayAndTomorrowTasksWithProjectTasks()
         myTasks = [todayTasks, tomorrowTasks]
         tableView.reloadData()
+
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupTodayView()
-        //        navigationController?.hideHairline()
+        navigationController?.hideHairline()
     }
     
     @IBAction func toggleCalanderButtonTapped(_ sender: Any) {
@@ -134,12 +148,13 @@ class MyTaskVC: UIViewController {
         return dateTomorrow
     }
     
-    fileprivate func updateTodayAndTomorrowTasks(complete: @escaping ()->()){
+    fileprivate func updateTodayAndTomorrowTasks(){
         tomorrowTasks = []
         todayTasks = []
+        let tasks = (viewMode == .myTasks) ? DataService.instance.tasks : projectTasks
         switch taskLoadingMode {
         case .completed:
-            for thisTask in DataService.instance.tasks {
+            for thisTask in tasks{
                 let date = thisTask.dueDate.getFormattedDate()
                 if compareDates(firstDate: today(), secondDate: date) == 0 {
                     if thisTask.status == .done {self.todayTasks.append(thisTask)}
@@ -147,9 +162,10 @@ class MyTaskVC: UIViewController {
                     if thisTask.status == .done {tomorrowTasks.append(thisTask)}
                 }
             }
+            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
             print("Arrays populated with incomplete task")
         case .incomplete:
-            for thisTask in DataService.instance.tasks {
+            for thisTask in tasks{
                 let date = thisTask.dueDate.getFormattedDate()
                 if compareDates(firstDate: today(), secondDate: date) == 0 {
                     if thisTask.status == .pending {self.todayTasks.append(thisTask)}
@@ -157,9 +173,10 @@ class MyTaskVC: UIViewController {
                     if thisTask.status == .pending {tomorrowTasks.append(thisTask)}
                 }
             }
+            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
             print("Arrays populated with complete task")
         case .all:
-            for thisTask in DataService.instance.tasks {
+            for thisTask in tasks{
                 let date = thisTask.dueDate.getFormattedDate()
                 if compareDates(firstDate: today(), secondDate: date) == 0 {
                     self.todayTasks.append(thisTask)
@@ -167,6 +184,7 @@ class MyTaskVC: UIViewController {
                     tomorrowTasks.append(thisTask)
                 }
             }
+            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
             print("Arrays populated with all task")
         }
     }
@@ -177,7 +195,24 @@ class MyTaskVC: UIViewController {
         else { return 1  }
     }
     
+    fileprivate func updateTodayAndTomorrowTasksWithProjectTasks(){
+        for thisTask in DataService.instance.tasks {
+            if thisTask.projectName == currentProjectName {
+                projectTasks.append(thisTask)
+            }
+        }
+        print(projectTasks.count)
+    }
     
+    fileprivate func viewThisTaskDetails(atIndex index: Int) {
+        
+        let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
+        var task: Task? = DataService.instance.tasks[index]
+        task?.id = index
+        vc.currentTask = task!
+        task = nil
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 //MARK: - TABLE VIEW DELEGATE AN DATASOURCE
 extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
@@ -203,13 +238,10 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
-        var task = DataService.instance.tasks[indexPath.row]
-        task.id = indexPath.row
-        vc.currentTask = task
-        navigationController?.pushViewController(vc, animated: true)
+        viewThisTaskDetails(atIndex: indexPath.row)
     }
     //MARK: - Swipe Cell Action
     
@@ -287,26 +319,25 @@ extension MyTaskVC : FSCalendarDelegate, FSCalendarDataSource {
 extension MyTaskVC: TaskFilterViewDelegate{
     func incompleteTasksButtonDidTapped() {
         taskLoadingMode = .incomplete
-        updateTodayAndTomorrowTasks {
-            self.tableView.reloadData()
-        }
+        updateTodayAndTomorrowTasks()
         filterView.isHidden = true
+        self.viewWillAppear(true)
     }
     
     func completedTaskButtonDidTapped() {
         taskLoadingMode = .completed
-        updateTodayAndTomorrowTasks {
-            self.tableView.reloadData()
-        }
+        updateTodayAndTomorrowTasks()
+        DispatchQueue.main.async { self.tableView.reloadData()}
         filterView.isHidden = true
+        self.viewWillAppear(true)
     }
     
     func allTasksButtonDidTapped() {
         taskLoadingMode = .all
-        updateTodayAndTomorrowTasks {
-            self.tableView.reloadData()
-        }
+        updateTodayAndTomorrowTasks()
+        DispatchQueue.main.async { self.tableView.reloadData()}
         filterView.isHidden = true
+        self.viewWillAppear(true)
     }
     
     

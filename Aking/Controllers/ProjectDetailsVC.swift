@@ -27,8 +27,7 @@ class ProjectDetailsVC: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1))
-        
+        updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: "Projects")
         
         tableView.regCell(cellName: WorkListTableViewCell.className)
         

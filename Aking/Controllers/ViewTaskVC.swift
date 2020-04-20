@@ -50,7 +50,8 @@ class ViewTaskVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
     }
     
     @IBAction func closeButton(_ sender: Any) {

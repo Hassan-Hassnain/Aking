@@ -9,14 +9,15 @@
 import UIKit
 
 extension UIViewController {
-    func updateNavBarAppearance(color: UIColor){
+    func updateNavBarAppearance(color: UIColor?, title: String?){
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = color
+        if let color = color {appearance.backgroundColor = color}
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationItem.compactAppearance = appearance
+        if let title = title { navigationItem.title = title}
     }
     
     func presentDetail(_ viewControllerToPresent: UIViewController) {

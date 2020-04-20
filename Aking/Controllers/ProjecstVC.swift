@@ -86,15 +86,23 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
-            performSegue(withIdentifier: "Details", sender: self)
+            if indexPath.row == DataService.instance.projects.count {
+                addProjectView.isHidden = false
+            } else {
+                let vc = storyboard?.instantiateViewController(identifier: MyTaskVC.className) as! MyTaskVC
+                //            addDummyProjectToTask(project: DataService.instance.projects[indexPath.row])
+                            vc.viewMode = .ProjectDetails
+                            vc.currentProjectName = DataService.instance.projects[indexPath.row].projectName
+                            navigationController?.pushViewController(vc, animated: true)
+            }
         }
+        
         if collectionView == colorChooseCollectionView {
             
             let cell = collectionView.cellForItem(at: indexPath) as! AddNoteCollectionViewCell
             if titleTF.text!.isEmpty{
                 let place = "Please write the project title"
                 titleTF.attributedPlaceholder = NSAttributedString(string: place, attributes:[NSAttributedString.Key.foregroundColor: UIColor.red])
-                //                addCheckMark(vu: cell.colorView)
                 return
             }
             
@@ -110,7 +118,12 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     
+    func addDummyProjectToTask(project: Project){
+        for i in 0..<DataService.instance.tasks.count {
+            DataService.instance.tasks[i].projectName = project.projectName
+        }
+    }
+    
 }
-
 
 
