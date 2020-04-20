@@ -136,10 +136,13 @@ extension ViewTaskVC: UITableViewDelegate, UITableViewDataSource {
     
     
 }
-//MARK: - FilterView delegate
+//MARK: - SettingView delegate
 extension ViewTaskVC: TaskFilterViewDelegate{
     func incompleteTasksButtonDidTapped() {
-        print("incomplete TAsk")
+        let vc = storyboard?.instantiateViewController(identifier: ProjecstVC.className) as! ProjecstVC
+        vc.isLoadedForProjectSelection = true
+        navigationController?.pushViewController(vc, animated: true)
+        
         settingView!.isHidden = true
         
     }

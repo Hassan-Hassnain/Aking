@@ -9,7 +9,7 @@
 import UIKit
 
 @available(iOS 13.0, *)
-class AddVC: UIViewController {
+class AddVC: UIViewController { 
     
     let createMenu = AddView()
     

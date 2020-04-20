@@ -17,6 +17,8 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     
     
     var project = Project(color: .clear, projectName: "", numberOfTasks: "0")
+    var isLoadedForProjectSelection: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,8 +28,17 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         colorChooseCollectionView.dataSource = self
         addProjectView.isHidden = true
         titleTF.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        
+        navigationController?.navigationBar.isHidden = false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -86,14 +97,22 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
+            if isLoadedForProjectSelection {
+                let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
+                vc.currentTask.projectName = DataService.instance.projects[indexPath.row].projectName
+                navigationController?.popViewController(animated: true)
+                return
+                
+            }
             if indexPath.row == DataService.instance.projects.count {
                 addProjectView.isHidden = false
+                project = Project(color: .clear, projectName: "", numberOfTasks: "0")
+                titleTF.text = ""
             } else {
                 let vc = storyboard?.instantiateViewController(identifier: MyTaskVC.className) as! MyTaskVC
-                //            addDummyProjectToTask(project: DataService.instance.projects[indexPath.row])
-                            vc.viewMode = .ProjectDetails
-                            vc.currentProjectName = DataService.instance.projects[indexPath.row].projectName
-                            navigationController?.pushViewController(vc, animated: true)
+                vc.viewMode = .ProjectDetails
+                vc.currentProjectName = DataService.instance.projects[indexPath.row].projectName
+                navigationController?.pushViewController(vc, animated: true)
             }
         }
         
@@ -110,11 +129,11 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
             addNewProject()
             self.addProjectView.isHidden = true
         }
-        if indexPath.row == DataService.instance.projects.count {
-            addProjectView.isHidden = false
-            project = Project(color: .clear, projectName: "", numberOfTasks: "0")
-            titleTF.text = ""
-        }
+        //        if indexPath.row == DataService.instance.projects.count {
+        //            addProjectView.isHidden = false
+        //            project = Project(color: .clear, projectName: "", numberOfTasks: "0")
+        //            titleTF.text = ""
+        //        }
     }
     
     

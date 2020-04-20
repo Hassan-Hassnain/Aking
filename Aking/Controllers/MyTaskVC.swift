@@ -117,7 +117,7 @@ class MyTaskVC: UIViewController {
         calanderViewHeightConstraint.constant  = 0
         todayButton.setTitleColor(.white, for: .normal)
         todayButtonBottomIndicator.isHidden = false
-        monthButton.setTitleColor(.gray, for: .normal)
+        monthButton.setTitleColor( #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5), for: .normal)
         monthButtonBottomIndicator.isHidden = true
         calendarToggleButton.isHidden = true
     }
@@ -125,7 +125,7 @@ class MyTaskVC: UIViewController {
     fileprivate func setupMonthView() {
         calanderView.scope = .week
         calanderViewHeightConstraint.constant  = 130
-        todayButton.setTitleColor(.gray, for: .normal)
+        todayButton.setTitleColor( #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5), for: .normal)
         todayButtonBottomIndicator.isHidden = true
         monthButton.setTitleColor(.white, for: .normal)
         monthButtonBottomIndicator.isHidden = false
