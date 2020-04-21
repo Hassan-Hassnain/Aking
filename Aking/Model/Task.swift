@@ -11,13 +11,13 @@ import UIKit
 
 enum TaskStatus { case done, pending }
 struct Task {
-    var id: Int?
+    var id: String
     var title: String
     var assigneeName: String
     var projectName: String
     var dueDate: String
     var description: String
-    var members: [UIImage]
+    var members: [String]
     var tag: String
     var color: UIColor
     var status: TaskStatus = .pending

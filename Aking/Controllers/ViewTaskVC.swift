@@ -23,7 +23,7 @@ class ViewTaskVC: UIViewController {
     @IBOutlet weak var tagButton: CustomizableButton!
     
     var settingView: UIView?
-    var currentTask = Task(id: nil, title: "", assigneeName: "", projectName: "", dueDate: "", description: "", members: [], tag: "", color: .clear, status: .pending)
+    var currentTask = Task(id: "nil", title: "", assigneeName: "", projectName: "", dueDate: "", description: "", members: [], tag: "", color: .clear, status: .pending)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +50,8 @@ class ViewTaskVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = true
-        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
     }
     
     @IBAction func closeButton(_ sender: Any) {
@@ -65,8 +65,11 @@ class ViewTaskVC: UIViewController {
     @IBAction func completeTaskButtonTapped(_ sender: Any) {
         commentButton.isHidden = false
         currentTask.status = .done
-        if let id = currentTask.id { DataService.instance.tasks[id] = currentTask}
-        navigationController?.popViewController(animated: true)
+        GDataService.instance.updateTask(withTask: currentTask) { (success) in
+            if success {
+                self.navigationController?.popViewController(animated: true)                
+            }
+        }
     }
     @IBAction func settingButtonTapped(_ sender: Any) {
         if let settingView = settingView{

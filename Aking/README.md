@@ -12,3 +12,10 @@ password reset with code
 tableView in MyTaskVC is not reloading data
 
 
+
+CreateTaskVC 
+    viewThisTaskDetails
+    addTaskButtonTapped
+    swipe Edit button
+ViewTaskVC
+    c ompleteTaskButtonTapped

@@ -40,3 +40,17 @@ struct KFireMessages {
     static let PASSWORD_CHANGE_SUCCESSFUL = "Password reset link sent to your email,\nreset your passowrd and try agian"
     static let USER_ALREADY_SIGNED_IN = "user allready signed in with"
 }
+//MARK: - Task
+struct KTask {
+    static let TITLE: String = "title"
+    static let ID: String = "userID"
+    static let ASSIGNEE_NAME = "assigneeName"
+    static let PROJECT_NAME = "projectName"
+    static let DUE_DATE = "dueDate"
+    static let DESCRIPTION = "description"
+    static let MEMBERS = "members"
+    static let TAG = "tag"
+    static let COLOR = "color"
+    static let STATUS = "status"
+    
+}

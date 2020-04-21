@@ -8,6 +8,7 @@
 
 import UIKit
 import ProgressHUD
+import Firebase
 
 class LoginVC: UIViewController {
     
@@ -42,6 +43,11 @@ class LoginVC: UIViewController {
                 vc?.modalPresentationStyle = .fullScreen
                 self.presentDetail(vc!)
                 print("Login Success!")
+                GDataService.instance.getAllTask { (tasks) in
+                    DataService.instance.tasks = []
+                    DataService.instance.tasks = tasks!
+                    print("Task appended")
+                }
             }
         }
     }

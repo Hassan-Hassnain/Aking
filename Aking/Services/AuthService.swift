@@ -13,6 +13,10 @@ import Firebase
 class AuthService {
     static let instance = AuthService()
     
+    func getUID() -> String {
+        return Auth.auth().currentUser!.uid
+    }
+    
     func createUser(withEmail email: String, andPassword passowrd: String, registrationCompletion: @escaping (_ user: User?) -> ()) {
         Auth.auth().createUser(withEmail: email, password: passowrd) { (authResult, error) in
             guard let user = authResult?.user , error == nil else { registrationCompletion(nil); return}
@@ -58,4 +62,5 @@ class AuthService {
     }
     
 }
+
 

@@ -96,13 +96,17 @@ class CreateTaskVC: UIViewController {
         if taskNature == .createTask {
             if let task = prepareTask() {
                 DataService.instance.tasks.append(task)
+                GDataService.instance.uploadTask(withTask: task) { (success) in
+                    success ? print("Task uploading success") : print("Task uploading failed")
+                }
             } else { print("Failed to create new task")}
         } else {
-            if let index = task?.id {
-                let editedTask = prepareTask()
-                DataService.instance.tasks.remove(at: index)
-                DataService.instance.tasks.insert(editedTask!, at: index)
+            if let editedTask = prepareTask() {
+                GDataService.instance.updateTask(withTask: editedTask) { (success) in
+                    success ? print("Task uploading success") : print("Task uploading failed")
+                }
             }
+            
         }
         self.navigationController?.popViewController(animated: true)
     }
@@ -159,7 +163,9 @@ class CreateTaskVC: UIViewController {
         guard let description = descriptionTextView.text else { return nil }
         var projectName = ""
         if projectNameLabel.text != nil {projectName = projectNameLabel.text!} else { projectName = "" } //projectNameLabel.text != "Project", condition need to be added
-        task = Task(id: nil, title: title, assigneeName: assigneeName, projectName: projectName, dueDate: dutDate, description: description, members: [], tag: "", color: .clear, status: .pending)
+        let uid = AuthService.instance.getUID()
+        task = Task(id: uid, title: title, assigneeName: assigneeName, projectName: projectName, dueDate: dutDate, description: description, members: [], tag: "", color: .white, status: .pending)
+        //        GDataService.instance.getAllTask()
         return task
     }
     
@@ -219,7 +225,7 @@ extension CreateTaskVC: UICollectionViewDataSource {
         
         if taskNature == .editingTask && !((task?.members.isEmpty)!)  { //
             if indexPath.row != task?.members.count {
-                cell.avator.image = task?.members[indexPath.row]
+                //                cell.avator.image = task?.members[indexPath.row]
                 cell.anyoneLabel.isHidden = true
                 return cell
             } else {

@@ -8,6 +8,7 @@
 
 import UIKit
 import FSCalendar
+import ProgressHUD
 
 class MyTaskVC: UIViewController {
     
@@ -42,6 +43,7 @@ class MyTaskVC: UIViewController {
         calanderView.delegate = self
         calanderView.dataSource = self
         filterView.delegate = self
+        DataService.instance.delegate = self
         
         if viewMode == .myTasks {
             colorView.backgroundColor = #colorLiteral(red: 0.9624031186, green: 0.3883901834, blue: 0.3891221285, alpha: 1)
@@ -55,10 +57,10 @@ class MyTaskVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewMode == .myTasks ? updateTodayAndTomorrowTasks () : updateTodayAndTomorrowTasksWithProjectTasks()
-        myTasks = [todayTasks, tomorrowTasks]
-        tableView.reloadData()
-
+//        viewMode == .myTasks ? updateTodayAndTomorrowTasks () : updateTodayAndTomorrowTasksWithProjectTasks()
+//        myTasks = [todayTasks, tomorrowTasks]
+//        tableView.reloadData()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -208,7 +210,6 @@ class MyTaskVC: UIViewController {
         
         let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
         var task: Task? = DataService.instance.tasks[index]
-        task?.id = index
         vc.currentTask = task!
         task = nil
         navigationController?.pushViewController(vc, animated: true)
@@ -259,8 +260,7 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
         let editAction = UIContextualAction(style: .normal, title:  "Update", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             success(true)
             let vc = self.storyboard?.instantiateViewController(identifier: CreateTaskVC.className) as! CreateTaskVC
-            var taskToEdit = DataService.instance.tasks[indexPath.row]
-            taskToEdit.id = indexPath.row
+            let taskToEdit = DataService.instance.tasks[indexPath.row]
             vc.initTask(task: taskToEdit)
             self.navigationController?.pushViewController(vc, animated: true)
         })
@@ -341,4 +341,13 @@ extension MyTaskVC: TaskFilterViewDelegate{
     }
     
     
+}
+//MARK: - DataServiceDelegate
+extension MyTaskVC: DataServiceDelegate {
+    func tasksUpdatedOnServer() {
+        viewMode == .myTasks ? updateTodayAndTomorrowTasks () : updateTodayAndTomorrowTasksWithProjectTasks()
+        myTasks = [todayTasks, tomorrowTasks]
+        tableView.reloadData()
+        
+    }
 }
