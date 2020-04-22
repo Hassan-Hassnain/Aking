@@ -54,3 +54,25 @@ struct KTask {
     static let STATUS = "status"
     
 }
+//MARK: - Item
+struct KItem {
+    static let TITLE = "title"
+    static let STATUS = "status"
+}
+//MARK: - Note
+struct KNote {
+    static let DESCRIPTION = "description"
+    static let COLOR = "color"
+}
+//MARK: - Project
+struct KProject {
+    static let  COLOR = "color"
+    static let PROJECT_NAME = "projectName"
+    static let NUMBER_OF_TASKS =  "numberOfTasks"
+}
+//MARK: - Assignee
+struct KAssignee {
+    static let AVATOR = "avator"
+    static let NAME = "name"
+    static let EMAIL = "email"
+}

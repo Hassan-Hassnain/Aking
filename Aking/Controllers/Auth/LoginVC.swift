@@ -43,14 +43,30 @@ class LoginVC: UIViewController {
                 vc?.modalPresentationStyle = .fullScreen
                 self.presentDetail(vc!)
                 print("Login Success!")
-                GDataService.instance.getAllTask { (tasks) in
-                    DataService.instance.tasks = []
-                    DataService.instance.tasks = tasks!
-                    print("Task appended")
-                }
+                self.downloadDataFromFirebase()
             }
         }
     }
     
+    func downloadDataFromFirebase(){
+        GDataService.instance.getAllTask { (tasks) in
+            DataService.instance.tasks = []
+            DataService.instance.tasks = tasks!
+            print("Task appended")
+            
+        }
+        
+//        for c in DataService.instance.checkListItems {
+//            GDataService.instance.uploadCheckList(withCheckList: c) { (success) in
+//                print("checklist uploaded")
+//            }
+//        }
+        
+        GDataService.instance.getAllCheckList()
+    }
+    
+    
     
 }
+
+

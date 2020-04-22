@@ -22,7 +22,4 @@ struct CheckListItem {
     }
 }
  
-struct Item {
-    var title: String
-    var status: Bool
-}
+
