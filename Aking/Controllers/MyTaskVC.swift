@@ -53,13 +53,18 @@ class MyTaskVC: UIViewController {
             colorView.backgroundColor = #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1)
             updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: currentProjectName)
         }
+        
+        GDataService.instance.getAllTask { (tasks) in
+            self.myTasks = tasks
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        viewMode == .myTasks ? updateTodayAndTomorrowTasks () : updateTodayAndTomorrowTasksWithProjectTasks()
-//        myTasks = [todayTasks, tomorrowTasks]
-//        tableView.reloadData()
+        viewMode == .myTasks ? updateTodayAndTomorrowTasks () : updateTodayAndTomorrowTasksWithProjectTasks()
+        updateTodayAndTomorrowTasks()
+        myTasks = [todayTasks, tomorrowTasks]
+        tableView.reloadData()
         
     }
     
@@ -318,23 +323,19 @@ extension MyTaskVC : FSCalendarDelegate, FSCalendarDataSource {
 //MARK: - FilterView delegate
 extension MyTaskVC: TaskFilterViewDelegate{
     func incompleteTasksButtonDidTapped() {
-        taskLoadingMode = .incomplete
-        updateTodayAndTomorrowTasks()
-        filterView.isHidden = true
-        self.viewWillAppear(true)
+        updadeFilter(mode: .incomplete)
     }
     
     func completedTaskButtonDidTapped() {
-        taskLoadingMode = .completed
-        updateTodayAndTomorrowTasks()
-        DispatchQueue.main.async { self.tableView.reloadData()}
-        filterView.isHidden = true
-        self.viewWillAppear(true)
+        updadeFilter(mode: .completed)
     }
     
     func allTasksButtonDidTapped() {
-        taskLoadingMode = .all
-        updateTodayAndTomorrowTasks()
+        updadeFilter(mode: .all)
+    }
+    
+    fileprivate func updadeFilter(mode:FilterMode) {
+        taskLoadingMode = mode
         DispatchQueue.main.async { self.tableView.reloadData()}
         filterView.isHidden = true
         self.viewWillAppear(true)

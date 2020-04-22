@@ -105,9 +105,7 @@ class CreateTaskVC: UIViewController {
                 GDataService.instance.updateTask(withTask: editedTask) { (success) in
                     success ? print("Task uploading success") : print("Task uploading failed")
                 }
-            }
-            
-        }
+            }        }
         self.navigationController?.popViewController(animated: true)
     }
     

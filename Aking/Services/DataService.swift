@@ -140,9 +140,15 @@ class GDataService {
 extension GDataService {
     
     func uploadTask(withTask task: Task, onSuccess: @escaping (_ status: Bool) -> ()){
+        
         let uid = thisUserUID()
-        let taskData = convertTaskToDictionary(task: task)
-        REF_TASKS.child(uid).childByAutoId().updateChildValues(taskData) { (error, dbRef) in
+        let thisTaskId = REF_TASKS.child(uid).childByAutoId()
+        var thisTask = task
+        
+        thisTask.id = "\(thisTaskId.key! )"
+        let taskData = convertTaskToDictionary(task: thisTask)
+        
+        thisTaskId.updateChildValues(taskData) { (error, dbRef) in
             if error == nil {
                 onSuccess(true)
             } else {
@@ -161,6 +167,7 @@ extension GDataService {
                 onSuccess(false)
             }
         }
+        print("REF_TASK: \(REF_TASKS), uid: \(uid), task.id: \(task.id)")
     }
     
     

@@ -28,30 +28,34 @@ class WorkListTableViewCell: UITableViewCell {
     }
     
     func configure(task: Task) {
-        self.title.text = task.title
-        self.time.text = task.dueDate
+//        self.title.text = task.title
+//        self.time.text = task.dueDate
         self.colorView.backgroundColor = task.color
         if task.status == .done {
             self.completionImageView.image = UIImage(named: "TaskSign-Done")
-            self.title.attributedText = strikeThrough(text: task.title)
+            self.title.attributedText = myAttributedString(text: task.title,applyAtrribute: true)
             self.title.textColor = UIColor.lightGray
-            self.time.attributedText = strikeThrough(text: task.dueDate)
+            self.time.attributedText = myAttributedString(text: task.dueDate,applyAtrribute: true)
             self.time.textColor = UIColor.lightGray
         } else {
             self.completionImageView.image = UIImage(named: "TaskSign-Pending")
+            self.title.attributedText = myAttributedString(text: task.title,applyAtrribute: false)
+            self.title.textColor = UIColor.black
+            self.time.attributedText = myAttributedString(text: task.dueDate,applyAtrribute: false)
+            self.time.textColor = UIColor.black
         }
         
     }
     
     
-    func strikeThrough(text: String)->NSAttributedString {
+    func myAttributedString(text: String,applyAtrribute: Bool)->NSAttributedString {
         let attributeString =  NSMutableAttributedString(string: text)
-        attributeString.addAttribute(
-            NSAttributedString.Key.strikethroughStyle,
-            value: NSUnderlineStyle.single.rawValue,
-            range: NSMakeRange(0, attributeString.length)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue,range: NSMakeRange(0, attributeString.length)
         )
-        return attributeString
+        let removedAttributString = NSMutableAttributedString(string: text)
+            removedAttributString.removeAttribute(NSAttributedString.Key.strikethroughStyle, range: NSMakeRange(0, attributeString.length))
+        
+        return applyAtrribute ? attributeString : removedAttributString
     }
     
 }

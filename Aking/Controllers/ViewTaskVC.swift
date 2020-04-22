@@ -61,16 +61,19 @@ class ViewTaskVC: UIViewController {
     @IBAction func commentButtonTapped(_ sender: Any) {
         showAdditionalDetails()
         commentButton.isHidden = true
-        tabBarController?.tabBar.isHidden  = false    }
+        tabBarController?.tabBar.isHidden  = false
+    }
+    
     @IBAction func completeTaskButtonTapped(_ sender: Any) {
         commentButton.isHidden = false
-        currentTask.status = .done
+        currentTask.status = currentTask.status == .done ? .pending: .done
         GDataService.instance.updateTask(withTask: currentTask) { (success) in
             if success {
                 self.navigationController?.popViewController(animated: true)                
             }
         }
     }
+    
     @IBAction func settingButtonTapped(_ sender: Any) {
         if let settingView = settingView{
             if settingView.isHidden {
@@ -85,10 +88,12 @@ class ViewTaskVC: UIViewController {
         additionalDetailViewHeightConstraint.constant = 0
         additionalDetailView.isHidden = true
     }
+    
     func showAdditionalDetails() {
         additionalDetailViewHeightConstraint.constant = 553
         additionalDetailView.isHidden = false
     }
+    
     func createSettingView(){
         settingView = UIView(frame: self.view.frame)
         settingView?.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2904169284)
@@ -108,16 +113,17 @@ class ViewTaskVC: UIViewController {
         settingView?.addSubview(optionsView)
         settingView?.isHidden = true
         
-        
         self.view.addSubview(settingView!)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(settingViewGestureSelector))
         settingView?.addGestureRecognizer(tapGesture)
-        
     }
+    
     @objc func settingViewGestureSelector(){
         settingView?.isHidden = true
     }
+    
+    
 }
 
 extension ViewTaskVC: UITableViewDelegate, UITableViewDataSource {
@@ -134,7 +140,6 @@ extension ViewTaskVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             return cellWithImage!
         }
-        
     }
     
     
