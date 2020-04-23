@@ -49,20 +49,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         newProject.projectName = titleTF.text!
-        addNewProject()
         return titleTF.resignFirstResponder()
-    }
-    
-    func addNewProject(){
-        if newProject.color == UIColor.clear, newProject.projectName == "" {
-            return
-        } else {
-//            DataService.instance.projects.append(project)
-            GDataService.instance.uploadProject(withProject: newProject) { (success) in
-                print("Project uploading done")
-            }
-            collectionView.reloadData()
-        }
     }
     
     func addCheckMark(vu: UIView){
@@ -73,9 +60,49 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         colorChooseCollectionView.reloadData()
     }
     
+    fileprivate func createNewProject(_ cell: AddNoteCollectionViewCell, _ collectionView: UICollectionView) {
+        if titleTF.text!.isEmpty{
+            let place = "Please write the project title"
+            titleTF.attributedPlaceholder = NSAttributedString(string: place, attributes:[NSAttributedString.Key.foregroundColor: UIColor.red])
+            return
+        }
+        let place = "Please write the project title"
+        titleTF.attributedPlaceholder = NSAttributedString(string: place, attributes:[NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        
+        newProject.color = cell.colorView.backgroundColor!
+        newProject.projectName = titleTF.text!
+        
+        GDataService.instance.uploadProject(withProject: newProject) { (success) in
+            print("Project uploading done")
+            collectionView.reloadData()
+        }
+        self.addProjectView.isHidden = true
+    }
+    
+    func showProjectDetails(indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(identifier: MyTaskVC.className) as! MyTaskVC
+        vc.viewMode = .ProjectDetails
+        vc.currentProjectName = projects[indexPath.row].projectName
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    fileprivate func showAddProjectView() {
+        //show add project view to Create new project
+        addProjectView.isHidden = false
+        newProject = Project(id: "", color: .clear, projectName: "", numberOfTasks: "0")
+        titleTF.text = ""
+    }
+    
+    fileprivate func selectProjectForTask(_ indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
+        vc.currentTask.projectName = projects[indexPath.row].projectName
+        navigationController?.popViewController(animated: true)
+        return
+    }
 }
 
 extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == colorChooseCollectionView {
             return DataService.instance.colors.count
@@ -105,51 +132,26 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
             if isLoadedForProjectSelection {
-                let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
-                vc.currentTask.projectName = projects[indexPath.row].projectName
-                navigationController?.popViewController(animated: true)
-                return
-                
+                return selectProjectForTask(indexPath)
             }
             if indexPath.row == projects.count {
-                addNewProject()
+                showAddProjectView()
             } else {
-                let vc = storyboard?.instantiateViewController(identifier: MyTaskVC.className) as! MyTaskVC
-                vc.viewMode = .ProjectDetails
-                vc.currentProjectName = projects[indexPath.row].projectName
-                navigationController?.pushViewController(vc, animated: true)
+                showProjectDetails(indexPath: indexPath)
             }
         }
         
         if collectionView == colorChooseCollectionView {
-            
             let cell = collectionView.cellForItem(at: indexPath) as! AddNoteCollectionViewCell
-            if titleTF.text!.isEmpty{
-                let place = "Please write the project title"
-                titleTF.attributedPlaceholder = NSAttributedString(string: place, attributes:[NSAttributedString.Key.foregroundColor: UIColor.red])
-                return
-            }
-            
-            newProject.color = cell.colorView.backgroundColor!
-            addNewProject()
-            self.addProjectView.isHidden = true
+            createNewProject(cell, collectionView)
         }
-        //        if indexPath.row == DataService.instance.projects.count {
-        //            addProjectView.isHidden = false
-        //            project = Project(color: .clear, projectName: "", numberOfTasks: "0")
-        //            titleTF.text = ""
-        //        }
     }
     
-    
-//    func addDummyProjectToTask(project: Project){
-//        for i in 0..<DataService.instance.tasks.count {
-//            DataService.instance.tasks[i].projectName = project.projectName
-//        }
-//    }
     
 }
 

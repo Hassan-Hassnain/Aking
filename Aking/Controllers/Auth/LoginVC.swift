@@ -59,6 +59,13 @@ class LoginVC: UIViewController {
 //        GDataService.instance.getAllCheckList { (checkLists) in
 //            print(checkLists as Any)
 //        }
+        
+//        GDataService.instance.uploadProject(withProject: Project(id: "", color: #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), projectName: "Home", numberOfTasks: "10")) { (success) in
+//            print("Done")
+//        }
+//        GDataService.instance.getAllProject { (s) in
+//            
+//        }
     }
     
     

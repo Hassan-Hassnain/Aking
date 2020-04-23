@@ -170,8 +170,8 @@ class MyTaskVC: UIViewController {
                     if thisTask.status == .done {tomorrowTasks.append(thisTask)}
                 }
             }
-            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
-            print("Arrays populated with incomplete task")
+//            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
+//            print("Arrays populated with incomplete task")
         case .incomplete:
             for thisTask in tasks{
                 let date = thisTask.dueDate.getFormattedDate()
@@ -181,8 +181,8 @@ class MyTaskVC: UIViewController {
                     if thisTask.status == .pending {tomorrowTasks.append(thisTask)}
                 }
             }
-            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
-            print("Arrays populated with complete task")
+//            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
+//            print("Arrays populated with complete task")
         case .all:
             for thisTask in tasks{
                 let date = thisTask.dueDate.getFormattedDate()
@@ -192,8 +192,8 @@ class MyTaskVC: UIViewController {
                     tomorrowTasks.append(thisTask)
                 }
             }
-            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
-            print("Arrays populated with all task")
+//            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
+//            print("Arrays populated with all task")
         }
     }
     
@@ -209,7 +209,7 @@ class MyTaskVC: UIViewController {
                 projectTasks.append(thisTask)
             }
         }
-        print(projectTasks.count)
+//        print(projectTasks.count)
     }
     
     fileprivate func viewThisTaskDetails(atIndex index: Int) {

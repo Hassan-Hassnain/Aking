@@ -260,12 +260,11 @@ extension GDataService {
                                     let projectName = project[KProject.PROJECT_NAME] as! String
                                     let numberOfTasks = project[KProject.NUMBER_OF_TASKS] as! String
                 
-                                    let color = UIColor.init(hexaDecimalString: colorString)
-                
-                                    let newProject = Project(id: id, color: color ?? UIColor.black, projectName: projectName, numberOfTasks: numberOfTasks)
+                                    let color = UIColor.init(rgbaString: colorString)
+                                    print("color String: \(colorString), and color : \(String(describing: color))")
+                                    let newProject = Project(id: id, color: color!, projectName: projectName, numberOfTasks: numberOfTasks)
                                     downloadedProjects.append(newProject)
                                 }
-                                print(project)
                             }
             }
 
