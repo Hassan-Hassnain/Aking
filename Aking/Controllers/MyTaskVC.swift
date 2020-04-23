@@ -46,14 +46,8 @@ class MyTaskVC: UIViewController {
         calanderView.dataSource = self
         filterView.delegate = self
         
-        if viewMode == .myTasks {
-            colorView.backgroundColor = #colorLiteral(red: 0.9624031186, green: 0.3883901834, blue: 0.3891221285, alpha: 1)
-            updateNavBarAppearance(color:  #colorLiteral(red: 0.9624031186, green: 0.3883901834, blue: 0.3891221285, alpha: 1), title: "Work List")
-            navigationItem.title = "Work List"
-        } else {
-            colorView.backgroundColor = #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1)
-            updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: currentProjectName)
-        }
+        
+        
         DataService.instance.getAllTask { (result) in
             if let result = result {self.allTasks = result}
         }
@@ -61,6 +55,7 @@ class MyTaskVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupUI()
         viewMode == .myTasks ? updateTodayAndTomorrowTasks () : updateTodayAndTomorrowTasksWithProjectTasks()
         updateTodayAndTomorrowTasks()
         myTasks = [todayTasks, tomorrowTasks]
@@ -114,6 +109,16 @@ class MyTaskVC: UIViewController {
         filterView.isHidden = true
         if monthButton != nil{monthButton.setTitleColor(.gray, for: .normal)}
         monthButtonBottomIndicator.isHidden = true
+        
+        if viewMode == .myTasks {
+            colorView.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1)
+            updateNavBarAppearance(color:  #colorLiteral(red: 0.9764705882, green: 0.3764705882, blue: 0.3764705882, alpha: 1), title: "Work List")
+            navigationItem.title = "Work List"
+        } else {
+            colorView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.4549019608, blue: 0.9764705882, alpha: 1)
+            updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: currentProjectName)
+        }
+        self.navigationController?.navigationBar.isTranslucent = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(addTaskDidTapped), name: NSNotification.Name(rawValue: KNotifcations.NEW_TASK), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addQuickNoteDidTapped), name: NSNotification.Name(rawValue: KNotifcations.QUICK_NOTE), object: nil)
@@ -206,7 +211,7 @@ class MyTaskVC: UIViewController {
     
     fileprivate func viewThisTaskDetails(task: Task) {
         
-        let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: ViewTaskVC.className) as! ViewTaskVC
         vc.currentTask = task
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -260,7 +265,7 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
         
         let editAction = UIContextualAction(style: .normal, title:  "Update", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             success(true)
-            let vc = self.storyboard?.instantiateViewController(identifier: CreateTaskVC.className) as! CreateTaskVC
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: CreateTaskVC.className) as! CreateTaskVC
             let taskToEdit = self.allTasks[indexPath.row]
             vc.initTask(task: taskToEdit)
             self.navigationController?.pushViewController(vc, animated: true)
@@ -293,7 +298,7 @@ extension MyTaskVC {
     
     @objc func addQuickNoteDidTapped() {
         filterView.isHidden = true
-        let vc = storyboard?.instantiateViewController(identifier: AddCheckListVC.className) as! AddCheckListVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: AddCheckListVC.className) as! AddCheckListVC
         vc.viewMode = .addNote
         navigationController?.pushViewController(vc, animated: true)
         
@@ -301,7 +306,7 @@ extension MyTaskVC {
     
     @objc func addCheckListDidTapped() {
         filterView.isHidden = true
-        let vc = storyboard?.instantiateViewController(identifier: AddCheckListVC.className) as! AddCheckListVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: AddCheckListVC.className) as! AddCheckListVC
         vc.viewMode = .addCheckList
         navigationController?.pushViewController(vc, animated: true)
     }

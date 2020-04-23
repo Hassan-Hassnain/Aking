@@ -87,7 +87,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     }
     
     func showProjectDetails(indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: MyTaskVC.className) as! MyTaskVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: MyTaskVC.className) as! MyTaskVC
         vc.viewMode = .ProjectDetails
         vc.currentProjectName = projects[indexPath.row].projectName
         navigationController?.pushViewController(vc, animated: true)

@@ -9,15 +9,25 @@
 import UIKit
 
 extension UIViewController {
+
     func updateNavBarAppearance(color: UIColor?, title: String?){
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        if let color = color {appearance.backgroundColor = color}
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navigationItem.standardAppearance = appearance
-        navigationItem.scrollEdgeAppearance = appearance
-        navigationItem.compactAppearance = appearance
-        if let title = title { navigationItem.title = title}
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            if let color = color {appearance.backgroundColor = color}
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+            UINavigationBar.appearance().tintColor = .white
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            if let title = title { navigationItem.title = title}
+        } else {
+            UINavigationBar.appearance().tintColor = .white
+            if let color = color {UINavigationBar.appearance().barTintColor = color}
+            UINavigationBar.appearance().isTranslucent = false
+            if let title = title { navigationItem.title = title}
+        }
     }
     
     func presentDetail(_ viewControllerToPresent: UIViewController) {
@@ -56,7 +66,7 @@ extension UIViewController {
     
     
     func goTo( toVC to: String, animate: Bool) {
-        guard let vc = storyboard?.instantiateViewController(identifier: to) else {return}
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: to) else {return}
         vc.modalPresentationStyle = .fullScreen
         if animate {
             presentDetail(vc)
@@ -65,14 +75,14 @@ extension UIViewController {
         }
     }
     func pushVC(viewController: String, animated: Bool) {
-        guard let vc = storyboard?.instantiateViewController(identifier: viewController) else {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: viewController) else {
             print("Failed to instantiate view controller with given identifier")
             return
         }
         navigationController?.pushViewController(vc, animated: animated)
     }
     func goTo(fromStoryboar sb: UIStoryboard, toVC to: String, animate: Bool) {
-        let vc = sb.instantiateViewController(identifier: to)
+        let vc = sb.instantiateViewController(withIdentifier: to)
         vc.modalPresentationStyle = .fullScreen
         if animate {
             presentDetail(vc)

@@ -39,7 +39,7 @@ class LoginVC: UIViewController {
                 print("Login Failed!")
             } else {
                 ProgressHUD.dismiss()
-                let vc = self.storyboard?.instantiateViewController(identifier: TabbarViewController.className)
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: TabbarViewController.className)
                 vc?.modalPresentationStyle = .fullScreen
                 self.presentDetail(vc!)
                 print("Login Success!")

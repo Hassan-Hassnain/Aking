@@ -2305,7 +2305,7 @@ at 10:30PM</string>
                                                                                     <attributedString key="attributedText">
                                                                                         <fragment content="Lorem ipsum dolor sit amet, consectetur adipiscing.">
                                                                                             <attributes>
-                                                                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                                                                <font key="NSFont" metaFont="label" size="15"/>
                                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                                             </attributes>
                                                                                         </fragment>

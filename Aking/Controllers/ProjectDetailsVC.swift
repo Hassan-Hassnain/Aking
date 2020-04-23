@@ -27,7 +27,7 @@ class ProjectDetailsVC: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: "Projects")
+        updateNavBarAppearance(color: #colorLiteral(red: 0.3764705882, green: 0.4549019608, blue: 0.9764705882, alpha: 1), title: "Projects")
         
         tableView.regCell(cellName: WorkListTableViewCell.className)
         
@@ -125,7 +125,7 @@ extension ProjectDetailsVC: UITableViewDelegate, UITableViewDataSource {
 //MARK: - Create Menu functions
 extension ProjectDetailsVC {
     @objc func addTaskDidTapped() {
-        guard let vc = storyboard?.instantiateViewController(identifier: CreateTaskVC.className) else {return}
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: CreateTaskVC.className) else {return}
         filterView.isHidden = true
         navigationController?.pushViewController(vc, animated: true)
     }
