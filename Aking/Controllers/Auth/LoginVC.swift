@@ -49,20 +49,16 @@ class LoginVC: UIViewController {
     }
     
     func downloadDataFromFirebase(){
-        GDataService.instance.getAllTask { (tasks) in
-            DataService.instance.tasks = []
-            DataService.instance.tasks = tasks!
-            print("Task appended")
-            
-        }
-        
-//        for c in DataService.instance.checkListItems {
-//            GDataService.instance.uploadCheckList(withCheckList: c) { (success) in
-//                print("checklist uploaded")
+//        for i in DataService.instance.checkListItems {
+//            GDataService.instance.uploadCheckList(withCheckList: i) { (success) in
+//                if success {
+//                    print("Item Uploaded")
+//                }
 //            }
 //        }
-        
-        GDataService.instance.getAllCheckList()
+//        GDataService.instance.getAllCheckList { (checkLists) in
+//            print(checkLists as Any)
+//        }
     }
     
     

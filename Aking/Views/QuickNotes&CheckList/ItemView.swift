@@ -8,6 +8,10 @@
 
 import UIKit
 
+
+protocol ItemViewDelegate {
+    func itemStatusDidChandge(status: Bool)
+}
 class ItemView: UIView {
 
     let XIB_NAME = ItemView.className
@@ -16,6 +20,7 @@ class ItemView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkBoxView: CustomizableView!
     
+    var delegate: ItemViewDelegate!
     var isChecked: Bool = false {
         didSet {
             updateCheckBox()
@@ -48,6 +53,8 @@ class ItemView: UIView {
     }
     
     func updateCheckBox (){
+        print("in  ItemView")
+//        delegate.itemStatusDidChandge(status: self.isChecked)
         if isChecked {
             checkBoxView.backgroundColor = #colorLiteral(red: 0.6323310137, green: 0.6328232288, blue: 0.632407248, alpha: 1)
         } else {

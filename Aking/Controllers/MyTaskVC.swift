@@ -23,9 +23,11 @@ class MyTaskVC: UIViewController {
     @IBOutlet weak var colorView: UIView!
     
     var filterView = TaskFilterView()
+    
+    var allTasks: [Task] = [] {didSet{self.viewWillAppear(true)}}
+    
     var todayTasks: [Task] = []
     var tomorrowTasks: [Task] = []
-    
     var myTasks: [[Task]] = []
     enum FilterMode { case completed, incomplete, all}
     enum ViewMode { case myTasks, ProjectDetails }
@@ -43,7 +45,7 @@ class MyTaskVC: UIViewController {
         calanderView.delegate = self
         calanderView.dataSource = self
         filterView.delegate = self
-        DataService.instance.delegate = self
+//        DataService.instance.delegate = self
         
         if viewMode == .myTasks {
             colorView.backgroundColor = #colorLiteral(red: 0.9624031186, green: 0.3883901834, blue: 0.3891221285, alpha: 1)
@@ -53,9 +55,8 @@ class MyTaskVC: UIViewController {
             colorView.backgroundColor = #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1)
             updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: currentProjectName)
         }
-        
-        GDataService.instance.getAllTask { (tasks) in
-            self.myTasks = tasks
+        GDataService.instance.getAllTask { (result) in
+            if let result = result {self.allTasks = result}
         }
     }
     
@@ -138,7 +139,7 @@ class MyTaskVC: UIViewController {
         monthButtonBottomIndicator.isHidden = false
         calendarToggleButton.isHidden = false
     }
-    
+ 
     //MARK: - DATE FUNCTIONS
     
     fileprivate func today() -> Date{
@@ -158,7 +159,7 @@ class MyTaskVC: UIViewController {
     fileprivate func updateTodayAndTomorrowTasks(){
         tomorrowTasks = []
         todayTasks = []
-        let tasks = (viewMode == .myTasks) ? DataService.instance.tasks : projectTasks
+        let tasks = (viewMode == .myTasks) ? allTasks : projectTasks
         switch taskLoadingMode {
         case .completed:
             for thisTask in tasks{
@@ -203,7 +204,7 @@ class MyTaskVC: UIViewController {
     }
     
     fileprivate func updateTodayAndTomorrowTasksWithProjectTasks(){
-        for thisTask in DataService.instance.tasks {
+        for thisTask in allTasks {
             if thisTask.projectName == currentProjectName {
                 projectTasks.append(thisTask)
             }
@@ -214,7 +215,7 @@ class MyTaskVC: UIViewController {
     fileprivate func viewThisTaskDetails(atIndex index: Int) {
         
         let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
-        var task: Task? = DataService.instance.tasks[index]
+        var task: Task? = allTasks[index]
         vc.currentTask = task!
         task = nil
         navigationController?.pushViewController(vc, animated: true)
@@ -255,7 +256,8 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let deleteAction = UIContextualAction(style: .normal, title:  "Close", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            DataService.instance.tasks.remove(at:indexPath.row)
+//            DataService.instance.tasks.remove(at:indexPath.row)
+            GDataService.instance.removeTask(taskId: self.allTasks[indexPath.row].id)
             tableView.reloadData()
             success(true)
         })
@@ -265,7 +267,7 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
         let editAction = UIContextualAction(style: .normal, title:  "Update", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             success(true)
             let vc = self.storyboard?.instantiateViewController(identifier: CreateTaskVC.className) as! CreateTaskVC
-            let taskToEdit = DataService.instance.tasks[indexPath.row]
+            let taskToEdit = self.allTasks[indexPath.row]
             vc.initTask(task: taskToEdit)
             self.navigationController?.pushViewController(vc, animated: true)
         })
@@ -288,7 +290,7 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: - Create Menu functions
+//MARK: - AddView Menu functions
 extension MyTaskVC {
     @objc func addTaskDidTapped() {
         filterView.isHidden = true
@@ -297,12 +299,18 @@ extension MyTaskVC {
     
     @objc func addQuickNoteDidTapped() {
         filterView.isHidden = true
-        pushVC(viewController: AddNoteVC.className, animated: true)
+        let vc = storyboard?.instantiateViewController(identifier: AddCheckListVC.className) as! AddCheckListVC
+        vc.viewMode = .addNote
+        navigationController?.pushViewController(vc, animated: true)
+//        pushVC(viewController: AddNoteVC.className, animated: true)
+        
     }
     
     @objc func addCheckListDidTapped() {
         filterView.isHidden = true
-        pushVC(viewController: AddCheckListVC.className, animated: true)
+        let vc = storyboard?.instantiateViewController(identifier: AddCheckListVC.className) as! AddCheckListVC
+        vc.viewMode = .addCheckList
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -311,7 +319,7 @@ extension MyTaskVC {
 extension MyTaskVC : FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         
-        for task in DataService.instance.tasks{
+        for task in allTasks{
             if(compareDates(firstDate: date, secondDate: task.dueDate.getFormattedDate()) == 0)
             {
                 return 1
@@ -344,11 +352,11 @@ extension MyTaskVC: TaskFilterViewDelegate{
     
 }
 //MARK: - DataServiceDelegate
-extension MyTaskVC: DataServiceDelegate {
-    func tasksUpdatedOnServer() {
-        viewMode == .myTasks ? updateTodayAndTomorrowTasks () : updateTodayAndTomorrowTasksWithProjectTasks()
-        myTasks = [todayTasks, tomorrowTasks]
-        tableView.reloadData()
-        
-    }
-}
+//extension MyTaskVC: DataServiceDelegate {
+//    func tasksUpdatedOnServer() {
+//        viewMode == .myTasks ? updateTodayAndTomorrowTasks () : updateTodayAndTomorrowTasksWithProjectTasks()
+//        myTasks = [todayTasks, tomorrowTasks]
+//        tableView.reloadData()
+//
+//    }
+//}

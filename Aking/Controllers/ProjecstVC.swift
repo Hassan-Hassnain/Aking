@@ -137,11 +137,11 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     
-    func addDummyProjectToTask(project: Project){
-        for i in 0..<DataService.instance.tasks.count {
-            DataService.instance.tasks[i].projectName = project.projectName
-        }
-    }
+//    func addDummyProjectToTask(project: Project){
+//        for i in 0..<DataService.instance.tasks.count {
+//            DataService.instance.tasks[i].projectName = project.projectName
+//        }
+//    }
     
 }
 

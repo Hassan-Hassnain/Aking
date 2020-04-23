@@ -30,6 +30,7 @@ class AddCheckListTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func updateCheckBox (){
+        print("in  AddCheckListTableViewCell")
         if isChecked {
             checkBoxView.backgroundColor = #colorLiteral(red: 0.9658892751, green: 0.9697455764, blue: 0.9658194184, alpha: 1)
         } else {
@@ -41,5 +42,6 @@ class AddCheckListTableViewCell: UITableViewCell, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
+    
 }
 

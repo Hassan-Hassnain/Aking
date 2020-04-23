@@ -54,16 +54,20 @@ struct KTask {
     static let STATUS = "status"
     
 }
-//MARK: - Item
-struct KItem {
+//MARK: - CheckListItem
+struct KCheckListItem {
+    static let ID = "id"
     static let TITLE = "title"
     static let STATUS = "status"
-}
-//MARK: - Note
-struct KNote {
     static let DESCRIPTION = "description"
     static let COLOR = "color"
+    static let ITEMS_ARRAY = "itemArray"
 }
+//MARK: - Note
+//struct KNote {
+//    static let DESCRIPTION = "description"
+//    static let COLOR = "color"
+//}
 //MARK: - Project
 struct KProject {
     static let  COLOR = "color"

@@ -95,7 +95,8 @@ class CreateTaskVC: UIViewController {
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         if taskNature == .createTask {
             if let task = prepareTask() {
-                DataService.instance.tasks.append(task)
+//                DataService.instance.tasks.append(task)
+                
                 GDataService.instance.uploadTask(withTask: task) { (success) in
                     success ? print("Task uploading success") : print("Task uploading failed")
                 }
@@ -163,7 +164,6 @@ class CreateTaskVC: UIViewController {
         if projectNameLabel.text != nil {projectName = projectNameLabel.text!} else { projectName = "" } //projectNameLabel.text != "Project", condition need to be added
         let uid = AuthService.instance.getUID()
         task = Task(id: uid, title: title, assigneeName: assigneeName, projectName: projectName, dueDate: dutDate, description: description, members: [], tag: "", color: .white, status: .pending)
-        //        GDataService.instance.getAllTask()
         return task
     }
     
