@@ -70,6 +70,7 @@ struct KCheckListItem {
 //}
 //MARK: - Project
 struct KProject {
+    static let ID = "id"
     static let  COLOR = "color"
     static let PROJECT_NAME = "projectName"
     static let NUMBER_OF_TASKS =  "numberOfTasks"

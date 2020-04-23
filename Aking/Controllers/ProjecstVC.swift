@@ -16,8 +16,9 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var colorChooseCollectionView: UICollectionView!
     
     
-    var project = Project(color: .clear, projectName: "", numberOfTasks: "0")
+    var projects: [Project] = [] {didSet{collectionView.reloadData()}}
     var isLoadedForProjectSelection: Bool = false
+    var newProject: Project = Project(id: "", color: .white, projectName: "", numberOfTasks: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,11 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        GDataService.instance.getAllProject { (reslut) in
+            if let result = reslut {
+                self.projects = result
+            }
+        }
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -42,16 +48,19 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        project.projectName = titleTF.text!
+        newProject.projectName = titleTF.text!
         addNewProject()
         return titleTF.resignFirstResponder()
     }
     
     func addNewProject(){
-        if project.color == UIColor.clear, project.projectName == "" {
+        if newProject.color == UIColor.clear, newProject.projectName == "" {
             return
         } else {
-            DataService.instance.projects.append(project)
+//            DataService.instance.projects.append(project)
+            GDataService.instance.uploadProject(withProject: newProject) { (success) in
+                print("Project uploading done")
+            }
             collectionView.reloadData()
         }
     }
@@ -71,7 +80,7 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
         if collectionView == colorChooseCollectionView {
             return DataService.instance.colors.count
         }
-        return DataService.instance.projects.count+1
+        return self.projects.count+1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,30 +97,29 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
         }
         let projectCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCollectionViewCell
         let addCell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddProjectCell", for: indexPath)
-        if indexPath.row == DataService.instance.projects.count {
+        if indexPath.row == self.projects.count {
             return addCell
         }
-        projectCell.configure(project: DataService.instance.projects[indexPath.row])
+        projectCell.configure(project: projects[indexPath.row])
         return projectCell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
             if isLoadedForProjectSelection {
                 let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
-                vc.currentTask.projectName = DataService.instance.projects[indexPath.row].projectName
+                vc.currentTask.projectName = projects[indexPath.row].projectName
                 navigationController?.popViewController(animated: true)
                 return
                 
             }
-            if indexPath.row == DataService.instance.projects.count {
-                addProjectView.isHidden = false
-                project = Project(color: .clear, projectName: "", numberOfTasks: "0")
-                titleTF.text = ""
+            if indexPath.row == projects.count {
+                addNewProject()
             } else {
                 let vc = storyboard?.instantiateViewController(identifier: MyTaskVC.className) as! MyTaskVC
                 vc.viewMode = .ProjectDetails
-                vc.currentProjectName = DataService.instance.projects[indexPath.row].projectName
+                vc.currentProjectName = projects[indexPath.row].projectName
                 navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -125,7 +133,7 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 return
             }
             
-            project.color = cell.colorView.backgroundColor!
+            newProject.color = cell.colorView.backgroundColor!
             addNewProject()
             self.addProjectView.isHidden = true
         }

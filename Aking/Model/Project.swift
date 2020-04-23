@@ -10,6 +10,7 @@ import UIKit
 
 
 struct Project {
+    var id : String
     var color: UIColor
     var projectName: String
     var numberOfTasks: String
