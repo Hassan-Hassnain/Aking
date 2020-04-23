@@ -48,7 +48,7 @@ class SignUpVC: UIViewController {
         AuthService.instance.createUser(withEmail:emailTF.text!, andPassword: passwordTF.text!) { (user) in
             guard let user = user else {return}
             let dict = [KUserData.USER_NAME: self.nameTF.text!, KUserData.UESR_EMAIL:self.emailTF.text!]
-            GDataService.instance.updateDBUser(uid: user.uid, userData: dict) {(success) in
+            DataService.instance.updateDBUser(uid: user.uid, userData: dict) {(success) in
                 if success {
                     ProgressHUD.showSuccess(KFireMessages.USER_DATA_SAVED)
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {

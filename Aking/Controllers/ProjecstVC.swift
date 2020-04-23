@@ -19,6 +19,9 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     var projects: [Project] = [] {didSet{collectionView.reloadData()}}
     var isLoadedForProjectSelection: Bool = false
     var newProject: Project = Project(id: "", color: .white, projectName: "", numberOfTasks: "")
+    var task: Task?
+    
+    var colors: [UIColor] = [] {didSet{colorChooseCollectionView.reloadData(); print(colors)}}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +32,15 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         colorChooseCollectionView.dataSource = self
         addProjectView.isHidden = true
         titleTF.delegate = self
+        DataService.instance.getAllColors { (result) in
+            self.colors = result
+            print(self.colors)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GDataService.instance.getAllProject { (reslut) in
+        DataService.instance.getAllProject { (reslut) in
             if let result = reslut {
                 self.projects = result
             }
@@ -72,7 +79,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         newProject.color = cell.colorView.backgroundColor!
         newProject.projectName = titleTF.text!
         
-        GDataService.instance.uploadProject(withProject: newProject) { (success) in
+        DataService.instance.uploadProject(withProject: newProject) { (success) in
             print("Project uploading done")
             collectionView.reloadData()
         }
@@ -93,11 +100,16 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         titleTF.text = ""
     }
     
-    fileprivate func selectProjectForTask(_ indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
-        vc.currentTask.projectName = projects[indexPath.row].projectName
-        navigationController?.popViewController(animated: true)
-        return
+    fileprivate func selectProjectForTask(name: String) {
+        if var task = self.task {
+            task.projectName = name
+            DataService.instance.updateTask(withTask: task) { (success) in
+                if success {
+                    self.navigationController?.popViewController(animated: true)
+                    return
+                }
+            }
+        }
     }
 }
 
@@ -105,7 +117,7 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == colorChooseCollectionView {
-            return DataService.instance.colors.count
+            return colors.count
         }
         return self.projects.count+1
     }
@@ -113,13 +125,13 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == colorChooseCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVC_Color_Chooser", for: indexPath) as! AddNoteCollectionViewCell
-            cell.colorView.backgroundColor = DataService.instance.colors[indexPath.row]
-            cell.colorView.layer.cornerRadius = 5
-            for subview in cell.contentView.subviews {
-                if (subview.tag == 100) {
-                    subview.removeFromSuperview()
-                }
-            }
+            cell.configure(color: colors[indexPath.row])
+//            cell.colorView.layer.cornerRadius = 5
+//            for subview in cell.contentView.subviews {
+//                if (subview.tag == 100) {
+//                    subview.removeFromSuperview()
+//                }
+//            }
             return cell
         }
         let projectCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCollectionViewCell
@@ -137,7 +149,7 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
             if isLoadedForProjectSelection {
-                return selectProjectForTask(indexPath)
+                return selectProjectForTask(name: projects[indexPath.row].projectName)
             }
             if indexPath.row == projects.count {
                 showAddProjectView()

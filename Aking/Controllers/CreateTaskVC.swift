@@ -97,13 +97,13 @@ class CreateTaskVC: UIViewController {
             if let task = prepareTask() {
 //                DataService.instance.tasks.append(task)
                 
-                GDataService.instance.uploadTask(withTask: task) { (success) in
+                DataService.instance.uploadTask(withTask: task) { (success) in
                     success ? print("Task uploading success") : print("Task uploading failed")
                 }
             } else { print("Failed to create new task")}
         } else {
             if let editedTask = prepareTask() {
-                GDataService.instance.updateTask(withTask: editedTask) { (success) in
+                DataService.instance.updateTask(withTask: editedTask) { (success) in
                     success ? print("Task uploading success") : print("Task uploading failed")
                 }
             }        }

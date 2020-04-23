@@ -17,7 +17,7 @@ class QuickVC: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        GDataService.instance.getAllCheckList { (result) in
+        DataService.instance.getAllCheckList { (result) in
             if let result = result {self.checkLists = result}
         }
     }

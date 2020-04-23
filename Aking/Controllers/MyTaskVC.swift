@@ -55,7 +55,7 @@ class MyTaskVC: UIViewController {
             colorView.backgroundColor = #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1)
             updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: currentProjectName)
         }
-        GDataService.instance.getAllTask { (result) in
+        DataService.instance.getAllTask { (result) in
             if let result = result {self.allTasks = result}
         }
     }
@@ -212,12 +212,10 @@ class MyTaskVC: UIViewController {
 //        print(projectTasks.count)
     }
     
-    fileprivate func viewThisTaskDetails(atIndex index: Int) {
+    fileprivate func viewThisTaskDetails(task: Task) {
         
         let vc = storyboard?.instantiateViewController(identifier: ViewTaskVC.className) as! ViewTaskVC
-        var task: Task? = allTasks[index]
-        vc.currentTask = task!
-        task = nil
+        vc.currentTask = task
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -248,7 +246,12 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewThisTaskDetails(atIndex: indexPath.row)
+        print("Section: \(indexPath.section) Row \(indexPath.row)")
+        if indexPath.section == 0 {
+            viewThisTaskDetails(task: todayTasks[indexPath.row])
+        } else {
+            viewThisTaskDetails(task: tomorrowTasks[indexPath.row])
+        }
     }
     //MARK: - Swipe Cell Action
     
@@ -257,7 +260,7 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
     {
         let deleteAction = UIContextualAction(style: .normal, title:  "Close", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
 //            DataService.instance.tasks.remove(at:indexPath.row)
-            GDataService.instance.removeTask(taskId: self.allTasks[indexPath.row].id)
+            DataService.instance.removeTask(taskId: self.allTasks[indexPath.row].id)
             tableView.reloadData()
             success(true)
         })

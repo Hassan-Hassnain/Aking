@@ -5,17 +5,17 @@
 same class name and identifier
 scroll view should be replaced with tableview in ViewTaskVC
 
-password reset with code
+
 
 
 # Bugs
-tableView in MyTaskVC is not reloading data
+color not download from firebase
+password reset with code
+QuickVC checklist items handler
+
+new task color selection 
+member selection
+create user
+Welcom screens
 
 
-
-CreateTaskVC 
-    viewThisTaskDetails
-    addTaskButtonTapped
-    swipe Edit button
-ViewTaskVC
-    c ompleteTaskButtonTapped

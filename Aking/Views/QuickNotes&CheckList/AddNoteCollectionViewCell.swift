@@ -11,4 +11,15 @@ import UIKit
 class AddNoteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var colorView: UIView!
     
+    
+    func configure(color: UIColor){
+        self.contentView.backgroundColor = color
+        self.colorView.layer.cornerRadius = 5
+        for subview in self.contentView.subviews {
+            if (subview.tag == 100) {
+                subview.removeFromSuperview()
+            }
+        }
+    }
+    
 }

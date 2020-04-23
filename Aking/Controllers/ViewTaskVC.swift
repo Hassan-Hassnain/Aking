@@ -23,7 +23,7 @@ class ViewTaskVC: UIViewController {
     @IBOutlet weak var tagButton: CustomizableButton!
     
     var settingView: UIView?
-    var currentTask = Task(id: "nil", title: "", assigneeName: "", projectName: "", dueDate: "", description: "", members: [], tag: "", color: .clear, status: .pending)
+    var currentTask = Task(id: "", title: "", assigneeName: "", projectName: "", dueDate: "", description: "", members: [], tag: "", color: .clear, status: .pending)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,7 @@ class ViewTaskVC: UIViewController {
         dueDateLabel.text = currentTask.dueDate
         tagButton.setTitle(currentTask.tag, for: .normal)
         descriptionLabel.text = currentTask.description
+        tagButton.setTitle(" \(currentTask.projectName) ", for: .normal)
     }
     
     func initTask(task: Task) {
@@ -67,7 +68,7 @@ class ViewTaskVC: UIViewController {
     @IBAction func completeTaskButtonTapped(_ sender: Any) {
         commentButton.isHidden = false
         currentTask.status = currentTask.status == .done ? .pending: .done
-        GDataService.instance.updateTask(withTask: currentTask) { (success) in
+        DataService.instance.updateTask(withTask: currentTask) { (success) in
             if success {
                 self.navigationController?.popViewController(animated: true)                
             }
@@ -149,10 +150,9 @@ extension ViewTaskVC: TaskFilterViewDelegate{
     func incompleteTasksButtonDidTapped() {
         let vc = storyboard?.instantiateViewController(identifier: ProjecstVC.className) as! ProjecstVC
         vc.isLoadedForProjectSelection = true
-        navigationController?.pushViewController(vc, animated: true)
-        
+        vc.task = currentTask
         settingView!.isHidden = true
-        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func completedTaskButtonDidTapped() {
@@ -161,7 +161,7 @@ extension ViewTaskVC: TaskFilterViewDelegate{
     }
     
     func allTasksButtonDidTapped() {
-        print("All Task")
+        DataService.instance.removeTask(taskId: currentTask.id)
         settingView!.isHidden = true
     }
     

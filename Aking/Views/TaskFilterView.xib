@@ -36,7 +36,7 @@
                         <action selector="incompleteTaskButtonTapped:" destination="-1" eventType="touchUpInside" id="DBz-r8-3FQ"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Filter-Selection" translatesAutoresizingMaskIntoConstraints="NO" id="lbh-nk-vwK">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lbh-nk-vwK">
                     <rect key="frame" x="194" y="15" width="18" height="18"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="18" id="Lgq-fU-fd6"/>
@@ -74,7 +74,7 @@
                         <action selector="allTasksButtonTapped:" destination="-1" eventType="touchUpInside" id="CDd-hl-we8"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y0Y-I9-eaJ">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Filter-Selection" translatesAutoresizingMaskIntoConstraints="NO" id="Y0Y-I9-eaJ">
                     <rect key="frame" x="193" y="91" width="18" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="Abx-dX-nuJ"/>

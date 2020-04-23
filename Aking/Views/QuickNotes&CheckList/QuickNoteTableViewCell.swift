@@ -27,13 +27,13 @@ class QuickNoteTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(checkList: CheckListItem) {
+    func configure(checkList: CheckListItem){
         self.descriptionLabel.text = checkList.note.description
         self.colorView.backgroundColor = checkList.note.color
         addCheckListItemsIfAvailable(items: checkList.items)
     }
 
-    fileprivate func addCheckListItemsIfAvailable(items: [Item]) {
+    fileprivate func addCheckListItemsIfAvailable(items: [Item]){
         
         for subview in self.itemsStackView.subviews {
             if (subview.tag == 100) {

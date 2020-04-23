@@ -9,9 +9,7 @@
 import UIKit
 
 
-protocol ItemViewDelegate {
-    func itemStatusDidChandge(status: Bool)
-}
+
 class ItemView: UIView {
 
     let XIB_NAME = ItemView.className
@@ -20,7 +18,6 @@ class ItemView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkBoxView: CustomizableView!
     
-    var delegate: ItemViewDelegate!
     var isChecked: Bool = false {
         didSet {
             updateCheckBox()
@@ -53,12 +50,24 @@ class ItemView: UIView {
     }
     
     func updateCheckBox (){
-        print("in  ItemView")
-//        delegate.itemStatusDidChandge(status: self.isChecked)
-        if isChecked {
-            checkBoxView.backgroundColor = #colorLiteral(red: 0.6323310137, green: 0.6328232288, blue: 0.632407248, alpha: 1)
-        } else {
-            checkBoxView.backgroundColor = #colorLiteral(red: 0.9658892751, green: 0.9697455764, blue: 0.9658194184, alpha: 1)
+        if let text = titleLabel.text {
+            if isChecked {
+                checkBoxView.backgroundColor = #colorLiteral(red: 0.6323310137, green: 0.6328232288, blue: 0.632407248, alpha: 1)
+                titleLabel.text = String(describing: myAttributedString(text: text, applyAtrribute: true))
+            } else {
+                checkBoxView.backgroundColor = #colorLiteral(red: 0.9658892751, green: 0.9697455764, blue: 0.9658194184, alpha: 1)
+                titleLabel.text = String(describing: myAttributedString(text: text, applyAtrribute: false))
+            }
         }
     }
+    
+    func myAttributedString(text: String,applyAtrribute: Bool)->NSAttributedString {
+           let attributeString =  NSMutableAttributedString(string: text)
+           attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue,range: NSMakeRange(0, attributeString.length)
+           )
+           let removedAttributString = NSMutableAttributedString(string: text)
+               removedAttributString.removeAttribute(NSAttributedString.Key.strikethroughStyle, range: NSMakeRange(0, attributeString.length))
+           
+           return applyAtrribute ? attributeString : removedAttributString
+       }
 }

@@ -74,7 +74,7 @@ class AddCheckListVC: UIViewController {
                 checkListItem.items.append(Item(title: title, status: false))
             }
         }
-        GDataService.instance.uploadCheckList(withCheckList: checkListItem) { (succes) in
+        DataService.instance.uploadCheckList(withCheckList: checkListItem) { (succes) in
             print("CheckList upload successfully")
         }
         tabBarController?.tabBar.isHidden = false
