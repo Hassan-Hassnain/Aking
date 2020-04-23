@@ -32,7 +32,7 @@ extension QuickVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "QuickNoteTableViewCell") as! QuickNoteTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: QuickNoteTableViewCell.className) as! QuickNoteTableViewCell
         cell.configure(checkList: self.checkLists[indexPath.row])
         return cell
     }

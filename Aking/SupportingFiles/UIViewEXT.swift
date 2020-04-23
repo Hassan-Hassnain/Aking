@@ -11,12 +11,12 @@ import UIKit
 
 extension UIView {
     func addShadow(){
-       layer.shadowColor = UIColor.black.cgColor
-       layer.shadowOffset = CGSize(width: 0, height: 3)
-       layer.shadowOpacity = 0.1
-       layer.shadowRadius = 4.0
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 3)
+        layer.shadowOpacity = 0.1
+        layer.shadowRadius = 4.0
     }
-
+    
     
     
     func fixInView(_ container: UIView!) -> Void{

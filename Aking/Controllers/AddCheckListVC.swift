@@ -91,7 +91,7 @@ extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! AddCheckListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: AddCheckListTableViewCell.className) as! AddCheckListTableViewCell
         cell.checkBoxView.layer.cornerRadius = 2
         cell.itemTitleTF.becomeFirstResponder()
         return cell
@@ -107,7 +107,7 @@ extension AddCheckListVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVC_Color_Chooser", for: indexPath) as! AddNoteCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddNoteCollectionViewCell.className, for: indexPath) as! AddNoteCollectionViewCell
         cell.colorView.backgroundColor = DataService.instance.colors[indexPath.row]
         cell.colorView.layer.cornerRadius = 5
         

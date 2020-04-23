@@ -18,7 +18,6 @@ class TabbarViewController: UITabBarController {
         super.viewDidLoad()
         
         delegate = self
-        
     }
     
     fileprivate func showAddView() {

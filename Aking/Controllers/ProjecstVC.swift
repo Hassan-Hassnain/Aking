@@ -124,14 +124,8 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == colorChooseCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVC_Color_Chooser", for: indexPath) as! AddNoteCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddNoteCollectionViewCell.className, for: indexPath) as! AddNoteCollectionViewCell
             cell.configure(color: colors[indexPath.row])
-//            cell.colorView.layer.cornerRadius = 5
-//            for subview in cell.contentView.subviews {
-//                if (subview.tag == 100) {
-//                    subview.removeFromSuperview()
-//                }
-//            }
             return cell
         }
         let projectCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCollectionViewCell

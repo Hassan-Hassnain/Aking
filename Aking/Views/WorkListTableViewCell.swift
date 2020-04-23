@@ -24,12 +24,10 @@ class WorkListTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+        
     }
     
     func configure(task: Task) {
-//        self.title.text = task.title
-//        self.time.text = task.dueDate
         self.colorView.backgroundColor = task.color
         if task.status == .done {
             self.completionImageView.image = UIImage(named: "TaskSign-Done")
@@ -53,7 +51,7 @@ class WorkListTableViewCell: UITableViewCell {
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue,range: NSMakeRange(0, attributeString.length)
         )
         let removedAttributString = NSMutableAttributedString(string: text)
-            removedAttributString.removeAttribute(NSAttributedString.Key.strikethroughStyle, range: NSMakeRange(0, attributeString.length))
+        removedAttributString.removeAttribute(NSAttributedString.Key.strikethroughStyle, range: NSMakeRange(0, attributeString.length))
         
         return applyAtrribute ? attributeString : removedAttributString
     }

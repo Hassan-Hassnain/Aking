@@ -45,7 +45,6 @@ class MyTaskVC: UIViewController {
         calanderView.delegate = self
         calanderView.dataSource = self
         filterView.delegate = self
-//        DataService.instance.delegate = self
         
         if viewMode == .myTasks {
             colorView.backgroundColor = #colorLiteral(red: 0.9624031186, green: 0.3883901834, blue: 0.3891221285, alpha: 1)
@@ -139,7 +138,7 @@ class MyTaskVC: UIViewController {
         monthButtonBottomIndicator.isHidden = false
         calendarToggleButton.isHidden = false
     }
- 
+    
     //MARK: - DATE FUNCTIONS
     
     fileprivate func today() -> Date{
@@ -170,8 +169,6 @@ class MyTaskVC: UIViewController {
                     if thisTask.status == .done {tomorrowTasks.append(thisTask)}
                 }
             }
-//            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
-//            print("Arrays populated with incomplete task")
         case .incomplete:
             for thisTask in tasks{
                 let date = thisTask.dueDate.getFormattedDate()
@@ -181,8 +178,6 @@ class MyTaskVC: UIViewController {
                     if thisTask.status == .pending {tomorrowTasks.append(thisTask)}
                 }
             }
-//            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
-//            print("Arrays populated with complete task")
         case .all:
             for thisTask in tasks{
                 let date = thisTask.dueDate.getFormattedDate()
@@ -192,8 +187,6 @@ class MyTaskVC: UIViewController {
                     tomorrowTasks.append(thisTask)
                 }
             }
-//            print("Today:  \(todayTasks.count)"); print("Tomorrow:  \(todayTasks.count)")
-//            print("Arrays populated with all task")
         }
     }
     
@@ -209,7 +202,6 @@ class MyTaskVC: UIViewController {
                 projectTasks.append(thisTask)
             }
         }
-//        print(projectTasks.count)
     }
     
     fileprivate func viewThisTaskDetails(task: Task) {
@@ -259,7 +251,6 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let deleteAction = UIContextualAction(style: .normal, title:  "Close", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-//            DataService.instance.tasks.remove(at:indexPath.row)
             DataService.instance.removeTask(taskId: self.allTasks[indexPath.row].id)
             tableView.reloadData()
             success(true)
@@ -305,7 +296,6 @@ extension MyTaskVC {
         let vc = storyboard?.instantiateViewController(identifier: AddCheckListVC.className) as! AddCheckListVC
         vc.viewMode = .addNote
         navigationController?.pushViewController(vc, animated: true)
-//        pushVC(viewController: AddNoteVC.className, animated: true)
         
     }
     
@@ -354,12 +344,3 @@ extension MyTaskVC: TaskFilterViewDelegate{
     
     
 }
-//MARK: - DataServiceDelegate
-//extension MyTaskVC: DataServiceDelegate {
-//    func tasksUpdatedOnServer() {
-//        viewMode == .myTasks ? updateTodayAndTomorrowTasks () : updateTodayAndTomorrowTasksWithProjectTasks()
-//        myTasks = [todayTasks, tomorrowTasks]
-//        tableView.reloadData()
-//
-//    }
-//}

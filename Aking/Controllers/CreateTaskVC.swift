@@ -95,8 +95,6 @@ class CreateTaskVC: UIViewController {
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         if taskNature == .createTask {
             if let task = prepareTask() {
-//                DataService.instance.tasks.append(task)
-                
                 DataService.instance.uploadTask(withTask: task) { (success) in
                     success ? print("Task uploading success") : print("Task uploading failed")
                 }
@@ -223,7 +221,6 @@ extension CreateTaskVC: UICollectionViewDataSource {
         
         if taskNature == .editingTask && !((task?.members.isEmpty)!)  { //
             if indexPath.row != task?.members.count {
-                //                cell.avator.image = task?.members[indexPath.row]
                 cell.anyoneLabel.isHidden = true
                 return cell
             } else {

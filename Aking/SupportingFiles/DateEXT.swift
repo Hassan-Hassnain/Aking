@@ -10,19 +10,12 @@ import Foundation
 
 
 extension Date {
-//    static func getFormattedDate(date: Date) -> String {
-//        let dateformat = DateFormatter()
-//        dateformat.dateFormat = "MMM d/yyyy"
-//        return dateformat.string(from: date)
-//    }
     
     func getFormattedDate() -> String {
         let dateformat = DateFormatter()
         dateformat.dateFormat = "MMM d/yyyy"
         return dateformat.string(from: self)
     }
-    
-   
     
 }
 
