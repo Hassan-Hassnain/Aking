@@ -104,6 +104,10 @@
 		3C9C2EA2243C9008003F51E7 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */; };
 		3C9D8057244FC76A0009B91C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D8056244FC76A0009B91C /* Item.swift */; };
 		3CA31673244B539D00332B74 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA31672244B539D00332B74 /* Task.swift */; };
+		3CB4C7482453706A00F8D884 /* SuccessfulVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB4C7472453706A00F8D884 /* SuccessfulVC.swift */; };
+		3CB4C74A245370B700F8D884 /* WalkThroughOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB4C749245370B700F8D884 /* WalkThroughOneVC.swift */; };
+		3CB4C74C245370CA00F8D884 /* WalkThroughTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB4C74B245370CA00F8D884 /* WalkThroughTwoVC.swift */; };
+		3CB4C74E245370DC00F8D884 /* WalkThroughThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB4C74D245370DC00F8D884 /* WalkThroughThreeVC.swift */; };
 		3CC50E00244E2CB200A288E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CC50DFF244E2CB200A288E8 /* GoogleService-Info.plist */; };
 		3CC50E06244E307500A288E8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC50E05244E307500A288E8 /* AuthService.swift */; };
 		3CF0A42324494F5F00AEFD5E /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0A42224494F5F00AEFD5E /* ProfileCollectionViewCell.swift */; };
@@ -212,6 +216,10 @@
 		3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		3C9D8056244FC76A0009B91C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		3CA31672244B539D00332B74 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		3CB4C7472453706A00F8D884 /* SuccessfulVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessfulVC.swift; sourceTree = "<group>"; };
+		3CB4C749245370B700F8D884 /* WalkThroughOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughOneVC.swift; sourceTree = "<group>"; };
+		3CB4C74B245370CA00F8D884 /* WalkThroughTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughTwoVC.swift; sourceTree = "<group>"; };
+		3CB4C74D245370DC00F8D884 /* WalkThroughThreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughThreeVC.swift; sourceTree = "<group>"; };
 		3CC50DFF244E2CB200A288E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Services/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3CC50E05244E307500A288E8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3CF0A42224494F5F00AEFD5E /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -247,10 +255,14 @@
 		3C007F3A244E3A7C002B50BD /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				3CB4C749245370B700F8D884 /* WalkThroughOneVC.swift */,
+				3CB4C74B245370CA00F8D884 /* WalkThroughTwoVC.swift */,
+				3CB4C74D245370DC00F8D884 /* WalkThroughThreeVC.swift */,
 				3C007F3B244E3A9A002B50BD /* LoginVC.swift */,
 				3C007F3D244E3AAE002B50BD /* SignUpVC.swift */,
 				3C007F3F244E3AD2002B50BD /* ForgotPasswordVC.swift */,
 				3C007F41244E3AE2002B50BD /* ResetPasswordVC.swift */,
+				3CB4C7472453706A00F8D884 /* SuccessfulVC.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -654,6 +666,7 @@
 				3C6DA3162448D2EE00EBCB4B /* QuickNoteTableViewCell.swift in Sources */,
 				3C9D8057244FC76A0009B91C /* Item.swift in Sources */,
 				3C93D2F024465A9C0026900B /* ProjectTVCell.swift in Sources */,
+				3CB4C74C245370CA00F8D884 /* WalkThroughTwoVC.swift in Sources */,
 				3C007F42244E3AE2002B50BD /* ResetPasswordVC.swift in Sources */,
 				3C6DA3112448CBC400EBCB4B /* ProjectCollectionViewCell.swift in Sources */,
 				3C93D31324466BB90026900B /* CustomizableImageView.swift in Sources */,
@@ -668,6 +681,7 @@
 				3C93D32724466D6D0026900B /* MemberCVC.swift in Sources */,
 				3C6DA3222448E7FE00EBCB4B /* AddCheckListVC.swift in Sources */,
 				3C613809244626600067B717 /* CreateTaskVC.swift in Sources */,
+				3CB4C7482453706A00F8D884 /* SuccessfulVC.swift in Sources */,
 				3C6DA30E2448C64400EBCB4B /* ProjecstVC.swift in Sources */,
 				3C93D32224466BB90026900B /* CustomizableHighlight.swift in Sources */,
 				3C93D2ED244659540026900B /* UITableViewEXT.swift in Sources */,
@@ -708,9 +722,11 @@
 				3C08ECE8243A0960003BDB36 /* SceneDelegate.swift in Sources */,
 				3C93D2F9244666090026900B /* DateEXT.swift in Sources */,
 				3CF0A42824495DED00AEFD5E /* WorkListTableViewCell.swift in Sources */,
+				3CB4C74E245370DC00F8D884 /* WalkThroughThreeVC.swift in Sources */,
 				3C6DA31C2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift in Sources */,
 				3C93D31C24466BB90026900B /* CustomizableShadow.swift in Sources */,
 				3C623259243B27DD0087BD49 /* QuickVC.swift in Sources */,
+				3CB4C74A245370B700F8D884 /* WalkThroughOneVC.swift in Sources */,
 				3C93D31624466BB90026900B /* CustomizableButton.swift in Sources */,
 				3C596127244BBB17004EEAD2 /* UINavigationControllerEXT.swift in Sources */,
 				3CA31673244B539D00332B74 /* Task.swift in Sources */,
