@@ -44,4 +44,6 @@ class AddView: UIView {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: KNotifcations.CHECK_LIST), object: nil)
         self.removeFromSuperview()
     }
+    
+   
 }

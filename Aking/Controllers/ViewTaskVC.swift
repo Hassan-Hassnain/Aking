@@ -98,12 +98,13 @@ class ViewTaskVC: UIViewController {
     func createSettingView(){
         settingView = UIView(frame: self.view.frame)
         settingView?.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2904169284)
-        let trailingConstant: CGFloat = 31
-        let width: CGFloat = 228.0
-        let height: CGFloat = 130.0
-        let x: CGFloat = self.view.frame.size.width - (width + trailingConstant)
-        let y: CGFloat = 114.0
-        let optionsView = TaskFilterView(frame: CGRect(x: x, y: y, width: width, height: height))
+//        let trailingConstant: CGFloat = 31
+//        let width: CGFloat = 228.0
+//        let height: CGFloat = 130.0
+//        let x: CGFloat = self.view.frame.size.width - (width + trailingConstant)
+//        let y: CGFloat = 114.0
+//        let optionsView = TaskFilterView(frame: CGRect(x: x, y: y, width: width, height: height))
+        let optionsView = UIView.setupFilterView(hostView: self.view)
         optionsView.allTaskImageView.isHidden = true
         optionsView.completedTaskImageView.isHidden = true
         optionsView.incompleteTaskImageView.isHidden = true
@@ -167,3 +168,6 @@ extension ViewTaskVC: TaskFilterViewDelegate{
     
     
 }
+
+
+

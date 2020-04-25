@@ -74,4 +74,6 @@ class TaskFilterView: UIView {
             self.allTaskImageView.image = #imageLiteral(resourceName: "Filter-Selection")
         }
     }
+    
+    
 }
