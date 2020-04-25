@@ -90,6 +90,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         let vc = storyboard?.instantiateViewController(withIdentifier: MyTaskVC.className) as! MyTaskVC
         vc.viewMode = .ProjectDetails
         vc.currentProjectName = projects[indexPath.row].projectName
+        updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
     

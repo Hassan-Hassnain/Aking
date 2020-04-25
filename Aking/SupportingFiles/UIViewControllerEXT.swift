@@ -10,10 +10,10 @@ import UIKit
 
 extension UIViewController {
 
-    func updateNavBarAppearance(color: UIColor?, title: String?){
+    func updateNavBarAppearance(color: UIColor, title: String?){
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
-            if let color = color {appearance.backgroundColor = color}
+            appearance.backgroundColor = color
             appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 
@@ -24,7 +24,7 @@ extension UIViewController {
             if let title = title { navigationItem.title = title}
         } else {
             UINavigationBar.appearance().tintColor = .white
-            if let color = color {UINavigationBar.appearance().barTintColor = color}
+           UINavigationBar.appearance().barTintColor = color
             UINavigationBar.appearance().isTranslucent = false
             if let title = title { navigationItem.title = title}
         }

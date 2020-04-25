@@ -17,7 +17,6 @@
 		3C007F46244E3D17002B50BD /* UIImageViewEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C007F45244E3D17002B50BD /* UIImageViewEXT.swift */; };
 		3C08ECE6243A0960003BDB36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C08ECE5243A0960003BDB36 /* AppDelegate.swift */; };
 		3C08ECE8243A0960003BDB36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C08ECE7243A0960003BDB36 /* SceneDelegate.swift */; };
-		3C08ECEC243A0960003BDB36 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C08ECEB243A0960003BDB36 /* MenuVC.swift */; };
 		3C08ECEF243A0960003BDB36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C08ECED243A0960003BDB36 /* Main.storyboard */; };
 		3C08ECF1243A0963003BDB36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C08ECF0243A0963003BDB36 /* Assets.xcassets */; };
 		3C08ECF4243A0963003BDB36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C08ECF2243A0963003BDB36 /* LaunchScreen.storyboard */; };
@@ -104,6 +103,7 @@
 		3C9C2EA2243C9008003F51E7 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */; };
 		3C9D8057244FC76A0009B91C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D8056244FC76A0009B91C /* Item.swift */; };
 		3CA31673244B539D00332B74 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA31672244B539D00332B74 /* Task.swift */; };
+		3CA41C282454E7D1005EDACD /* SizeClassesStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CA41C272454E7D1005EDACD /* SizeClassesStoryBoard.storyboard */; };
 		3CB4C7482453706A00F8D884 /* SuccessfulVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB4C7472453706A00F8D884 /* SuccessfulVC.swift */; };
 		3CB4C74A245370B700F8D884 /* WalkThroughOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB4C749245370B700F8D884 /* WalkThroughOneVC.swift */; };
 		3CB4C74C245370CA00F8D884 /* WalkThroughTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB4C74B245370CA00F8D884 /* WalkThroughTwoVC.swift */; };
@@ -111,7 +111,6 @@
 		3CC50E00244E2CB200A288E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CC50DFF244E2CB200A288E8 /* GoogleService-Info.plist */; };
 		3CC50E06244E307500A288E8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC50E05244E307500A288E8 /* AuthService.swift */; };
 		3CF0A42324494F5F00AEFD5E /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0A42224494F5F00AEFD5E /* ProfileCollectionViewCell.swift */; };
-		3CF0A425244954A100AEFD5E /* ProjectDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0A424244954A100AEFD5E /* ProjectDetailsVC.swift */; };
 		3CF0A42824495DED00AEFD5E /* WorkListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0A42624495DED00AEFD5E /* WorkListTableViewCell.swift */; };
 		3CF0A42924495DED00AEFD5E /* WorkListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF0A42724495DED00AEFD5E /* WorkListTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -127,7 +126,6 @@
 		3C08ECE2243A0960003BDB36 /* Aking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C08ECE5243A0960003BDB36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C08ECE7243A0960003BDB36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3C08ECEB243A0960003BDB36 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		3C08ECEE243A0960003BDB36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3C08ECF0243A0963003BDB36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C08ECF3243A0963003BDB36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -216,6 +214,7 @@
 		3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		3C9D8056244FC76A0009B91C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		3CA31672244B539D00332B74 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		3CA41C272454E7D1005EDACD /* SizeClassesStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SizeClassesStoryBoard.storyboard; sourceTree = "<group>"; };
 		3CB4C7472453706A00F8D884 /* SuccessfulVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessfulVC.swift; sourceTree = "<group>"; };
 		3CB4C749245370B700F8D884 /* WalkThroughOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughOneVC.swift; sourceTree = "<group>"; };
 		3CB4C74B245370CA00F8D884 /* WalkThroughTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughTwoVC.swift; sourceTree = "<group>"; };
@@ -223,7 +222,6 @@
 		3CC50DFF244E2CB200A288E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Services/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3CC50E05244E307500A288E8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3CF0A42224494F5F00AEFD5E /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
-		3CF0A424244954A100AEFD5E /* ProjectDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsVC.swift; sourceTree = "<group>"; };
 		3CF0A42624495DED00AEFD5E /* WorkListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkListTableViewCell.swift; sourceTree = "<group>"; };
 		3CF0A42724495DED00AEFD5E /* WorkListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkListTableViewCell.xib; sourceTree = "<group>"; };
 		C1483C85FE93081F2F37D46C /* Pods-Aking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aking.debug.xcconfig"; path = "Target Support Files/Pods-Aking/Pods-Aking.debug.xcconfig"; sourceTree = "<group>"; };
@@ -342,7 +340,6 @@
 				3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */,
 				3C61380A244630820067B717 /* NavigationVC.swift */,
 				3C62325C243B28110087BD49 /* MyTaskVC.swift */,
-				3C08ECEB243A0960003BDB36 /* MenuVC.swift */,
 				3C6393D0243CD47A0089F04B /* AddVC.swift */,
 				3C623258243B27DD0087BD49 /* QuickVC.swift */,
 				3C62325A243B27EF0087BD49 /* ProfileVC.swift */,
@@ -351,7 +348,6 @@
 				3C6DA30D2448C64400EBCB4B /* ProjecstVC.swift */,
 				3C6DA3172448DF4700EBCB4B /* AddNoteVC.swift */,
 				3C6DA3212448E7FE00EBCB4B /* AddCheckListVC.swift */,
-				3CF0A424244954A100AEFD5E /* ProjectDetailsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -365,6 +361,7 @@
 				3C93D2FE24466BB90026900B /* Dezignables */,
 				3C93D2E024464B1A0026900B /* CreateTaskVC_Views */,
 				3C08ECED243A0960003BDB36 /* Main.storyboard */,
+				3CA41C272454E7D1005EDACD /* SizeClassesStoryBoard.storyboard */,
 				3C08ECF2243A0963003BDB36 /* LaunchScreen.storyboard */,
 				3C6393C6243CC52B0089F04B /* AddView.xib */,
 				3C6393C8243CC73C0089F04B /* AddView.swift */,
@@ -593,6 +590,7 @@
 				3C6393C7243CC52B0089F04B /* AddView.xib in Resources */,
 				3C08ECF1243A0963003BDB36 /* Assets.xcassets in Resources */,
 				3C08ED2F243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.eot in Resources */,
+				3CA41C282454E7D1005EDACD /* SizeClassesStoryBoard.storyboard in Resources */,
 				3C08ED3B243A0F64003BDB36 /* avenirnextltpro-bold-webfont.eot in Resources */,
 				3C93D32824466D6D0026900B /* MemberCVC.xib in Resources */,
 				3C08ED37243A0F64003BDB36 /* glyphicons-halflings-regular.ttf in Resources */,
@@ -662,7 +660,6 @@
 				3C6DA31A2448E19900EBCB4B /* UIColorExt.swift in Sources */,
 				3C6393C9243CC73C0089F04B /* AddView.swift in Sources */,
 				3C6DA3262448EED600EBCB4B /* CheckListItem.swift in Sources */,
-				3C08ECEC243A0960003BDB36 /* MenuVC.swift in Sources */,
 				3C6DA3162448D2EE00EBCB4B /* QuickNoteTableViewCell.swift in Sources */,
 				3C9D8057244FC76A0009B91C /* Item.swift in Sources */,
 				3C93D2F024465A9C0026900B /* ProjectTVCell.swift in Sources */,
@@ -716,7 +713,6 @@
 				3C93D31B24466BB90026900B /* CustomizableSeparator.swift in Sources */,
 				3C6DA3182448DF4700EBCB4B /* AddNoteVC.swift in Sources */,
 				3C93D32024466BB90026900B /* CustomizableCorner.swift in Sources */,
-				3CF0A425244954A100AEFD5E /* ProjectDetailsVC.swift in Sources */,
 				3C93D2EB244659370026900B /* NSObjectEXT.swift in Sources */,
 				3C6903B0243BBB21003E5373 /* UINavigationBarEXT.swift in Sources */,
 				3C08ECE8243A0960003BDB36 /* SceneDelegate.swift in Sources */,
@@ -806,7 +802,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -860,7 +856,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

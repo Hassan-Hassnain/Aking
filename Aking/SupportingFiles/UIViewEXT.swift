@@ -29,11 +29,11 @@ extension UIView {
     }
     
     
-    static func setupFilterView (hostView: UIView)->TaskFilterView{
+    static func setupFilterView (caller: UIView)->TaskFilterView{
         let trailingConstant: CGFloat = 31
         let width: CGFloat = 228.0
         let height: CGFloat = 130.0
-        let x: CGFloat = hostView.frame.size.width - (width + trailingConstant)
+        let x: CGFloat = caller.frame.maxX - width - trailingConstant
         let y: CGFloat = 114.0
         let newView = TaskFilterView(frame: CGRect(x: x, y: y, width: width, height: height))
         return newView

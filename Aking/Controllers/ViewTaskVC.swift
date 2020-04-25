@@ -104,7 +104,7 @@ class ViewTaskVC: UIViewController {
 //        let x: CGFloat = self.view.frame.size.width - (width + trailingConstant)
 //        let y: CGFloat = 114.0
 //        let optionsView = TaskFilterView(frame: CGRect(x: x, y: y, width: width, height: height))
-        let optionsView = UIView.setupFilterView(hostView: self.view)
+        let optionsView = UIView.setupFilterView(caller: self.view)
         optionsView.allTaskImageView.isHidden = true
         optionsView.completedTaskImageView.isHidden = true
         optionsView.incompleteTaskImageView.isHidden = true
