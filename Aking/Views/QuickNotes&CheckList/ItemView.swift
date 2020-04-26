@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class ItemView: UIView {
 
     let XIB_NAME = ItemView.className
@@ -17,10 +16,11 @@ class ItemView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkBoxView: CustomizableView!
-    
+        
     var isChecked: Bool = false {
         didSet {
             updateCheckBox()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ItemStatusChanged"), object: nil)
         }
     }
     

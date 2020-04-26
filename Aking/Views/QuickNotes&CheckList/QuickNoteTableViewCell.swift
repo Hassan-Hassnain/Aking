@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class QuickNoteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var colorView: UIView!
@@ -27,20 +28,21 @@ class QuickNoteTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(checkList: CheckListItem){
+    func configure(checkList: CheckListItem, onCompletion: @escaping (_ itemsHandler: [ItemView]) -> ()){
         self.descriptionLabel.text = checkList.note.description
         self.colorView.backgroundColor = checkList.note.color
-        addCheckListItemsIfAvailable(items: checkList.items)
+        let items = addCheckListItemsIfAvailable(items: checkList.items)
+        onCompletion(items)
     }
     
-    fileprivate func addCheckListItemsIfAvailable(items: [Item]){
+    fileprivate func addCheckListItemsIfAvailable(items: [Item]) -> [ItemView]{
         
         for subview in self.itemsStackView.subviews {
             if (subview.tag == 100) {
                 subview.removeFromSuperview()
             }
         }
-        
+        var itemsHandler: [ItemView] = []
         if items.count > 0 {
             if !items.isEmpty {
                 items.forEach { (item) in
@@ -49,9 +51,11 @@ class QuickNoteTableViewCell: UITableViewCell {
                     itemView.titleLabel.text = item.title
                     itemView.isChecked = item.status
                     self.itemsStackView.addArrangedSubview(itemView)
+                    itemsHandler.append(itemView)
                 }
             }
             
         }
+        return itemsHandler
     }
 }
