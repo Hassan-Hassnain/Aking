@@ -90,7 +90,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     }
     
     func showProjectDetails(indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "MyTaskVC") as! MyTaskVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: MyTaskVC.className) as! MyTaskVC
         vc.viewMode = .ProjectDetails
         vc.currentProjectName = projects[indexPath.row].projectName
         navigationController?.pushViewController(vc, animated: true)
@@ -128,7 +128,7 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == colorChooseCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddNoteCollectionViewCell.className, for: indexPath) as! AddNoteCollectionViewCell
-//            cell.configure(color: colors[indexPath.row])
+            //            cell.configure(color: colors[indexPath.row])
             cell.colorView.backgroundColor = colors[indexPath.row]
             return cell
         }

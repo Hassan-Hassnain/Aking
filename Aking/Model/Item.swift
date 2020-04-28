@@ -7,9 +7,8 @@
 //
 
 import Foundation
+
 struct Item {
     var title: String
     var status: Bool
-    var itemNumber: Int?
-    var itemListNumber: Int?
 }

@@ -25,39 +25,12 @@ class QuickVC: UIViewController {
         }
         NotificationCenter.default.addObserver(self, selector: #selector(itemStatusChanged), name: NSNotification.Name(rawValue: "ItemStatusChanged"), object: nil)
     }
-    var x = 0, y = 0
+   
     @objc func itemStatusChanged() {
         
-        x = 0
-        y = 0
-        
-        for itemsList in checkListItemViews {
-            y = 0
-            for item in itemsList {
-                if x < checkLists.count && y < checkLists[x].items.count{
-                    let chListItem = checkLists[x].items[y]
-                    if chListItem.status != item.isChecked {
-                        print("x: \(x), y \(y)")
-                        print("checkListItem: \(checkLists[x].items[y].title), \(checkLists[x].items[y].status) , item: \(String(describing: item.titleLabel.text)), \(item.isChecked)" )
-                        print(checkLists[x])
-//                        updateCheckListValue(checkList: checkLists[x], withStatus: item.isChecked)
-                        return
-                    }
-                    y += 1
-                }
-                
-            }
-            x += 1
-        }
         
     }
-    func updateCheckListValue(checkList: CheckListItem, withStatus status: Bool) {
-        var cl = checkLists[x]
-        cl.items[y].status = status
-        DataService.instance.updateCheckList(withCheckList: cl) { (success) in
-            print("CheckList updated")
-        }
-    }
+   
     
 }
 
@@ -74,6 +47,7 @@ extension QuickVC: UITableViewDataSource, UITableViewDelegate{
         }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
     

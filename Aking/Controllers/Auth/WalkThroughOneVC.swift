@@ -32,7 +32,6 @@ class WalkThroughOneVC: UIViewController {
     @IBAction func getStartedButtonTapped(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: WalkThroughTwoVC.className) else { return }
         vc.modalPresentationStyle = .fullScreen
-//        pushVC(viewController: WalkThroughTwoVC.className, animated: true)
         presentDetail(vc)
     }
     

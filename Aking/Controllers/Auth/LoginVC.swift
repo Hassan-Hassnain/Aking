@@ -54,7 +54,7 @@ class LoginVC: UIViewController {
     
     
     func test() {
-//        DataService.instance.getTotalAndCompletedTasks()
+        
     }
     
 }

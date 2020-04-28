@@ -9,22 +9,30 @@
 import UIKit
 
 extension UIViewController {
-
+    
     func updateNavBarAppearance(color: UIColor, title: String?, tintColor: UIColor? = .white){
         if #available(iOS 13.0, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = color
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-
-            UINavigationBar.appearance().tintColor = tintColor!
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().compactAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
-            if let title = title { navigationItem.title = title}
+            if  let navigationBar = navigationController?.navigationBar {
+                let appearance = UINavigationBarAppearance()
+                appearance.backgroundColor = color
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+                
+                UINavigationBar.appearance().tintColor = tintColor!
+                if let title = title { navigationItem.title = title}
+                
+                let barAppearence = UIBarButtonItemAppearance()
+                
+                barAppearence.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+                appearance.buttonAppearance = barAppearence
+                navigationBar.scrollEdgeAppearance = appearance
+                navigationBar.compactAppearance = appearance
+                navigationBar.standardAppearance = appearance
+            }
+            
         } else {
             UINavigationBar.appearance().tintColor = tintColor!
-           UINavigationBar.appearance().barTintColor = color
+            UINavigationBar.appearance().barTintColor = color
             UINavigationBar.appearance().isTranslucent = false
             if let title = title { navigationItem.title = title}
         }

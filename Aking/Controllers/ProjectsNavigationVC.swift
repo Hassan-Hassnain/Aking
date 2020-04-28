@@ -16,5 +16,6 @@ class ProjectsNavigationVC: UINavigationController {
         updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: nil)
     }
     
+ 
 
 }

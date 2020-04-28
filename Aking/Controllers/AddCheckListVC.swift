@@ -59,10 +59,12 @@ class AddCheckListVC: UIViewController {
         tabBarController?.tabBar.isHidden = false
         navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func addNewItemButtonTapped(_ sender: Any) {
         itemsCount += 1
         tableView.reloadData()
     }
+    
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         if let text = titleTextView.text { checkListItem.note.description = text}
         
@@ -83,8 +85,6 @@ class AddCheckListVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    
-    
 }
 
 extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
@@ -98,8 +98,6 @@ extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
         cell.itemTitleTF.becomeFirstResponder()
         return cell
     }
-    
-    
     
 }
 

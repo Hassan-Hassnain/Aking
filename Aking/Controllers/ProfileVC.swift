@@ -39,7 +39,7 @@ class ProfileVC: UIViewController {
         DataService.instance.getTotalAndCompletedTasks { (total, completed) in
             self.createdTasks = total
             self.completedTasks = completed
-           
+            
         }
     }
     
