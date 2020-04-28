@@ -40,7 +40,7 @@ class QuickVC: UIViewController {
                         print("x: \(x), y \(y)")
                         print("checkListItem: \(checkLists[x].items[y].title), \(checkLists[x].items[y].status) , item: \(String(describing: item.titleLabel.text)), \(item.isChecked)" )
                         print(checkLists[x])
-                        //                        updateCheckListValue(checkList: checkLists[x], withStatus: item.isChecked)
+//                        updateCheckListValue(checkList: checkLists[x], withStatus: item.isChecked)
                         return
                     }
                     y += 1
@@ -51,7 +51,6 @@ class QuickVC: UIViewController {
         }
         
     }
-    
     func updateCheckListValue(checkList: CheckListItem, withStatus status: Bool) {
         var cl = checkLists[x]
         cl.items[y].status = status
@@ -75,9 +74,7 @@ extension QuickVC: UITableViewDataSource, UITableViewDelegate{
         }
         return cell
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
     
     
