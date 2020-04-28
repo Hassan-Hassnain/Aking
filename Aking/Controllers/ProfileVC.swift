@@ -24,14 +24,25 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var quickNotesProgressView: CircularProgressView!
     @IBOutlet weak var quickNoteProgressLable: UILabel!
     
-    
+    var createdTasks = 0 {didSet {updateUI()}}
+    var completedTasks = 0 {didSet {updateUI()}}
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.dataSource  = self
         collectionView.delegate = self
+        DataService.instance.getUserData { (thisUser) in
+            self.nameLabel.text = thisUser.name
+            self.emailLabel.text = thisUser.email
+        }
+        DataService.instance.getTotalAndCompletedTasks { (total, completed) in
+            self.createdTasks = total
+            self.completedTasks = completed
+           
+        }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -39,6 +50,8 @@ class ProfileVC: UIViewController {
             (progressView, progress) in
             let value = Int(progress * 100.0)
             self.eventProgressLabel.text = "\(value)%"
+            
+            
         }
         
         eventProgressView.progressChanged = progressChanged
@@ -48,6 +61,10 @@ class ProfileVC: UIViewController {
         quickNoteProgressLable.text = "\(Int((quickNotesProgressView.progress)*100))"
     }
     
+    func updateUI(){
+        numberOfCreateTask.text = String(describing: createdTasks)
+        numberOfCompletedTask.text = String(describing: completedTasks)
+    }
     
 }
 

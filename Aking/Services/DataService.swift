@@ -21,14 +21,14 @@ let THIS_USER_ID = AuthService.instance.getUID()
 class DataService {
     
     static let instance = DataService()
-
+    
     //MARK: - Properties
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_TASKS = DB_BASE.child("tasks")
     private var _REF_CHECKLIST = DB_BASE.child("checkLists")
     private var _REF_PROJECT = DB_BASE.child("projects")
-    private var _REF_COLORS = DB_BASE.child("colors")
+    private var _REF_COLORS = DB_BASE.child("color")
     
     var REF_BASE: DatabaseReference {
         return _REF_BASE
@@ -75,7 +75,7 @@ class DataService {
         })
     }
     
-    func getUserData(forUID uid: String, handler: @escaping (_ user: DeviceUser) -> ()){
+    func getUserData(forUID uid: String = THIS_USER_ID, handler: @escaping (_ user: DeviceUser) -> ()){
         REF_USERS.observeSingleEvent(of: .value) { (userSnapShot) in
             guard let FirebaseUser = userSnapShot .children.allObjects as? [DataSnapshot] else {return}
             
@@ -166,16 +166,28 @@ class DataService {
         }
     }
     
+    func updateCheckList(withCheckList checkList: CheckListItem, onSuccess: @escaping (_ success: Bool) -> ()) {
+        let checkListData = convertCheckListToDictionary(checkList: checkList)
+        REF_CHECKLIST.child(THIS_USER_ID).child(checkList.id).updateChildValues(checkListData)
+        REF_CHECKLIST.child(THIS_USER_ID).child(checkList.id).updateChildValues(checkListData) { (error, dbRef) in
+            if error == nil {
+                onSuccess(true)
+            } else {
+                onSuccess(false)
+            }
+        }
+    }
+    
     func getAllCheckList(forUID uid: String = THIS_USER_ID, onCompletion: @escaping ([CheckListItem]?) -> ()){
         REF_CHECKLIST.observe(.value) { (dataSnapshot) in
             guard let allCheckLists = dataSnapshot.children.allObjects as? [DataSnapshot] else {return}
             let downloadedCheckListItems: [CheckListItem] = self.convertDataSanpshotToCheckListArray(allCheckLists)
-
+            
             onCompletion(downloadedCheckListItems)
         }
     }
     
-     func uploadProject(withProject project: Project, onSuccess: @escaping (_ success: Bool) -> ()) {
+    func uploadProject(withProject project: Project, onSuccess: @escaping (_ success: Bool) -> ()) {
         
         let thisProjectID = REF_PROJECT.child(THIS_USER_ID).childByAutoId()
         
@@ -186,37 +198,37 @@ class DataService {
             KProject.NUMBER_OF_TASKS : project.numberOfTasks
         ]
         
-           thisProjectID.updateChildValues( projectDict) { (error, dbRef) in
-               if error == nil {
-                   onSuccess(true)
-               } else {
-                   onSuccess(false)
-               }
-           }
-       }
+        thisProjectID.updateChildValues( projectDict) { (error, dbRef) in
+            if error == nil {
+                onSuccess(true)
+            } else {
+                onSuccess(false)
+            }
+        }
+    }
     
     func getAllProject(forUID uid: String = THIS_USER_ID, onCompletion: @escaping ([Project]?) -> ()){
         REF_PROJECT.observe(.value) { (dataSnapshot) in
             guard let allProjects = dataSnapshot.children.allObjects as? [DataSnapshot] else {return}
             var downloadedProjects: [Project] = []
             
-            for userTask in allProjects {
-                for project in userTask.value as! [String:Any]  {
-                                if let project = project.value as? [String: Any] {
-                                    let id = project[KProject.ID] as! String
-                                    let colorString = project[KProject.COLOR] as! String
-                                    let projectName = project[KProject.PROJECT_NAME] as! String
-                                    let numberOfTasks = project[KProject.NUMBER_OF_TASKS] as! String
-                
-                                    let color = UIColor.init(rgbaString: colorString)
-                                    print("color String: \(colorString), and color : \(String(describing: color))")
-                                    let newProject = Project(id: id, color: color!, projectName: projectName, numberOfTasks: numberOfTasks)
-                                    downloadedProjects.append(newProject)
-                                }
-                            }
+            for usersProject in allProjects {
+                if usersProject.key == THIS_USER_ID {
+                    for project in usersProject.value as! [String:Any]  {
+                        if let project = project.value as? [String: Any] {
+                            let id = project[KProject.ID] as! String
+                            let colorString = project[KProject.COLOR] as! String
+                            let projectName = project[KProject.PROJECT_NAME] as! String
+                            let numberOfTasks = project[KProject.NUMBER_OF_TASKS] as! String
+                            
+                            let color = UIColor.init(rgbaString: colorString)
+                            print("color String: \(colorString), and color : \(String(describing: color))")
+                            let newProject = Project(id: id, color: color!, projectName: projectName, numberOfTasks: numberOfTasks)
+                            downloadedProjects.append(newProject)
+                        }
+                    }
+                }
             }
-
-
             onCompletion(downloadedProjects)
         }
     }
@@ -238,31 +250,55 @@ class DataService {
     
     func getAllColors(onCompletion: @escaping (_ colors: [UIColor]) -> ()) {
         var downloadedColors: [UIColor] = []
-        REF_COLORS.observe(.value) { (snapShot) in
-            guard let colors = snapShot.children.allObjects as? NSArray else {return}
-            print(colors)
-            for color in colors {
-                downloadedColors.append(UIColor.init(rgbaString: color as! String)!)
+        REF_COLORS.observeSingleEvent(of: .value) { (dataSnapshot) in
+            guard let snapShot = dataSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for colors in snapShot {
+                for color in colors.value as! NSArray {
+                    let colorString = color as! String
+                    let thisColor = UIColor.init(rgbaString: colorString)!
+                    print(thisColor)
+                    downloadedColors.append(thisColor)
+                }
+            }
+            onCompletion(downloadedColors)
+        }
+    }
+    
+    func getTotalAndCompletedTasks(onCompletion: @escaping (_ totalTasks: Int, _ completedTasks: Int) -> ()) {
+        REF_TASKS.observe( .value) { (dataSnapshot) in
+            guard let allUsersTasks = dataSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            var totalTasks: Int = 0, completedTask: Int = 0
+            for thisUserTask in allUsersTasks {
+                if thisUserTask.key == THIS_USER_ID {
+                    for thisTask in thisUserTask.value as! [String:Any]  {
+                        if let thisTask = thisTask.value as? [String: Any] {
+                            totalTasks += 1
+                            let status = thisTask[KTask.STATUS] as! Bool
+                            if status { completedTask += 1 }
+                        }
+                    }
+                    onCompletion(totalTasks, completedTask)
+                }
             }
         }
-
-        onCompletion(downloadedColors)
     }
     
     fileprivate func convertDataSanpshotToCheckListArray(_ allCheckLists: [DataSnapshot]) -> [CheckListItem] {
         var downloadedCheckLists: [CheckListItem] = []
         for userCheckLists in allCheckLists {
-            for thisItem in userCheckLists.value as! [String:Any] {
-                if let checkList = thisItem.value as? [String:Any] {
-                    let id = checkList[KCheckListItem.ID] as! String
-                    let description = checkList[KCheckListItem.DESCRIPTION] as! String
-                    let colorString = checkList[KCheckListItem.COLOR] as! String
-                    let thisCheckListItems = checkList[KCheckListItem.ITEMS_ARRAY] as? NSArray
-                    
-                    let color = UIColor.init(hexaDecimalString: colorString)
-                    let items = convertItemDictionaryToArray(items: thisCheckListItems as? [[String : Any]])
-                    let chList = CheckListItem(id: id, description: description, items: items, color: color ?? UIColor.white)
-                    downloadedCheckLists.append(chList)
+            if userCheckLists.key == THIS_USER_ID {
+                for thisItem in userCheckLists.value as! [String:Any] {
+                    if let checkList = thisItem.value as? [String:Any] {
+                        let id = checkList[KCheckListItem.ID] as! String
+                        let description = checkList[KCheckListItem.DESCRIPTION] as! String
+                        let colorString = checkList[KCheckListItem.COLOR] as! String
+                        let thisCheckListItems = checkList[KCheckListItem.ITEMS_ARRAY] as? NSArray
+                        
+                        let color = UIColor.init(rgbaString: colorString)
+                        let items = convertItemDictionaryToArray(items: thisCheckListItems as? [[String : Any]])
+                        let chList = CheckListItem(id: id, description: description, items: items, color: color ?? UIColor.white)
+                        downloadedCheckLists.append(chList)
+                    }
                 }
             }
         }
@@ -275,10 +311,10 @@ class DataService {
         
         for element in 0..<items.count {
             let item = items[element]
-                let status = item[KCheckListItem.STATUS] as! Bool
-                let title = item[KCheckListItem.TITLE] as! String
-
-                itemsArray.append(Item(title: title, status: status))
+            let status = item[KCheckListItem.STATUS] as! Bool
+            let title = item[KCheckListItem.TITLE] as! String
+            
+            itemsArray.append(Item(title: title, status: status))
         }
         return itemsArray
     }
@@ -286,26 +322,27 @@ class DataService {
     fileprivate func convertDataSanpshotToTasksArray(_ allTasks: [DataSnapshot]) -> [Task] {
         var downloadedTasks: [Task] = []
         for userTasks in allTasks {
-            for task in userTasks.value as! [String:Any] {
-                if let task = task.value as?[String:Any] {
-                    let title = task[KTask.TITLE] as! String
-                    let id = task[KTask.ID] as! String
-                    let assigneName = task[KTask.ASSIGNEE_NAME] as! String
-                    let projectName = task[KTask.PROJECT_NAME] as! String
-                    let dueDate = task[KTask.DUE_DATE] as! String
-                    let description = task[KTask.DESCRIPTION] as! String
-                    let members:NSArray = task[KTask.MEMBERS] as? NSArray ?? []
-                    let tag = task[KTask.TAG] as! String
-                    let color = task[KTask.COLOR] as! String
-                    let status = task[KTask.STATUS] as! Bool
-                    
-                    let taskColor = UIColor.init(hexaDecimalString: color)
-                    let sts: TaskStatus = (status == true) ? .done : .pending
-                    
-                    
-                    let newTask = Task(id: id, title: title, assigneeName: assigneName, projectName: projectName, dueDate: dueDate, description: description, members: members as! [String], tag: tag, color: taskColor ?? UIColor.white, status: sts)
-                    
-                    downloadedTasks.append(newTask)
+            if userTasks.key == THIS_USER_ID {
+                for task in userTasks.value as! [String:Any] {
+                    if let task = task.value as?[String:Any] {
+                        let title = task[KTask.TITLE] as! String
+                        let id = task[KTask.ID] as! String
+                        let assigneName = task[KTask.ASSIGNEE_NAME] as! String
+                        let projectName = task[KTask.PROJECT_NAME] as! String
+                        let dueDate = task[KTask.DUE_DATE] as! String
+                        let description = task[KTask.DESCRIPTION] as! String
+                        let members:NSArray = task[KTask.MEMBERS] as? NSArray ?? []
+                        let tag = task[KTask.TAG] as! String
+                        let colorString = task[KTask.COLOR] as! String
+                        let status = task[KTask.STATUS] as! Bool
+                        
+                        let taskColor = UIColor.init(rgbaString: colorString)
+                        let sts: TaskStatus = (status == true) ? .done : .pending
+                        
+                        let newTask = Task(id: id, title: title, assigneeName: assigneName, projectName: projectName, dueDate: dueDate, description: description, members: members as! [String], tag: tag, color: taskColor ?? UIColor.white, status: sts)
+                        
+                        downloadedTasks.append(newTask)
+                    }
                 }
             }
         }
@@ -365,7 +402,7 @@ class DataService {
     
     
     
- //MARK: - Dummy Date
+    //MARK: - Dummy Date
     
     var people: [Assignee] = []
     var colors: [UIColor] = []
@@ -383,6 +420,8 @@ class DataService {
     let assignee5 = Assignee(avator: #imageLiteral(resourceName: "dummy_Avator"), name: "I am Assignee5", email: "dummy-5@email.com")
     let assignee6 = Assignee(avator: #imageLiteral(resourceName: "dummy_Avator"), name: "I am Assignee6", email: "dummy-6@email.com")
     let assignee7 =  Assignee(avator: #imageLiteral(resourceName: "dummy_Avator"), name: "I am Assignee7", email: "dummy-7@email.com")
-      
-
+    
+    
 }
+
+

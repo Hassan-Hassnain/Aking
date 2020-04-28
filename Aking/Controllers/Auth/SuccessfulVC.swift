@@ -13,9 +13,16 @@ class SuccessfulVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            let vc = self.storyboard?.instantiateViewController(identifier: LoginVC.className)
+            vc?.modalPresentationStyle = .fullScreen
+            self.presentDetail(vc!)
+        })
+    }
 
 
 }

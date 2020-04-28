@@ -17,18 +17,22 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateNavBarAppearance(color: .white, title: nil)
+        updateNavBarAppearance(color: .white, title: nil, tintColor: .black)
         navigationController?.hideHairline()
     }
+    
     @IBAction func backButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func createAccountButtonTapped(_ sender: Any) {
         pushVC(viewController: SignUpVC.className, animated: true)
     }
+    
     @IBAction func forgotPassordButtonTapped(_ sender: Any) {
         pushVC(viewController: ForgotPasswordVC.className, animated: true)
     }
+    
     @IBAction func LoginButtonTapped(_ sender: Any) {
         emailTF.validateField(withMessage: KFieldValid.EMPTY_EMAIL)
         passwordTF.validateField(withMessage: KFieldValid.EMPTY_PASSWORD)
@@ -39,14 +43,19 @@ class LoginVC: UIViewController {
                 print("Login Failed!")
             } else {
                 ProgressHUD.dismiss()
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: TabbarViewController.className)
+                let vc = self.storyboard?.instantiateViewController(identifier: TabbarViewController.className)
                 vc?.modalPresentationStyle = .fullScreen
                 self.presentDetail(vc!)
                 print("Login Success!")
+                self.test()
             }
         }
     }
     
+    
+    func test() {
+//        DataService.instance.getTotalAndCompletedTasks()
+    }
     
 }
 

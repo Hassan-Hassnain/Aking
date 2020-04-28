@@ -39,7 +39,7 @@ class MyTaskVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupNavBar()
+        setupNavBar()
         setupUI()
         tableView.regCell(cellName: WorkListTableViewCell.className)
         calanderView.delegate = self
@@ -142,7 +142,7 @@ class MyTaskVC: UIViewController {
             colorView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.4549019608, blue: 0.9764705882, alpha: 1)
             updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: currentProjectName)
         }
-        
+        loadViewIfNeeded()
     }
     
     //MARK: - DATE FUNCTIONS

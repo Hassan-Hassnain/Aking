@@ -38,13 +38,15 @@
 		3C08ED3E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg in Resources */ = {isa = PBXBuildFile; fileRef = 3C08ED2E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg */; };
 		3C0B31E42445EB970001B32B /* TaskFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B31E32445EB970001B32B /* TaskFilterView.swift */; };
 		3C0B31E62445EBB50001B32B /* TaskFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C0B31E52445EBB50001B32B /* TaskFilterView.xib */; };
+		3C23733B2458B03500D2DDC5 /* AuthNavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C23733A2458B03500D2DDC5 /* AuthNavVC.swift */; };
+		3C23733D2458C3B300D2DDC5 /* ProjectsNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C23733C2458C3B300D2DDC5 /* ProjectsNavigationVC.swift */; };
 		3C2EDF95244761F70030EB47 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2EDF94244761F70030EB47 /* DatePickerView.swift */; };
 		3C2EDF99244773D90030EB47 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C2EDF98244773D90030EB47 /* DatePickerView.xib */; };
 		3C5900942446797C004F7009 /* SelectionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5900932446797C004F7009 /* SelectionTVCell.swift */; };
 		3C59009624468355004F7009 /* SelectionTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C59009524468355004F7009 /* SelectionTVCell.xib */; };
 		3C596127244BBB17004EEAD2 /* UINavigationControllerEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C596126244BBB17004EEAD2 /* UINavigationControllerEXT.swift */; };
 		3C613809244626600067B717 /* CreateTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C613808244626600067B717 /* CreateTaskVC.swift */; };
-		3C61380B244630820067B717 /* NavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61380A244630820067B717 /* NavigationVC.swift */; };
+		3C61380B244630820067B717 /* MyTaskNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61380A244630820067B717 /* MyTaskNavigationVC.swift */; };
 		3C61380D2446412D0067B717 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61380C2446412D0067B717 /* Constants.swift */; };
 		3C623259243B27DD0087BD49 /* QuickVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C623258243B27DD0087BD49 /* QuickVC.swift */; };
 		3C62325B243B27EF0087BD49 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62325A243B27EF0087BD49 /* ProfileVC.swift */; };
@@ -148,6 +150,8 @@
 		3C08ED2E243A0F64003BDB36 /* avenirnextroundedpro-demi-webfont.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "avenirnextroundedpro-demi-webfont.svg"; sourceTree = "<group>"; };
 		3C0B31E32445EB970001B32B /* TaskFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFilterView.swift; sourceTree = "<group>"; };
 		3C0B31E52445EBB50001B32B /* TaskFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskFilterView.xib; sourceTree = "<group>"; };
+		3C23733A2458B03500D2DDC5 /* AuthNavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavVC.swift; sourceTree = "<group>"; };
+		3C23733C2458C3B300D2DDC5 /* ProjectsNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsNavigationVC.swift; sourceTree = "<group>"; };
 		3C2EDF94244761F70030EB47 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		3C2EDF98244773D90030EB47 /* DatePickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
 		3C3F8038244A005600B8823E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -155,7 +159,7 @@
 		3C59009524468355004F7009 /* SelectionTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectionTVCell.xib; sourceTree = "<group>"; };
 		3C596126244BBB17004EEAD2 /* UINavigationControllerEXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerEXT.swift; sourceTree = "<group>"; };
 		3C613808244626600067B717 /* CreateTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskVC.swift; sourceTree = "<group>"; };
-		3C61380A244630820067B717 /* NavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVC.swift; sourceTree = "<group>"; };
+		3C61380A244630820067B717 /* MyTaskNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTaskNavigationVC.swift; sourceTree = "<group>"; };
 		3C61380C2446412D0067B717 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3C623258243B27DD0087BD49 /* QuickVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVC.swift; sourceTree = "<group>"; };
 		3C62325A243B27EF0087BD49 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 				3CB4C749245370B700F8D884 /* WalkThroughOneVC.swift */,
 				3CB4C74B245370CA00F8D884 /* WalkThroughTwoVC.swift */,
 				3CB4C74D245370DC00F8D884 /* WalkThroughThreeVC.swift */,
+				3C23733A2458B03500D2DDC5 /* AuthNavVC.swift */,
 				3C007F3B244E3A9A002B50BD /* LoginVC.swift */,
 				3C007F3D244E3AAE002B50BD /* SignUpVC.swift */,
 				3C007F3F244E3AD2002B50BD /* ForgotPasswordVC.swift */,
@@ -338,7 +343,8 @@
 			children = (
 				3C007F3A244E3A7C002B50BD /* Auth */,
 				3C9C2EA1243C9008003F51E7 /* TabbarViewController.swift */,
-				3C61380A244630820067B717 /* NavigationVC.swift */,
+				3C61380A244630820067B717 /* MyTaskNavigationVC.swift */,
+				3C23733C2458C3B300D2DDC5 /* ProjectsNavigationVC.swift */,
 				3C62325C243B28110087BD49 /* MyTaskVC.swift */,
 				3C6393D0243CD47A0089F04B /* AddVC.swift */,
 				3C623258243B27DD0087BD49 /* QuickVC.swift */,
@@ -652,7 +658,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C61380B244630820067B717 /* NavigationVC.swift in Sources */,
+				3C61380B244630820067B717 /* MyTaskNavigationVC.swift in Sources */,
 				3C93D32124466BB90026900B /* CustomizableHiddenNavigationBar.swift in Sources */,
 				3C9C2EA2243C9008003F51E7 /* TabbarViewController.swift in Sources */,
 				3C62325B243B27EF0087BD49 /* ProfileVC.swift in Sources */,
@@ -662,6 +668,7 @@
 				3C6DA3262448EED600EBCB4B /* CheckListItem.swift in Sources */,
 				3C6DA3162448D2EE00EBCB4B /* QuickNoteTableViewCell.swift in Sources */,
 				3C9D8057244FC76A0009B91C /* Item.swift in Sources */,
+				3C23733B2458B03500D2DDC5 /* AuthNavVC.swift in Sources */,
 				3C93D2F024465A9C0026900B /* ProjectTVCell.swift in Sources */,
 				3CB4C74C245370CA00F8D884 /* WalkThroughTwoVC.swift in Sources */,
 				3C007F42244E3AE2002B50BD /* ResetPasswordVC.swift in Sources */,
@@ -670,6 +677,7 @@
 				3C93D31D24466BB90026900B /* CustomizableBackground.swift in Sources */,
 				3C61380D2446412D0067B717 /* Constants.swift in Sources */,
 				3C6393D1243CD47A0089F04B /* AddVC.swift in Sources */,
+				3C23733D2458C3B300D2DDC5 /* ProjectsNavigationVC.swift in Sources */,
 				3C007F3E244E3AAE002B50BD /* SignUpVC.swift in Sources */,
 				3C93D31524466BB90026900B /* CustomizableTableViewCell.swift in Sources */,
 				3C93D31824466BB90026900B /* CustomizableLabel.swift in Sources */,

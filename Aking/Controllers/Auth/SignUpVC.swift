@@ -18,8 +18,6 @@ class SignUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateNavBarAppearance(color: .white, title: nil)
-        navigationController?.hideHairline()
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {

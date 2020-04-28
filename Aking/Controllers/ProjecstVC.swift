@@ -21,7 +21,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     var newProject: Project = Project(id: "", color: .white, projectName: "", numberOfTasks: "")
     var task: Task?
     
-    var colors: [UIColor] = [] {didSet{colorChooseCollectionView.reloadData(); print(colors)}}
+    var colors: [UIColor] = [] {didSet{colorChooseCollectionView.reloadData()}}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,8 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
             self.colors = result
             print(self.colors)
         }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +47,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
                 self.projects = result
             }
         }
+        self.updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: nil)
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -87,10 +90,9 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     }
     
     func showProjectDetails(indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: MyTaskVC.className) as! MyTaskVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: "MyTaskVC") as! MyTaskVC
         vc.viewMode = .ProjectDetails
         vc.currentProjectName = projects[indexPath.row].projectName
-        updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -126,7 +128,8 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == colorChooseCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddNoteCollectionViewCell.className, for: indexPath) as! AddNoteCollectionViewCell
-            cell.configure(color: colors[indexPath.row])
+//            cell.configure(color: colors[indexPath.row])
+            cell.colorView.backgroundColor = colors[indexPath.row]
             return cell
         }
         let projectCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCollectionViewCell

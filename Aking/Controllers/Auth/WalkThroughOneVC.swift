@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class WalkThroughOneVC: UIViewController {
     
@@ -16,14 +17,27 @@ class WalkThroughOneVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+          super.viewDidAppear(animated)
+          if Auth.auth().currentUser != nil {
+              let vc = self.storyboard?.instantiateViewController(withIdentifier: TabbarViewController.className)
+              vc?.modalPresentationStyle = .fullScreen
+              self.presentDetail(vc!)
+              print("Already logged in with \(String(describing: Auth.auth().currentUser?.email))!")
+          } else {
+              print("No user logged in")
+          }
+      }
+    
     @IBAction func getStartedButtonTapped(_ sender: UIButton) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: WalkThroughTwoVC.className) else { return }
         vc.modalPresentationStyle = .fullScreen
-        pushVC(viewController: WalkThroughTwoVC.className, animated: true)
+//        pushVC(viewController: WalkThroughTwoVC.className, animated: true)
+        presentDetail(vc)
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: LoginVC.className) else { return }
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: AuthNavVC.className) else { return }
         vc.modalPresentationStyle = .fullScreen
         presentDetail(vc)
     }

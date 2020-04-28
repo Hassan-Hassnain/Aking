@@ -17,7 +17,7 @@ class AddCheckListVC: UIViewController {
     @IBOutlet weak var addNewItemButton: UIButton!
     @IBOutlet weak var containerViewHeightConstraint: NSLayoutConstraint!
     
-    var items: Int = 1
+    var itemsCount: Int = 1
     var checkListItem = CheckListItem()
     enum Mode {case addNote, addCheckList}
     var viewMode: Mode = .addCheckList
@@ -60,18 +60,20 @@ class AddCheckListVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     @IBAction func addNewItemButtonTapped(_ sender: Any) {
-        items += 1
+        itemsCount += 1
         tableView.reloadData()
     }
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         if let text = titleTextView.text { checkListItem.note.description = text}
         
-        for x in 0..<items {
+        for x in 0..<itemsCount {
             let indexPath = IndexPath(row: x, section: 0)
             let cell = tableView.cellForRow(at: indexPath) as! AddCheckListTableViewCell
             
-            if let title = cell.itemTitleTF.text, title != "" {
-                checkListItem.items.append(Item(title: title, status: false))
+            if let title = cell.itemTitleTF.text {
+                if !title.isEmpty {
+                    checkListItem.items.append(Item(title: title, status: false))
+                }
             }
         }
         DataService.instance.uploadCheckList(withCheckList: checkListItem) { (succes) in
@@ -87,7 +89,7 @@ class AddCheckListVC: UIViewController {
 
 extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items
+        itemsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

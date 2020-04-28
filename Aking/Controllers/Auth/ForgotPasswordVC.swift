@@ -14,9 +14,6 @@ class ForgotPasswordVC: UIViewController {
     @IBOutlet weak var emailTF: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        updateNavBarAppearance(color: .white, title: nil)
-        navigationController?.hideHairline()
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
@@ -30,7 +27,7 @@ class ForgotPasswordVC: UIViewController {
             if success {
                 ProgressHUD.showSuccess(message)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-                    self.pushVC(viewController: LoginVC.className, animated: true)
+                    self.pushVC(viewController: ResetPasswordVC.className, animated: true)
                 })
                 
             } else {

@@ -16,8 +16,6 @@ class ResetPasswordVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateNavBarAppearance(color: .white, title: nil)
-        navigationController?.hideHairline()
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
@@ -26,6 +24,12 @@ class ResetPasswordVC: UIViewController {
     
     
     @IBAction func sendRequestButtonTapped(_ sender: Any) {
+        
+        //will enclosed in password reset AuthService func closure
+
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: SuccessfulVC.className)
+        vc?.modalPresentationStyle = .fullScreen
+        self.presentDetail(vc!)
     }
     
     

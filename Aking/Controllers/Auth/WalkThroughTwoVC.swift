@@ -19,11 +19,11 @@ class WalkThroughTwoVC: UIViewController {
     @IBAction func getStartedButtonTapped(_ sender: UIButton) {
            guard let vc = storyboard?.instantiateViewController(withIdentifier: WalkThroughThreeVC.className) else { return }
            vc.modalPresentationStyle = .fullScreen
-           pushVC(viewController: WalkThroughThreeVC.className, animated: true)
+           presentDetail(vc)
        }
        
        @IBAction func loginButtonTapped(_ sender: UIButton) {
-           guard let vc = storyboard?.instantiateViewController(withIdentifier: LoginVC.className) else { return }
+           guard let vc = storyboard?.instantiateViewController(withIdentifier: AuthNavVC.className) else { return }
            vc.modalPresentationStyle = .fullScreen
            presentDetail(vc)
        }

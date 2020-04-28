@@ -161,7 +161,7 @@ class CreateTaskVC: UIViewController {
         var projectName = ""
         if projectNameLabel.text != nil {projectName = projectNameLabel.text!} else { projectName = "" } //projectNameLabel.text != "Project", condition need to be added
         let uid = AuthService.instance.getUID()
-        task = Task(id: uid, title: title, assigneeName: assigneeName, projectName: projectName, dueDate: dutDate, description: description, members: [], tag: "", color: .white, status: .pending)
+        task = Task(id: uid, title: title, assigneeName: assigneeName, projectName: projectName, dueDate: dutDate, description: description, members: [], tag: "", color: .red, status: .pending)
         return task
     }
     
