@@ -62,6 +62,7 @@ struct KCheckListItem {
     static let DESCRIPTION = "description"
     static let COLOR = "color"
     static let ITEMS_ARRAY = "itemArray"
+    static let DATE = "date"
 }
 //MARK: - Project
 struct KProject {

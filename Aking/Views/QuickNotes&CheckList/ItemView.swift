@@ -20,6 +20,7 @@ class ItemView: UIView {
     var isChecked: Bool = false {
         didSet {
             updateCheckBox()
+            UserDefaults.standard.set(self.tag, forKey: "TAG")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ItemStatusChanged"), object: nil)
         }
     }
@@ -47,6 +48,7 @@ class ItemView: UIView {
         } else {
             isChecked = true
         }
+//        print(self.tag)
     }
     
     func updateCheckBox (){

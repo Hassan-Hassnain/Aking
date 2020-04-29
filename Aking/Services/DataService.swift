@@ -293,10 +293,12 @@ class DataService {
                         let description = checkList[KCheckListItem.DESCRIPTION] as! String
                         let colorString = checkList[KCheckListItem.COLOR] as! String
                         let thisCheckListItems = checkList[KCheckListItem.ITEMS_ARRAY] as? NSArray
+                        let date = checkList[KCheckListItem.DATE] as! String
                         
                         let color = UIColor.init(rgbaString: colorString)
+                        
                         let items = convertItemDictionaryToArray(items: thisCheckListItems as? [[String : Any]])
-                        let chList = CheckListItem(id: id, description: description, items: items, color: color ?? UIColor.white)
+                        let chList = CheckListItem(id: id, description: description, items: items, color: color ?? UIColor.white, date: date)
                         downloadedCheckLists.append(chList)
                     }
                 }
@@ -378,7 +380,8 @@ class DataService {
             KCheckListItem.ID : checkList.id,
             KCheckListItem.DESCRIPTION : checkList.note.description,
             KCheckListItem.COLOR : checkList.note.color.toRGBAString(),
-            KCheckListItem.ITEMS_ARRAY: itemsDict
+            KCheckListItem.ITEMS_ARRAY: itemsDict,
+            KCheckListItem.DATE : checkList.date
         ]
         return checkListItemDict
     }
