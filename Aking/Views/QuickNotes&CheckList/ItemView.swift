@@ -48,19 +48,18 @@ class ItemView: UIView {
         } else {
             isChecked = true
         }
-//        print(self.tag)
     }
     
     func updateCheckBox (){
-        if let text = titleLabel.text {
+        let text = titleLabel.text!
             if isChecked {
                 checkBoxView.backgroundColor = #colorLiteral(red: 0.6323310137, green: 0.6328232288, blue: 0.632407248, alpha: 1)
-                titleLabel.text = String(describing: myAttributedString(text: text, applyAtrribute: true))
+                titleLabel.attributedText = myAttributedString(text: text, applyAtrribute: true)
             } else {
                 checkBoxView.backgroundColor = #colorLiteral(red: 0.9658892751, green: 0.9697455764, blue: 0.9658194184, alpha: 1)
-                titleLabel.text = String(describing: myAttributedString(text: text, applyAtrribute: false))
+                titleLabel.attributedText =  myAttributedString(text: text, applyAtrribute: false)
             }
-        }
+        
     }
     
     func myAttributedString(text: String,applyAtrribute: Bool)->NSAttributedString {

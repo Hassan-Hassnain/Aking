@@ -63,4 +63,6 @@ class QuickNoteTableViewCell: UITableViewCell {
             view.removeFromSuperview()
         }
     }
+    
+    
 }
