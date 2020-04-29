@@ -124,6 +124,9 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
         if collectionView == colorChooseCollectionView {
             return colors.count
         }
+        if isLoadedForProjectSelection {
+            return self.projects.count
+        }
         return self.projects.count+1
     }
     
