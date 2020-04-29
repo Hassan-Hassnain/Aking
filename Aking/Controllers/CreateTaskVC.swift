@@ -35,7 +35,8 @@ class CreateTaskVC: UIViewController {
     
     var taskNature: TaskNature = .createTask
     var task: Task?
-    
+
+//MARK: - Initializers & Deinitializers
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,12 +76,8 @@ class CreateTaskVC: UIViewController {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }
-    
-    func initTask(task: Task) {
-        self.task = task
-        taskNature = .editingTask
-    }
-    
+
+//MARK: - @IBActions 
     @IBAction func backButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -116,6 +113,11 @@ class CreateTaskVC: UIViewController {
         
     }
     
+//MARK: - Helping Functions
+    func initTask(task: Task) {
+        self.task = task
+        taskNature = .editingTask
+    }
     func setupAssignee(name: String?, image: UIImage?){
         if name == nil {
             assigneeNameLabel.text = "Assignee"

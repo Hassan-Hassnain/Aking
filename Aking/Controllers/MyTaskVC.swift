@@ -36,7 +36,8 @@ class MyTaskVC: UIViewController {
     var viewMode: ViewMode = .myTasks
     var projectTasks: [Task] = []
     var currentProjectName = ""
-    
+ 
+//MARK: - Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -67,6 +68,7 @@ class MyTaskVC: UIViewController {
         navigationController?.hideHairline()
     }
     
+//MARK: - @IBAction functions
     @IBAction func toggleCalanderButtonTapped(_ sender: Any) {
         if calanderView.scope == .week {
             calanderView.scope = .month
@@ -100,7 +102,8 @@ class MyTaskVC: UIViewController {
             filterView.isHidden = true
         }
     }
-    
+
+//MARK: - Helping Functions
     fileprivate func setupUI() {
         filterView = UIView.setupFilterView(caller: view)
         view.addSubview(filterView)
@@ -145,7 +148,7 @@ class MyTaskVC: UIViewController {
         loadViewIfNeeded()
     }
     
-    //MARK: - DATE FUNCTIONS
+//MARK: - DATE FUNCTIONS
     
     fileprivate func today() -> Date{
         let now = Calendar.current.dateComponents(in: .current, from: Date())
@@ -213,7 +216,8 @@ class MyTaskVC: UIViewController {
     fileprivate func viewThisTaskDetails(task: Task) {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: ViewTaskVC.className) as! ViewTaskVC
-        vc.currentTask = task
+//        vc.currentTask = task
+        vc.initTask(taskID: task.id)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

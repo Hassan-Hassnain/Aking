@@ -22,7 +22,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     var task: Task?
     
     var colors: [UIColor] = [] {didSet{colorChooseCollectionView.reloadData()}}
-    
+//MARK: - Initializers & Deinitializers
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +56,8 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         
         navigationController?.navigationBar.isHidden = false
     }
-    
+
+//MARK: - Helping Functions
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         newProject.projectName = titleTF.text!
         return titleTF.resignFirstResponder()
@@ -116,6 +117,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     }
 }
 
+//MARK: - Collection DELEGATE AN DATASOURCE
 extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -21,7 +21,8 @@ class AddCheckListVC: UIViewController {
     var checkListItem = CheckListItem()
     enum Mode {case addNote, addCheckList}
     var viewMode: Mode = .addCheckList
-    
+
+//MARK: - Initializer & Deinitializers
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +55,7 @@ class AddCheckListVC: UIViewController {
         super.viewDidDisappear(animated)
         tabBarController?.tabBar.isHidden = false
     }
-    
+//MARK: - IBActions
     @IBAction func backButtonTapped(_ sender: Any) {
         tabBarController?.tabBar.isHidden = false
         navigationController?.popViewController(animated: true)
@@ -87,6 +88,7 @@ class AddCheckListVC: UIViewController {
     
 }
 
+//MARK: - TableView Datasource and Delegate
 extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         itemsCount
@@ -101,6 +103,7 @@ extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+//MARK: - TableView Datasource and Delegate
 extension AddCheckListVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         DataService.instance.colors.count

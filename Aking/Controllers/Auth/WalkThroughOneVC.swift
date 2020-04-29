@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class WalkThroughOneVC: UIViewController {
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()

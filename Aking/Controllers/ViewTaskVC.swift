@@ -23,8 +23,9 @@ class ViewTaskVC: UIViewController {
     @IBOutlet weak var tagButton: CustomizableButton!
     
     var settingView: UIView?
-    var currentTask = Task(id: "", title: "", assigneeName: "", projectName: "", dueDate: "", description: "", members: [], tag: "", color: .clear, status: .pending)
+    var currentTask: Task? {didSet{loadViewWithCurrentTask()}}
     
+//MARK: - Initalizers
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,25 +37,17 @@ class ViewTaskVC: UIViewController {
         commentsTableView.dataSource = self
         commentsTableView.delegate = self
         
-        taskTitleLabel.text = currentTask.title
-        assigneeLabel.text = currentTask.assigneeName
-        dueDateLabel.text = currentTask.dueDate
-        tagButton.setTitle(currentTask.tag, for: .normal)
-        descriptionLabel.text = currentTask.description
-        tagButton.setTitle(" \(currentTask.projectName) ", for: .normal)
+        tagButton.setTitle("", for: .normal)
+  
     }
-    
-    func initTask(task: Task) {
-        self.currentTask = task
-    }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
         navigationController?.navigationBar.isHidden = false
     }
-    
+
+//MARK: - @IBActions
     @IBAction func closeButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
@@ -67,8 +60,8 @@ class ViewTaskVC: UIViewController {
     
     @IBAction func completeTaskButtonTapped(_ sender: Any) {
         commentButton.isHidden = false
-        currentTask.status = currentTask.status == .done ? .pending: .done
-        DataService.instance.updateTask(withTask: currentTask) { (success) in
+        currentTask?.status = currentTask?.status == .done ? .pending: .done
+        DataService.instance.updateTask(withTask: currentTask!) { (success) in
             if success {
                 self.navigationController?.popViewController(animated: true)                
             }
@@ -84,6 +77,33 @@ class ViewTaskVC: UIViewController {
             }
         }
     }
+
+//MARK: - Helping Functions
+    
+    func loadViewWithCurrentTask() {
+        if let currentTask = currentTask {
+            taskTitleLabel.text = currentTask.title
+            assigneeLabel.text = currentTask.assigneeName
+            dueDateLabel.text = currentTask.dueDate
+            tagButton.setTitle(currentTask.tag, for: .normal)
+            descriptionLabel.text = currentTask.description
+            tagButton.setTitle(" \(currentTask.projectName) ", for: .normal)
+        }
+    }
+    
+    func initTask(taskID: String) {
+        DataService.instance.getAllTask { (tasks) in
+            if let tasks = tasks {
+                for task in tasks {
+                    if task.id == taskID {
+                        self.currentTask  = task
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
     
     func hideAdditionDetails(){
         additionalDetailViewHeightConstraint.constant = 0
@@ -122,6 +142,7 @@ class ViewTaskVC: UIViewController {
     
 }
 
+//MARK: - TableView Delegate and Datasource
 extension ViewTaskVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         5
@@ -142,7 +163,7 @@ extension ViewTaskVC: UITableViewDelegate, UITableViewDataSource {
 }
 //MARK: - SettingView delegate
 extension ViewTaskVC: TaskFilterViewDelegate{
-    func incompleteTasksButtonDidTapped() {
+    func incompleteTasksButtonDidTapped() { //Add project
         let vc = storyboard?.instantiateViewController(withIdentifier: ProjecstVC.className) as! ProjecstVC
         vc.isLoadedForProjectSelection = true
         vc.task = currentTask
@@ -156,7 +177,7 @@ extension ViewTaskVC: TaskFilterViewDelegate{
     }
     
     func allTasksButtonDidTapped() {
-        DataService.instance.removeTask(taskId: currentTask.id)
+        DataService.instance.removeTask(taskId: currentTask!.id)
         settingView!.isHidden = true
     }
     
