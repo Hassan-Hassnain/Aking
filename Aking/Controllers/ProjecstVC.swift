@@ -16,9 +16,9 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var colorChooseCollectionView: UICollectionView!
     
     
-    var projects: [Project] = [] {didSet{collectionView.reloadData()}}
+    var projects: [Project] = []// {didSet{collectionView.reloadData()}}
     var isLoadedForProjectSelection: Bool = false
-    var newProject: Project = Project(id: "", color: .white, projectName: "", numberOfTasks: "")
+    var newProject: Project = Project(id: "", color: .white, projectName: "", numberOfTasks: "", date: "")
     var task: Task?
     
     var colors: [UIColor] = [] {didSet{colorChooseCollectionView.reloadData()}}
@@ -45,6 +45,8 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         DataService.instance.getAllProject { (reslut) in
             if let result = reslut {
                 self.projects = result
+                self.sortProjectsArray()
+                self.collectionView.reloadData()
             }
         }
         self.updateNavBarAppearance(color: #colorLiteral(red: 0.3972494602, green: 0.4466651082, blue: 1, alpha: 1), title: nil)
@@ -100,7 +102,12 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     fileprivate func showAddProjectView() {
         //show add project view to Create new project
         addProjectView.isHidden = false
-        newProject = Project(id: "", color: .clear, projectName: "", numberOfTasks: "0")
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let dateCreated = dateFormatter.string(from: Date())
+        
+        newProject = Project(id: "", color: .clear, projectName: "", numberOfTasks: "0", date: dateCreated)
         titleTF.text = ""
     }
     
@@ -115,6 +122,12 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    func sortProjectsArray(){
+        projects = projects.sorted(by: {$0.date.compare($1.date) == .orderedAscending})
+    }
+    
+    
 }
 
 //MARK: - Collection DELEGATE AN DATASOURCE

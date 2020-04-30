@@ -71,6 +71,7 @@ struct KProject {
     static let  COLOR = "color"
     static let PROJECT_NAME = "projectName"
     static let NUMBER_OF_TASKS =  "numberOfTasks"
+    static let DATE =  "date"
 }
 //MARK: - Assignee
 struct KAssignee {

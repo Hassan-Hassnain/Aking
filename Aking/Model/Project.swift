@@ -14,4 +14,5 @@ struct Project {
     var color: UIColor
     var projectName: String
     var numberOfTasks: String
+    var date: String
 }

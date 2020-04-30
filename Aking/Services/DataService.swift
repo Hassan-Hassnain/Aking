@@ -195,7 +195,8 @@ class DataService {
             KProject.ID : thisProjectID.key!,
             KProject.COLOR : project.color.toRGBAString(),
             KProject.PROJECT_NAME : project.projectName,
-            KProject.NUMBER_OF_TASKS : project.numberOfTasks
+            KProject.NUMBER_OF_TASKS : project.numberOfTasks,
+            KProject.DATE : project.date
         ]
         
         thisProjectID.updateChildValues( projectDict) { (error, dbRef) in
@@ -220,10 +221,11 @@ class DataService {
                             let colorString = project[KProject.COLOR] as! String
                             let projectName = project[KProject.PROJECT_NAME] as! String
                             let numberOfTasks = project[KProject.NUMBER_OF_TASKS] as! String
+                            let date = project[KProject.DATE] as! String
                             
                             let color = UIColor.init(rgbaString: colorString)
                             print("color String: \(colorString), and color : \(String(describing: color))")
-                            let newProject = Project(id: id, color: color!, projectName: projectName, numberOfTasks: numberOfTasks)
+                            let newProject = Project(id: id, color: color!, projectName: projectName, numberOfTasks: numberOfTasks, date: date)
                             downloadedProjects.append(newProject)
                         }
                     }
