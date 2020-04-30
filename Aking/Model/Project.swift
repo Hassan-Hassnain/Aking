@@ -13,6 +13,6 @@ struct Project {
     var id : String
     var color: UIColor
     var projectName: String
-    var numberOfTasks: String
+    var numberOfTasks: Int
     var date: String
 }

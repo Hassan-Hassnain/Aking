@@ -18,7 +18,7 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
     
     var projects: [Project] = []// {didSet{collectionView.reloadData()}}
     var isLoadedForProjectSelection: Bool = false
-    var newProject: Project = Project(id: "", color: .white, projectName: "", numberOfTasks: "", date: "")
+    var newProject: Project = Project(id: "", color: .white, projectName: "", numberOfTasks: 0, date: "")
     var task: Task?
     
     var colors: [UIColor] = [] {didSet{colorChooseCollectionView.reloadData()}}
@@ -107,13 +107,24 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let dateCreated = dateFormatter.string(from: Date())
         
-        newProject = Project(id: "", color: .clear, projectName: "", numberOfTasks: "0", date: dateCreated)
+        newProject = Project(id: "", color: .clear, projectName: "", numberOfTasks: 0, date: dateCreated)
         titleTF.text = ""
     }
     
-    fileprivate func selectProjectForTask(name: String) {
+    fileprivate func updateProjectNumberOfTasks(_ project: Project, _ task: Task) {
+        if project.projectName != task.projectName {
+            let numberOfTask = project.numberOfTasks + 1
+            let thisProject = Project(id: project.id, color: project.color, projectName: project.projectName, numberOfTasks: numberOfTask, date: project.date)
+            DataService.instance.updateProject(withProject: thisProject) { (success) in
+                print("Project Updated")
+            }
+        }
+    }
+    
+    fileprivate func selectProjectForTask(project: Project) {
         if var task = self.task {
-            task.projectName = name
+            updateProjectNumberOfTasks(project, task)
+            task.projectName = project.projectName
             DataService.instance.updateTask(withTask: task) { (success) in
                 if success {
                     self.navigationController?.popViewController(animated: true)
@@ -165,7 +176,7 @@ extension ProjecstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
             if isLoadedForProjectSelection {
-                return selectProjectForTask(name: projects[indexPath.row].projectName)
+                return selectProjectForTask(project: projects[indexPath.row])
             }
             if indexPath.row == projects.count {
                 showAddProjectView()

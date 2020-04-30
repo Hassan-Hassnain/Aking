@@ -208,6 +208,27 @@ class DataService {
         }
     }
     
+    func updateProject(withProject project: Project, onSuccess: @escaping (_ success: Bool) -> ()) {
+        
+//        let thisProjectID = REF_PROJECT.child(THIS_USER_ID).childByAutoId()
+        
+        let projectDict: Dictionary<String, Any> = [
+            KProject.ID : project.id,
+            KProject.COLOR : project.color.toRGBAString(),
+            KProject.PROJECT_NAME : project.projectName,
+            KProject.NUMBER_OF_TASKS : project.numberOfTasks,
+            KProject.DATE : project.date
+        ]
+        
+        REF_PROJECT.child(THIS_USER_ID).child(project.id).updateChildValues( projectDict) { (error, dbRef) in
+            if error == nil {
+                onSuccess(true)
+            } else {
+                onSuccess(false)
+            }
+        }
+    }
+    
     func getAllProject(forUID uid: String = THIS_USER_ID, onCompletion: @escaping ([Project]?) -> ()){
         REF_PROJECT.observe(.value) { (dataSnapshot) in
             guard let allProjects = dataSnapshot.children.allObjects as? [DataSnapshot] else {return}
@@ -220,7 +241,7 @@ class DataService {
                             let id = project[KProject.ID] as! String
                             let colorString = project[KProject.COLOR] as! String
                             let projectName = project[KProject.PROJECT_NAME] as! String
-                            let numberOfTasks = project[KProject.NUMBER_OF_TASKS] as! String
+                            let numberOfTasks = project[KProject.NUMBER_OF_TASKS] as! Int
                             let date = project[KProject.DATE] as! String
                             
                             let color = UIColor.init(rgbaString: colorString)

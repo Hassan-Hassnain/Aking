@@ -20,7 +20,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         ourterView.isOpaque = false
         innerView.backgroundColor = project.color
         projectName.text = project.projectName
-        numberOfProject.text = project.numberOfTasks
+        numberOfProject.text = "\(project.numberOfTasks)"
     }
 }
 
