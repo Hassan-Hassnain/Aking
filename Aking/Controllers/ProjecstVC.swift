@@ -119,6 +119,15 @@ class ProjecstVC: UIViewController, UITextFieldDelegate {
                 print("Project Updated")
             }
         }
+        
+        for proj in projects {
+            if task.projectName == proj.projectName {
+                let p = Project(id: proj.id, color: proj.color, projectName: proj.projectName, numberOfTasks: proj.numberOfTasks - 1, date: proj.date)
+                DataService.instance.updateProject(withProject: p) { (success) in
+                    print("number of task decresed in \(proj.projectName)")
+                }
+            }
+        }
     }
     
     fileprivate func selectProjectForTask(project: Project) {
