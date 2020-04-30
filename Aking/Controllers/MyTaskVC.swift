@@ -24,7 +24,7 @@ class MyTaskVC: UIViewController {
     
     var filterView = TaskFilterView()
     
-    var allTasks: [Task] = [] {didSet{self.viewWillAppear(true)}}
+    var allTasks: [Task] = []
     
     var todayTasks: [Task] = []
     var tomorrowTasks: [Task] = []
@@ -48,7 +48,11 @@ class MyTaskVC: UIViewController {
         filterView.delegate = self
         
         DataService.instance.getAllTask { (result) in
-            if let result = result {self.allTasks = result}
+            if let result = result {
+                self.allTasks = result
+                self.sortTaskArray()
+                self.viewWillAppear(true)
+            }
         }
     }
     
@@ -59,7 +63,7 @@ class MyTaskVC: UIViewController {
         updateTodayAndTomorrowTasks()
         myTasks = [todayTasks, tomorrowTasks]
         tableView.reloadData()
-        
+        ProgressHUD.show()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -148,6 +152,10 @@ class MyTaskVC: UIViewController {
         loadViewIfNeeded()
     }
     
+    func sortTaskArray(){
+        allTasks = allTasks.sorted(by: {$0.dateCreated.compare($1.dateCreated) == .orderedAscending})
+    }
+    
 //MARK: - DATE FUNCTIONS
     
     fileprivate func today() -> Date{
@@ -197,6 +205,7 @@ class MyTaskVC: UIViewController {
                 }
             }
         }
+        ProgressHUD.dismiss()
     }
     
     fileprivate func compareDates( firstDate: Date, secondDate: Date) -> Int {

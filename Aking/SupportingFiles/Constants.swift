@@ -52,6 +52,7 @@ struct KTask {
     static let TAG = "tag"
     static let COLOR = "color"
     static let STATUS = "status"
+    static let DATE_CREATED = "date"
     
 }
 //MARK: - CheckListItem

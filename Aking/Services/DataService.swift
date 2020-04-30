@@ -337,11 +337,12 @@ class DataService {
                         let tag = task[KTask.TAG] as! String
                         let colorString = task[KTask.COLOR] as! String
                         let status = task[KTask.STATUS] as! Bool
+                        let dateCreated = task[KTask.DATE_CREATED] as! String
                         
                         let taskColor = UIColor.init(rgbaString: colorString)
                         let sts: TaskStatus = (status == true) ? .done : .pending
                         
-                        let newTask = Task(id: id, title: title, assigneeName: assigneName, projectName: projectName, dueDate: dueDate, description: description, members: members as! [String], tag: tag, color: taskColor ?? UIColor.white, status: sts)
+                        let newTask = Task(id: id, title: title, assigneeName: assigneName, projectName: projectName, dueDate: dueDate, description: description, members: members as! [String], tag: tag, color: taskColor ?? UIColor.white, status: sts, dateCreated: dateCreated)
                         
                         downloadedTasks.append(newTask)
                     }
@@ -363,7 +364,8 @@ class DataService {
             KTask.MEMBERS : task.members,
             KTask.TAG : task.tag,
             KTask.COLOR : task.color.toRGBAString(),
-            KTask.STATUS : task.status == .done ? true : false
+            KTask.STATUS : task.status == .done ? true : false,
+            KTask.DATE_CREATED : task.dateCreated
         ]
         return taskDict
     }

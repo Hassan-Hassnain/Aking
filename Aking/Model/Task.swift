@@ -21,5 +21,6 @@ struct Task {
     var tag: String
     var color: UIColor
     var status: TaskStatus = .pending
+    var dateCreated: String
     
 }

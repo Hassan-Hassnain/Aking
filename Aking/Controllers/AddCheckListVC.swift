@@ -82,6 +82,7 @@ class AddCheckListVC: UIViewController {
         DataService.instance.uploadCheckList(withCheckList: checkListItem) { (succes) in
             print("CheckList upload successfully")
         }
+        tabBarController?.selectedIndex = 0
         tabBarController?.tabBar.isHidden = false
         navigationController?.popViewController(animated: true)
     }

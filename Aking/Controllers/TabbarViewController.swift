@@ -36,6 +36,7 @@ extension TabbarViewController: UITabBarControllerDelegate{
     
     @objc func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is AddVC {
+            tabBarController.selectedIndex = 0
             if !isAddViewPresented {
                 showAddView()
                 isAddViewPresented = true

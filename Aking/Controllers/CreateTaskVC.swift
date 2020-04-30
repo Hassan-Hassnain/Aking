@@ -101,7 +101,9 @@ class CreateTaskVC: UIViewController {
                 DataService.instance.updateTask(withTask: editedTask) { (success) in
                     success ? print("Task uploading success") : print("Task uploading failed")
                 }
-            }        }
+            }
+        }
+        tabBarController?.selectedIndex = 0
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -162,8 +164,11 @@ class CreateTaskVC: UIViewController {
         guard let description = descriptionTextView.text else { return nil }
         var projectName = ""
         if projectNameLabel.text != nil {projectName = projectNameLabel.text!} else { projectName = "" } //projectNameLabel.text != "Project", condition need to be added
-        let uid = AuthService.instance.getUID()
-        task = Task(id: uid, title: title, assigneeName: assigneeName, projectName: projectName, dueDate: dutDate, description: description, members: [], tag: "", color: .red, status: .pending)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let dateCreated = dateFormatter.string(from: Date())
+        
+        task = Task(id: THIS_USER_ID, title: title, assigneeName: assigneeName, projectName: projectName, dueDate: dutDate, description: description, members: [], tag: "", color: .red, status: .pending, dateCreated: dateCreated)
         return task
     }
     
