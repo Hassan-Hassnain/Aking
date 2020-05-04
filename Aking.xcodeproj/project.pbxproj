@@ -61,7 +61,6 @@
 		3C6DA3112448CBC400EBCB4B /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3102448CBC400EBCB4B /* ProjectCollectionViewCell.swift */; };
 		3C6DA3132448CD4900EBCB4B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3122448CD4900EBCB4B /* DataService.swift */; };
 		3C6DA3162448D2EE00EBCB4B /* QuickNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3152448D2EE00EBCB4B /* QuickNoteTableViewCell.swift */; };
-		3C6DA3182448DF4700EBCB4B /* AddNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3172448DF4700EBCB4B /* AddNoteVC.swift */; };
 		3C6DA31A2448E19900EBCB4B /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA3192448E19900EBCB4B /* UIColorExt.swift */; };
 		3C6DA31C2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA31B2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift */; };
 		3C6DA31E2448E54400EBCB4B /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6DA31D2448E54400EBCB4B /* Project.swift */; };
@@ -174,7 +173,6 @@
 		3C6DA3102448CBC400EBCB4B /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		3C6DA3122448CD4900EBCB4B /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		3C6DA3152448D2EE00EBCB4B /* QuickNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickNoteTableViewCell.swift; sourceTree = "<group>"; };
-		3C6DA3172448DF4700EBCB4B /* AddNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVC.swift; sourceTree = "<group>"; };
 		3C6DA3192448E19900EBCB4B /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		3C6DA31B2448E1EC00EBCB4B /* AddNoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteCollectionViewCell.swift; sourceTree = "<group>"; };
 		3C6DA31D2448E54400EBCB4B /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -352,7 +350,6 @@
 				3C613808244626600067B717 /* CreateTaskVC.swift */,
 				3C6AA16D2447B7D300C03FAE /* ViewTaskVC.swift */,
 				3C6DA30D2448C64400EBCB4B /* ProjecstVC.swift */,
-				3C6DA3172448DF4700EBCB4B /* AddNoteVC.swift */,
 				3C6DA3212448E7FE00EBCB4B /* AddCheckListVC.swift */,
 			);
 			path = Controllers;
@@ -719,7 +716,6 @@
 				3C93D31424466BB90026900B /* CustomizableTableViewController.swift in Sources */,
 				3C93D31724466BB90026900B /* CustomizableTextField.swift in Sources */,
 				3C93D31B24466BB90026900B /* CustomizableSeparator.swift in Sources */,
-				3C6DA3182448DF4700EBCB4B /* AddNoteVC.swift in Sources */,
 				3C93D32024466BB90026900B /* CustomizableCorner.swift in Sources */,
 				3C93D2EB244659370026900B /* NSObjectEXT.swift in Sources */,
 				3C6903B0243BBB21003E5373 /* UINavigationBarEXT.swift in Sources */,

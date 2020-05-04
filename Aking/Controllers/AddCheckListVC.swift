@@ -21,6 +21,7 @@ class AddCheckListVC: UIViewController {
     var checkListItem = CheckListItem()
     enum Mode {case addNote, addCheckList}
     var viewMode: Mode = .addCheckList
+    var colors: [UIColor] = []
 
 //MARK: - Initializer & Deinitializers
     override func viewDidLoad() {
@@ -31,6 +32,11 @@ class AddCheckListVC: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        DataService.instance.getAllColors { (colorsArray) in
+            self.colors = colorsArray
+            self.collectionView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,12 +113,12 @@ extension AddCheckListVC: UITableViewDelegate, UITableViewDataSource {
 //MARK: - TableView Datasource and Delegate
 extension AddCheckListVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        DataService.instance.colors.count
+        colors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddNoteCollectionViewCell.className, for: indexPath) as! AddNoteCollectionViewCell
-        cell.colorView.backgroundColor = DataService.instance.colors[indexPath.row]
+        cell.colorView.backgroundColor = colors[indexPath.row]
         cell.colorView.layer.cornerRadius = 5
         
         return cell

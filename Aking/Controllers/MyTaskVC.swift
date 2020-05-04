@@ -225,11 +225,11 @@ class MyTaskVC: UIViewController {
     fileprivate func viewThisTaskDetails(task: Task) {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: ViewTaskVC.className) as! ViewTaskVC
-//        vc.currentTask = task
         vc.initTask(taskID: task.id)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
 //MARK: - TABLE VIEW DELEGATE AN DATASOURCE
 extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -264,7 +264,8 @@ extension MyTaskVC: UITableViewDelegate, UITableViewDataSource {
             viewThisTaskDetails(task: tomorrowTasks[indexPath.row])
         }
     }
-    //MARK: - Swipe Cell Action
+    
+//MARK: - Swipe Cell Action
     
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
@@ -327,6 +328,7 @@ extension MyTaskVC {
     
     
 }
+
 //MARK: - FS Calendar delegate and Datasource
 extension MyTaskVC : FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
@@ -340,6 +342,7 @@ extension MyTaskVC : FSCalendarDelegate, FSCalendarDataSource {
         return 0
     }
 }
+
 //MARK: - FilterView delegate
 extension MyTaskVC: TaskFilterViewDelegate{
     func incompleteTasksButtonDidTapped() {
